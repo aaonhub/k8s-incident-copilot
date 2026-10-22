@@ -1,0 +1,75 @@
+{
+ "key": "b0b12b4ef161d2ca01694a5f58f8ce685befeeac55fae206c9a2c40d93c32aed",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4878,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "open_questions": [],
+         "similar_cases": [
+          "ticket/T-1128",
+          "runbook/RB-readiness-probe-failure"
+         ],
+         "summary": "Deployment inventory revision 2 changed the readiness probe path to /health/ready, which returns HTTP 404. Consequently, the new pod inventory-764dcf74d8-x5cx7 fails readiness checks and cannot become Ready. Undoing the rollout to revision 1 restores the working /ready probe path.",
+         "confidence": 1,
+         "category": "readiness_probe_failure",
+         "target": "deployment/inventory",
+         "status": "incident",
+         "action": {
+          "type": "rollout_undo",
+          "rationale": "Revert deployment/inventory to revision 1 because revision 2 changed the readiness probe path to /health/ready which returns HTTP status code 404.",
+          "target": "deployment/inventory"
+         },
+         "claims": [
+          {
+           "quote": "change from revision 1 to 2: inventory.readinessProbe.path: '/ready' -> '/health/ready'",
+           "statement": "Deployment inventory was updated in revision 2, changing the readiness probe path from /ready to /health/ready.",
+           "artifact_id": "rollout/inventory"
+          },
+          {
+           "artifact_id": "event/1",
+           "quote": "Readiness probe failed: HTTP probe failed with statuscode: 404",
+           "statement": "The readiness probe for the new pod fails with HTTP status code 404."
+          },
+          {
+           "quote": "condition Ready=False reason=ContainersNotReady containers with unready status: [inventory]",
+           "statement": "The current revision pod inventory-764dcf74d8-x5cx7 remains in a Not Ready state.",
+           "artifact_id": "pod/inventory-764dcf74d8-x5cx7"
+          }
+         ]
+        },
+        "id": "call_372350"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 7395,
+   "candidatesTokenCount": 411,
+   "totalTokenCount": 8377,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 7395
+    }
+   ],
+   "thoughtsTokenCount": 571,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "6o_aatfvMdnlwbUP_Ju9uAM"
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "key": "faec0579bada25487908babc72ab77defb365bf018cb085a9e86b8786795a80c",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4512,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "action": {
+          "target": "deployment/inventory",
+          "type": "rollout_undo",
+          "rationale": "Roll back deployment/inventory to revision 1 to revert FAULT_LATENCY_MS back to '0' and eliminate the 1500ms delay causing webapp request timeouts."
+         },
+         "similar_cases": [
+          "ticket/T-1011",
+          "runbook/RB-dependency-timeout"
+         ],
+         "open_questions": [],
+         "category": "dependency_timeout",
+         "summary": "Deployment inventory was updated with revision 2, which injected a 1500ms latency via FAULT_LATENCY_MS. Because webapp has an 800ms upstream timeout when calling inventory, webapp requests time out and return HTTP 504 errors to downstream clients. Rolling back deployment/inventory to revision 1 resolves the latency and errors.",
+         "confidence": 1,
+         "status": "incident",
+         "claims": [
+          {
+           "artifact_id": "rollout/inventory",
+           "statement": "A recent revision rollout on deployment/inventory added a 1500ms fault latency injection.",
+           "quote": "change from revision 1 to 2: inventory.env.FAULT_LATENCY_MS: '0' -> '1500'"
+          },
+          {
+           "statement": "Webapp requests to the upstream inventory service time out after 800ms due to the elevated inventory latency.",
+           "artifact_id": "log/webapp-7bc49bdd78-2pxjj/webapp",
+           "quote": "ERROR webapp upstream inventory timed out after 800ms url=http://inventory:8080/stock"
+          },
+          {
+           "artifact_id": "log/loadgen-69df8fc559-gvnw9/loadgen",
+           "quote": "WARNING loadgen GET http://webapp:8080/api/orders -> HTTP 504 after 809ms",
+           "statement": "Loadgen receives HTTP 504 Gateway Timeout errors when calling webapp as a result of the upstream inventory timeouts."
+          }
+         ],
+         "target": "deployment/inventory"
+        },
+        "id": "call_264641"
+       },
+       "thoughtSignature": "EuYHCuMHAWkUfRNMKVmecfu0GvQ6QqknyTmNSZeSKQCoqk+26qHTV1sG00Up4MBVhcWC7a8PHPG2laoYsH1cutO2i6QvZsvZvVNZzRZ3lIwGsxkB/3ebK769gQMjHQM1T+krou0dTJVe7vE9g4Qxp3fM5f8wexZDt9LnjwR5rg6F1PBXLtWIN6I51uMUgvNclkbW5R7yoBObz8ug1ofhmRJUn4t3Abkcj4g2Qzt+UjbF15fiFmkhzubw9ersYOLVdQ+kSdW2fxD5s214nE8CWCvw/eEGUuJwTzknpBdMqJJNPALrewmDyC9ofzXlsSK8zva4g3u+DV7b0I5D9hhPEXdWeSBDq5GiC+lvdmdSWeKVEZR7Ri+S3h2yJ/XGIqiS/krnCDdrLuKl3NGcrH2TLz69WIuyiUjfU7NA3G0BYIAT7ZQrnsUYpDBQ3lHPYHo2+rgVjfKQWNAJ4aGkBiTCSfO5Awz1O7xzRtdFTIdYa9ECvlxw95l8OCriI7Ua6GgUOiKXkR10nAsMUT9vP9RoB3Pa7NjT0Vzgdlkfo8KVt4YEo710llVmZo7w3XdxssaPWPU0qF0sWNSc10d6jcSVdL003VcMUGEsLZDFGkqzrc1mNIiBaEO7vnQrphVlCNKLjL5lEP8SJb77YsriYPzobH1phfr1qiT0T2MQnRoNq+agEclkBoFJn3tTiQpWctT1tFYEC1VbiA+3JDXCz4XwWHcQ08dL1r7vCQ/jS+J4CqNeqW1miuKXNezHbuEiW5pRPy6xPEBWgYS/BtccuXeFp2aoyxZBsn0SvlZR5PwJR712LmwswlAs0QWt98wWAWGJQW1hATwPPAkNHT40Ap5DsU/QnZwJbX0d5lgxjU17KSQQ3fJ8UypHBtpIOBjjlfS0ad9Z5tBc/c0iUQTycklYZ5mL59KaSf6UFxW7ttk9syx5F1gv0X52fTiCcKV1mQG6YOvpP00foDed+bRZKneg2cb7m69V5s9xTUL4DTqKQWhIOxLixVHsuOezmVt9G6A7niO4op3hqYOAO+5zJPKXO4Vm02Zw90o1ryczaOoMb5zhMQzx0hP4i1ZEjSwekeeAaKRYvOOs742OksKGFD2Mytlh8XWG7wkJIFfTWvp4fjfbTQ98IARqkiM93C3CeBwk4Pso0Wofcl5DecQUJbBjGkO8EEug3yezb45zk1GqvR4mpDgDEH8OYWlTeTRJsbxTwwrH9k07yoMrMx4U7ODN92v4LMZ+0ccOyN7T95Xr5kGH0vj446vZdPYFZI3kp+MzfrLa9tEdb3zKS0GgzajjjgD0TUn50LyKB67ArLPB7ZXplLvX80X8J+Y="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5697,
+   "candidatesTokenCount": 458,
+   "totalTokenCount": 6439,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5697
+    }
+   ],
+   "thoughtsTokenCount": 284,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "PY_aapLEBdXRiLMP_I6zqAc"
+ }
+}

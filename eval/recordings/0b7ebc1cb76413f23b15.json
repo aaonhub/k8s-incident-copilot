@@ -1,0 +1,44 @@
+{
+ "key": "0b7ebc1cb76413f23b15ac759272045ce99a113162d5c335927e15ff1ab8723d",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 7869,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "describe",
+        "args": {
+         "object": "deployment/inventory"
+        },
+        "id": "call_334854"
+       },
+       "thoughtSignature": "EuQBCuEBAWkUfROzFphRuRnyjaHTyOcKI7aOV5GaqHsO5eng5cY2MYqOOl5SFFV/u4r7WBmNQO0Aw7rzljJVlhsbWQX8BcprF2OAux/bJ/exXqORiszh/66lKytcZml9KLulS2SYqSp0uR8xE6LgebUWzFz9Xlbeo/RhD/VQtxEUzeoOTwKPmcgNPUd/WcjuUBOyFIbt/o71r9q/r92al3hYmSrvt8p0oBn9fB7tn/YIN3AxMh2+uZ1Boja7a6YfoHE2O5eJy/HCtAFhI0T3LejApg4pd/9em5xByNpfHGCUwbL+mg8d"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 4744,
+   "candidatesTokenCount": 16,
+   "totalTokenCount": 4799,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 4744
+    }
+   ],
+   "thoughtsTokenCount": 39,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "rI7aaqOaHJOciLMPo5jWuQY"
+ }
+}

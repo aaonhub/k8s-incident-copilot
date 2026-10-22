@@ -1,0 +1,70 @@
+{
+ "key": "0d28849f0749759ecdfc7bc52c6229bfa9c4269e8af8548fb9ece8542b2336cb",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 6686,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "action": {
+          "type": "rollout_undo",
+          "target": "deployment/inventory",
+          "rationale": "Rollback deployment/inventory to revision 1 to restore the running image docker.io/incident-shop/app:1.0.0."
+         },
+         "open_questions": [],
+         "summary": "Deployment inventory rolled out revision 2 with image incident-shop/app:2.0.0-rc1, which fails to pull from the image registry (ErrImagePull). Reverting deployment/inventory to revision 1 will resolve the issue by using the verified working image.",
+         "confidence": 1,
+         "similar_cases": [
+          "ticket/T-1113",
+          "runbook/RB-image-pull-error"
+         ],
+         "status": "incident",
+         "claims": [
+          {
+           "statement": "The new inventory pod failed to pull the image incident-shop/app:2.0.0-rc1 due to authorization/repository failure.",
+           "quote": "state=waiting reason=ErrImagePull message='failed to pull and unpack image \"docker.io/incident-shop/app:2.0.0-rc1\": failed to resolve reference \"docker.io/incident-shop/app:2.0.0-rc1\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed'",
+           "artifact_id": "pod/inventory-75b589d9cf-vmcbp"
+          },
+          {
+           "statement": "Revision 2 updated the container image for deployment inventory to incident-shop/app:2.0.0-rc1.",
+           "artifact_id": "rollout/inventory",
+           "quote": "inventory.image: 'incident-shop/app:1.0.0' -> 'incident-shop/app:2.0.0-rc1'"
+          }
+         ],
+         "target": "deployment/inventory",
+         "category": "image_pull_error"
+        },
+        "id": "call_280325"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5545,
+   "candidatesTokenCount": 419,
+   "totalTokenCount": 6980,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5545
+    }
+   ],
+   "thoughtsTokenCount": 1016,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "io7aavXeBtXRiLMP_I6zqAc"
+ }
+}

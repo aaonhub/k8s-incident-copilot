@@ -1,0 +1,70 @@
+{
+ "key": "5e5bda04af7db1de2d4778d1c0971d3119515f3fdf61400c33eafa31d9ab132a",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 3281,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "target": "deployment/webapp",
+         "category": "config_regression",
+         "action": {
+          "rationale": "Roll back deployment webapp to revision 1 to restore the correct UPSTREAM_URL 'http://inventory:8080/stock'.",
+          "type": "rollout_undo",
+          "target": "deployment/webapp"
+         },
+         "summary": "Deployment webapp encountered a config regression in revision 2 where UPSTREAM_URL was set with a typo ('inventroy' instead of 'inventory'). This caused upstream request failures (DNS resolution error) when webapp attempted to call the inventory service. Rolling back deployment webapp to the previous revision will restore correct routing.",
+         "confidence": 1,
+         "open_questions": [],
+         "status": "incident",
+         "claims": [
+          {
+           "artifact_id": "rollout/webapp",
+           "quote": "webapp.env.UPSTREAM_URL: 'http://inventory:8080/stock' -> 'http://inventroy:8080/stock'",
+           "statement": "Deployment webapp revision 2 changed UPSTREAM_URL to an invalid hostname with a typo ('inventroy')."
+          },
+          {
+           "quote": "ERROR webapp upstream inventory request failed: [Errno -2] Name or service not known url=http://inventroy:8080/stock",
+           "statement": "The webapp pod fails to resolve the upstream URL, causing HTTP 502 errors to callers.",
+           "artifact_id": "log/webapp-784958dfd4-7kwd7/webapp"
+          }
+         ],
+         "similar_cases": [
+          "runbook/RB-config-regression",
+          "ticket/T-1148"
+         ]
+        },
+        "id": "call_260961"
+       },
+       "thoughtSignature": "EtIGCs8GAWkUfRP5DEIrZbDLySPp/tWfH1b75gNJ9hyj+Z+pYchEnpSuW1kt7B8Y7JkX9XgTWki7wISHs4ZsvEFDRdjZGyrrsYeIDamTjSL6clv6QBUT3g2PoenFJkOyrqddsSYZEC24nxOYckk1jjoPCvEWVtOywjkOLHY4xfxyIcP6qSxzS3mN4Gjv6pwvWQED7eTyoQmrLq+YsrEgV6jNRzNkL72ExniO8mohG4qq8sYSy5FPdXPYCrx88r11F3NZE7nzDncrf9zW3l8PtUf26F0zsgTa0dLS+xuzPFDwi9OfqbEJz5vv4yCWviuOCtoKtHEgNbIwPrJoPpGRXJitLlmJCGEmOHv/iL3o0/X61oh6AzHNC2X4Zgte81oYzRy+Bl6NK9dTn3VHgNsTe5waB3e4AKadY+lOrtHtuuF9UlyHrqSrneean7l5K2mz27dOqTVeVJVRVR3UCu4lqSE/tzMFLZrAnLtIFnIux5AMjq6n/7JIGV4yg2pXmZVsnC4eCeVzTBSBPbYLVJqzfzDJBT4pJSSk+RGzCpAY0uNHHhfAeXqKtPOSZrPw9u9p8vKxAlDUg2Pl0EW6J+RsVp/Nr0YkvwE174ZOSfns2Qiqhu2ncU+osLkLqqQjFdAKTgqMPdoanGNosUJIJMH8TS6PjLF5rIJSA3UZAGe5Vh/oTi5aTs3zyO0Cv3YJNJUAURiRqGO/jHcpcm97TyJWVZvDq3ZHi2BoMThuCbwNqEfdraiAloTfi3TEVOVaQnGQ08CRofAp0tzKp+nYj5rrLP2Lt0RpA75O9mPPH6J9zgn77EqQil9+BCojQRqVhMhqlD/d+I6ZE3vGj6mLHK7nG7He6dp39u2KYaxEHZIbwXMCMUuRTPLOlhkIrbFBqbefVbss7G4TPk8GMKcY7sLM2km63W8RrIFHgqAakGZ1Xt470aScQVLUgUrIOmmfgIZIDbvTA3sqSRZlhksFDFMqFZAucIK2INMpoJUxn9SxYKVV+QX8MQ25QREz1D36s5QtBzWLqAsG86adAi+fy9nG2oVS4kBnBIp8B6Lnmhd0Fg/UB1A8EQYZEnD6RL00Gf11Y782CQ+JFo+hLn908FN6OAg6nDOU59b4Ub4GL4JtBEMjJjZo1A=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5794,
+   "candidatesTokenCount": 361,
+   "totalTokenCount": 6367,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5794
+    }
+   ],
+   "thoughtsTokenCount": 212,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "XI7aauv5Bdaj5NoPr-CR6QY"
+ }
+}

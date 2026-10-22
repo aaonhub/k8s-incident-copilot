@@ -1,0 +1,75 @@
+{
+ "key": "dbba8c1d9ac5ffe4ff0c2572323c5d97339db960c8136fcdaf16c4a7f52c77a6",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4295,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "status": "incident",
+         "similar_cases": [
+          "ticket/T-1119",
+          "runbook/RB-crashloop-config-error"
+         ],
+         "claims": [
+          {
+           "artifact_id": "pod/webapp-c6f4d54cd-8kjnt",
+           "quote": "back-off 40s restarting failed container=webapp pod=webapp-c6f4d54cd-8kjnt_shop(1e7e1f20-e29e-4ebc-ac31-6952161a2dc3)",
+           "statement": "The webapp pod webapp-c6f4d54cd-8kjnt is entering CrashLoopBackOff due to repeated startup failures."
+          },
+          {
+           "artifact_id": "log/webapp-c6f4d54cd-8kjnt/webapp",
+           "quote": "CRITICAL webapp ConfigError: LOG_LEVEL must be one of debug,info,warning,error, got 'verbose'",
+           "statement": "The webapp container exits on startup because LOG_LEVEL is set to an invalid value 'verbose'."
+          },
+          {
+           "artifact_id": "rollout/webapp",
+           "quote": "change from revision 1 to 2: webapp.env.LOG_LEVEL: 'info' -> 'verbose'",
+           "statement": "Deployment webapp revision 2 changed LOG_LEVEL from 'info' to 'verbose'."
+          }
+         ],
+         "target": "deployment/webapp",
+         "category": "crashloop_config_error",
+         "confidence": 1,
+         "summary": "Deployment webapp revision 2 updated the environment variable LOG_LEVEL to 'verbose', which is an unsupported log level according to the application configuration parser. This causes new webapp pods to fail startup immediately with ConfigError and enter CrashLoopBackOff. Rolling back deployment webapp to revision 1 restores LOG_LEVEL to 'info' and fixes the issue.",
+         "action": {
+          "rationale": "Roll back deployment/webapp to revision 1 to restore LOG_LEVEL from 'verbose' to 'info', resolving the startup configuration error.",
+          "target": "deployment/webapp",
+          "type": "rollout_undo"
+         },
+         "open_questions": []
+        },
+        "id": "call_383908"
+       },
+       "thoughtSignature": "Er0ICroIAWkUfROUQo+W2KVRS8sTS7CSF5WBdudxzH3lxVP31EHJIQSQmZDTC0szXF6S7TJEmKclZ0DzeQ/cH1XjEh98LvcoHoSpGw7PjBitYG0YUZeMir02emVoxVccN4n15uGDE5ZMVRTigcOik/fAgcwoNx8knxUBkwYxGVrJTqVcm5RTGoCf5uZPALjhH0lHeDGIsE8L4HAJnepDf3eWFccbSjxO3ZarAlToTk40sWMY8q9yW+X43QoT0womG3T5Xnp/o7lPI4BfQMjJ3paIBqsXZDDgtAPwA8BOcKr5jgg/WZzO+wHPhU4tWFRyXtjRJFEuwbxXM3d1RhvRskMbbzwP9+d1QuUINNMc0V91B2usysoJsy2+QTNDq8LlHrrq1TV274VCx4tmlr/R4aVN+uDuV+vb8rWPzfhbOH/s3hjvL/DK2vpYszjlcGFIlRO7z3RcvdiHMM+8gSK1YVXwmqEcz8LtaljsjSwrh4HxkCQhqp/rivb/XyotoPMcR8VwsBj9O8anoDFECFjizSDdQQO1eZ3Z4mNSFiczaBVz62XpTMbfCFDfgyWwX3w/vRyOltm6fKssAShIjUy1VaNj4Ez3tsOub0qMMFgaV5LwQSFAQ5kpVbVGDCVU7zh1YLLaeoiNOeioVFGHg5S/k4H+4mfJ8BTSzAx5cM/rcXvaS5G+xvPhQxz390raoy6rnRTYidPrYbcqHsm+aJg3Vgcn8q3ajd2CTBa1MPtOA0VnbcAsWtsx1YpzachFjThqAqCG83ipYY1FJ1w4RLohkY/YnyQ91l4cajtOjjE6SPDOqbjikQNlYPKYBg76j+F7IgmNFTe3N6w5YkXPCsS91imaarF9pkdN8qZMHntAKuJoBRDFgnYcIGtZioG/kXqggeUoLmgMLYqgafjuyzS6etXwdU2L8wm7Pl4VeMPZM8pfetU251SVHYgZ2qa3sPKkm/nNAIxIDzeIojRuhuGy+qdvUbR66UL2ylasceZOfmpplYZOtnmxvdtSsbDJSgZwFIuYkfomPqztrQQ5vXPF1smMUrU7WFa+dJ2E+Oeq7mhYx7/EFIM0zfiyR73MbiPs+B5iA7AmR05bIVA/ivK0N2lFlELJlxNFaV+2xEYxbt9gr/yRZ9DHn4HvToCjmrBQ7Vad79KkTKOnaD60QhHWCd57kXzaNvRIfN4HjmVzHyJgBMOlpa/jwIdVUikfHFNOaRo0VCxyusIQb0SDdP0j+C8ELRnbu+J7MeLxHxowua2fjwWTnu3yncHk0+LcP66LERmf+J+ve+Iwygq6jyhQbnUZAY2km+Kihg6Dma2WmOD8kqJQVQZf3lKxUv4Ze+fGImrbpT0BLYpiTQD0dDXQ7cM7sqy0GnK34CYf/yJ6PfrD2pAu/YPuaCGR/34td0KWjDZZrkXK0XFZaLE2O90wZ3M90rivGPPq0X1qmVvhmNk="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5450,
+   "candidatesTokenCount": 480,
+   "totalTokenCount": 6275,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5450
+    }
+   ],
+   "thoughtsTokenCount": 345,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "9o7aat7KMdXRiLMP_I6zqAc"
+ }
+}

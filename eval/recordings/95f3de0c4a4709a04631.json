@@ -1,0 +1,68 @@
+{
+ "key": "95f3de0c4a4709a04631f5cea0e788947aadeb003e222f8dc5f69f5eb52c771a",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4700,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "claims": [
+          {
+           "quote": "selector={'app.kubernetes.io/name': 'inventory-v2'} -> pods matching selector=0, endpoints ready=0 notReady=0",
+           "statement": "The inventory service selector is set to app.kubernetes.io/name=inventory-v2, which matches 0 pods in the namespace.",
+           "artifact_id": "svc/inventory"
+          },
+          {
+           "statement": "Webapp failed to communicate with the upstream inventory service.",
+           "artifact_id": "log/webapp-7bc49bdd78-frh75/webapp",
+           "quote": "ERROR webapp upstream inventory request failed: [Errno 111] Connection refused url=http://inventory:8080/stock"
+          }
+         ],
+         "summary": "The inventory service selector was misconfigured as app.kubernetes.io/name=inventory-v2, matching 0 pods and leaving the service without endpoints. Updating the service selector to app.kubernetes.io/name=inventory resolves the upstream connection failures from webapp.",
+         "status": "incident",
+         "open_questions": [],
+         "confidence": 1,
+         "target": "service/inventory",
+         "category": "service_selector_mismatch",
+         "similar_cases": [],
+         "action": {
+          "rationale": "Patch service/inventory selector to app.kubernetes.io/name=inventory to match the running inventory pods.",
+          "target": "service/inventory",
+          "type": "patch_service_selector",
+          "selector_label": "app.kubernetes.io/name=inventory"
+         }
+        },
+        "id": "call_360778"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5400,
+   "candidatesTokenCount": 332,
+   "totalTokenCount": 6204,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5400
+    }
+   ],
+   "thoughtsTokenCount": 472,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "tI7aatSLE6SrwbUPkaXb6AY"
+ }
+}

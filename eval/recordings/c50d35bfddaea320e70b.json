@@ -1,0 +1,74 @@
+{
+ "key": "c50d35bfddaea320e70b26aa003d2c5e849a7453e8ea8d995908507a3443a2e3",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 5763,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "confidence": 1,
+         "target": "deployment/webapp",
+         "open_questions": [],
+         "similar_cases": [
+          "runbook/RB-oom-killed"
+         ],
+         "action": {
+          "target": "deployment/webapp",
+          "type": "rollout_undo",
+          "rationale": "Revision 2 updated CACHE_WARM_MB to 160 MB, exceeding the container memory limit of 128Mi and causing the container to be OOMKilled during cache warming. Undoing the rollout restores revision 1 with CACHE_WARM_MB=16."
+         },
+         "claims": [
+          {
+           "quote": "change from revision 1 to 2: webapp.env.CACHE_WARM_MB: '16' -> '160'",
+           "artifact_id": "rollout/webapp",
+           "statement": "Revision 2 updated CACHE_WARM_MB from 16 to 160."
+          },
+          {
+           "quote": "limits={'cpu': '500m', 'memory': '128Mi'}",
+           "statement": "The memory limit for the webapp container is set to 128Mi.",
+           "artifact_id": "pod/webapp-67bcb57f84-crjm9"
+          },
+          {
+           "quote": "restarts=3 state=terminated reason=OOMKilled exitCode=137",
+           "artifact_id": "pod/webapp-67bcb57f84-crjm9",
+           "statement": "The new webapp pod terminated due to being OOMKilled with exit code 137."
+          }
+         ],
+         "status": "incident",
+         "category": "oom_killed",
+         "summary": "Deployment webapp revision 2 increased CACHE_WARM_MB to 160 MB, exceeding the container memory limit of 128Mi. As a result, new pods are OOMKilled during cache initialization on startup. Undoing the deployment rollout reverts to revision 1 and restores healthy operations."
+        },
+        "id": "call_265425"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5924,
+   "candidatesTokenCount": 432,
+   "totalTokenCount": 7135,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5924
+    }
+   ],
+   "thoughtsTokenCount": 779,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "rY_aaoCQEsm0ytMPis6iqQQ"
+ }
+}

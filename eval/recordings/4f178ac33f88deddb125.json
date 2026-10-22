@@ -1,0 +1,71 @@
+{
+ "key": "4f178ac33f88deddb12546ef3de83c2e3f28ea16e078d8313bfef0de20e18dab",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 2825,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "similar_cases": [],
+         "category": "no_incident",
+         "summary": "All deployments in the shop namespace are healthy and running revision 1 without active errors. Initial readiness probe warning events occurred during container cache warming at startup and resolved immediately.",
+         "target": "deployment/webapp",
+         "open_questions": [],
+         "claims": [
+          {
+           "artifact_id": "deploy/webapp",
+           "statement": "The webapp deployment is fully ready and available with 2 replicas running.",
+           "quote": "ready=2 available=2 unavailable=0"
+          },
+          {
+           "artifact_id": "metrics/webapp-7bc49bdd78-c5522",
+           "statement": "Webapp pod webapp-7bc49bdd78-c5522 is serving traffic with an error ratio of 0.00.",
+           "quote": "error_ratio_60s=0.00"
+          },
+          {
+           "artifact_id": "log/loadgen-69df8fc559-bzbqh/loadgen",
+           "statement": "Loadgen successfully recovered after brief initial connection attempts during startup.",
+           "quote": "target recovered after 2 failed requests"
+          }
+         ],
+         "status": "no_incident",
+         "action": {
+          "type": "none",
+          "rationale": "All workloads are healthy, ready, and serving traffic with zero errors. The warning events were brief startup probe failures during container cache warming that quickly cleared."
+         },
+         "confidence": 1
+        },
+        "id": "call_382849"
+       },
+       "thoughtSignature": "EsECCr4CAWkUfRM39gWtXY3TUAG80ncxadDzQtInxa2Lk1E5uIf+WQrwUGrSuoAuMy53iv9ODUYvMfY4jXbMTjh3H0RoF7N7f3Wu9/Q1/hQAxV5cxMGKN+jDlyXbOc0NmpJQY/TuYMwjci4+0VQRVVo6tJpeFAzTgx1YrGgHdUj5Esmw983LJ5NVcFDb5a7jQorzEpsrTtwIrprA/UF9j/sen2jmxXGBme5ZEZIa4GWrbezXRjf2s1ZQb8H8FG2W9kaKpwrLr/3zQUkG/IIf0ZH6Iz48+gFVEoU8GBUg693yi3SaLqKkfUhXBCJieaaFtS7Bb7/pL70A5GCg/68+18ng84g5IaTxa2H3DmfJs5NBS0zb01HFJujyi0dz4FQfN39DaiEG5QZhsnih2uz50Klz5tCK/uJHke8lSo+2M/1onOzc"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 4825,
+   "candidatesTokenCount": 312,
+   "totalTokenCount": 5177,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 4825
+    }
+   ],
+   "thoughtsTokenCount": 40,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "RY_aaqDsA87b5NoPnP-Y-QY"
+ }
+}

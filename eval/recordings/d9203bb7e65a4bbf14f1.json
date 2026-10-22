@@ -1,0 +1,44 @@
+{
+ "key": "d9203bb7e65a4bbf14f1007d198d733a7957aaa56d585a06152aaa86ba09f70f",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 3295,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "get_rollout_diff",
+        "args": {
+         "deployment": "webapp"
+        },
+        "id": "call_439139"
+       },
+       "thoughtSignature": "EuUICuIIAWkUfRNIxKIO/gxqQUI4t6CVljQjYhXGQPkO/rg/kmjB4MTd5wRZhSCq+lFWMhjmSWl4HWF5N9t7Ht66+KpYDxXHHeUNVFK1LWm5zU/cGxHKd+nZZN7cGNziPzunZBPlp5TRS6qTGbMa64UhTH4B1/2qYtD/ZTjHDVLSPRX+D0h1ASBi1bnFjI8d4Zm9+dfwzotRzWBfidHY8AJ4YdXNPc9loLHG0NFycdTtsCrf49Lp6731yaFFT0csQFM+aa1RSOBLrfBVzP8pJKSRBc54ZcSdnWbWz1W38q/5bct1bXeUbHRH4XoW0PUHMZBHwl/Nt6K9XR3ehsyzGzF1Dtuckx/MKJMyVDMh1Lc51FVxsKLRb+nyarhp3UyPLLgjn9SFqw50rxHvYTak94RMCXCKbI4UIkzJHnvVOApg7tXV4RWl2G/SbwgZ5zw7Dr4zLbddlddd9/vLfxeH/D0Y/mUGLgk9WdG8sLJWY/UN7YzJrlcoJO8jnAU+HIheLGzTPAuMVkf5stugM9hq3M/16Rx3UwBSSVqw2sBrBe54ZA7qPejxBRKn4DbWdhIEx91dWIibc+mMy+y21mEWiFdO9tpjRwX75UmgsC2xutsGGkKFAC62fRinXGh/+ZU9Z9QZ2aKG+kS9fzROY/hLSzJqGjybYT8HB+hqpXfF4o0eAcWDEVLWmhLppZHAqYIuUif+i5PIKR+tgW+4LmIj7p2TEjk6XTvjuJ5PDGYt4lHjobX5Gmfu7SoGj+/FNvEI6Q7zJ1Ca/yTTMebO1NbFJPCqFck94JGlTSHjF0aV1qTFPQBGiN0wiw/FW51NQzsxsFkTVMChie+dRbl5DIyIQjGQwrPpsCXiWUACWbqkYmyEQ2hAFXF+IEuzHFqIAr7CRhH9C802gJqBckLZ5Ix2MptUm2jYL602GWedtcXAC0vVD+xFB1amkSzlkzxY0S1giD2ecDVzf2woAzmuiJNBZUavXuF8wGeH5M0zp2/M9II4C9fVJE9XrDr2zdBbcBACUlpn9G9wVVR43EK0HxgKPsf3YC3t3RcDvOIJuP+Ny7Z6xE8qOgvags8Ehm8R/Wlnz8Mgys+ie0EV5lAUghUQ6JgwoXR/+gXaAaLSYXxSzRCpGyCCMdriLAq4++AK7+Df/Zie4xtZ6y0adIQcCe4aWK5PAVOwceOfHFj6ExAm14Ckk6PcT8NfHvrNr2uo3hzDw0M/pSe5GqxelrNzkTSs1F+OzPNWzyzYdN6VyLdUcfyTma3tTFkEXLL40dii/Jk3pwvwRB3vr7Hw+4DHMajx89XZcZNB/CFPMqsAswdqehk/QnTnX4dn+m90YlHDV8X1wUcAEarQB9HDLtiYW2wMwzl3iFjMr5/9MTa7JU1usMyLL4KSivYUpAN5jsUhm0PVnDXKKp51CsfVUgWgvSvPbeNlIYC+XpzV0HcwKJyrnPc2oQsU+A6NGxSU6h7cZJ7rB3nl3xF30e5t4ZnLZy2obVERf5GdwQHZ"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 4976,
+   "candidatesTokenCount": 19,
+   "totalTokenCount": 5323,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 4976
+    }
+   ],
+   "thoughtsTokenCount": 328,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "5o7aatvyMr-m5NoPtYjB4AY"
+ }
+}

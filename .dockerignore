@@ -1,0 +1,7 @@
+.venv
+runs
+.kube
+eval
+tests
+app
+.git

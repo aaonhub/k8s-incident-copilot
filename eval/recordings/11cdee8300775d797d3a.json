@@ -1,0 +1,67 @@
+{
+ "key": "11cdee8300775d797d3ae040399fe70925f28c84f1093fe88f7bef1dff03599d",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 5904,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "action": {
+          "rationale": "Revert deployment webapp to revision 1 to restore memory limit of 128Mi and stop pods from being OOMKilled.",
+          "target": "deployment/webapp",
+          "type": "rollout_undo"
+         },
+         "claims": [
+          {
+           "artifact_id": "rollout/webapp",
+           "quote": "change from revision 1 to 2: webapp.resources.limits.memory: '128Mi' -> '40Mi'; webapp.resources.requests.memory: '64Mi' -> '32Mi'",
+           "statement": "Revision 2 reduced webapp memory limit from 128Mi to 40Mi."
+          },
+          {
+           "artifact_id": "pod/webapp-8c4ff84f7-6zg7v",
+           "statement": "Pod webapp-8c4ff84f7-6zg7v was terminated due to being OOMKilled under the new 40Mi memory limit.",
+           "quote": "lastState=terminated reason=OOMKilled exitCode=137 finished 4s ago; limits={'cpu': '500m', 'memory': '40Mi'}"
+          }
+         ],
+         "summary": "Deployment webapp memory limit was reduced from 128Mi to 40Mi in revision 2, causing pods to be OOMKilled upon startup as actual memory usage exceeds 40Mi. Undoing the rollout restores the previous working configuration with a 128Mi memory limit.",
+         "target": "deployment/webapp",
+         "open_questions": [],
+         "similar_cases": [],
+         "status": "incident",
+         "category": "oom_killed",
+         "confidence": 1
+        },
+        "id": "call_367591"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5117,
+   "candidatesTokenCount": 371,
+   "totalTokenCount": 6311,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5117
+    }
+   ],
+   "thoughtsTokenCount": 823,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "x4_aashk36Xk2g_uzvGYBw"
+ }
+}

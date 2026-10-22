@@ -1,0 +1,74 @@
+{
+ "key": "c4b68a975c9972111fcad584ec55e14e7808394c92061e6cffbfbf0fd4a0470d",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 6779,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "open_questions": [],
+         "summary": "Deployment inventory's recent rollout (revision 2) set FAULT_LATENCY_MS to 2500ms, causing its p95 response time to increase to 2500ms. Webapp calls inventory with an 800ms timeout threshold, leading to upstream timeout errors and HTTP 504 responses. Rolling back deployment inventory to revision 1 will resolve the issue.",
+         "similar_cases": [
+          "ticket/T-1011"
+         ],
+         "category": "dependency_timeout",
+         "claims": [
+          {
+           "quote": "change from revision 1 to 2: inventory.env.FAULT_LATENCY_MS: '0' -> '2500'",
+           "statement": "Deployment inventory was updated to revision 2, setting FAULT_LATENCY_MS to 2500.",
+           "artifact_id": "rollout/inventory"
+          },
+          {
+           "artifact_id": "metrics/inventory-5cc99dffb6-kvg75",
+           "quote": "request latency p50=2500ms p95=2500ms (60s window)",
+           "statement": "The inventory pod experienced high request latency of 2500ms."
+          },
+          {
+           "artifact_id": "log/webapp-7bc49bdd78-fgxpd/webapp",
+           "quote": "ERROR webapp upstream inventory timed out after 800ms url=http://inventory:8080/stock",
+           "statement": "Webapp timed out calling the inventory service after 800ms, resulting in 504 errors."
+          }
+         ],
+         "status": "incident",
+         "action": {
+          "target": "deployment/inventory",
+          "type": "rollout_undo",
+          "rationale": "Deployment inventory was updated in revision 2 setting FAULT_LATENCY_MS to 2500, causing downstream service latency of 2500ms. Webapp times out after 800ms when calling inventory, leading to HTTP 504 responses to loadgen. Rolling back inventory to revision 1 will remove the added fault latency."
+         },
+         "confidence": 1,
+         "target": "deployment/inventory"
+        },
+        "id": "call_396478"
+       },
+       "thoughtSignature": "EtYWCtMWAWkUfRMVLd3cEjluuS+jWwdLlrYOcXl6aWSQqjO+JBdJrZc0jqjTOU6zUQDufjLH58nEBlB7IMSUfpBdCwlU1wFKTeyYWlE0eEjsVRAyzCeEkkbfRNfrx144pWRDAKq/EslCJ4o0iFvHz7jk/2MuNUEPhAPoV9CnJtA40w9y5gqPEFpOg92UN7vWcYY1aH2W35Lto+DT1XykWKqv8u+PSGVHdsj0Nch5StO7arfTjNTd+9PuRwOslMUtwIRnuC6I9V3bm0R6jA4U+5etTF0FHZ5D5OQPvlO3AuO1QuNXgB1H52TefiCRcEP68SSBD6MtbXcUsR8STCSgXrpRpew1+JFss5DRV5XbzRkUdKBpGdTy1pAOIf9Kv/fAi+x6tNUZn4hNyNhCQmbbZ4KkaUPl8d8hC4cPKGmc0/O9exOvIdW5lNVIkBp46VumL4H5tZYp7bDebhjNCtkwR+0i+x0KpS1BMagIMBgq8TXrpvkXw/HNZxgUhZbhAkgYoqYiiIXBelmnyKYB5+obnlUAUpTDu9tfMVQaHaNO/mSMRXLkbzEyeYgcT/jbl0++ltaFOlDm7OMc0d2f8g0EsmIWTnuSHpmNGTTUCXva8rMS6hWhsetyBhlnRC27qf0M7x9KC5ZOeV9bYpU/7zK/+MbjRNMdVo4f2w8kIrQjoytCfCvSduRL2T5uFFwZBM6dTklsIv+6VVBmnSfVW2bfssrzmMUg6xdpsU8p4ArNBA/YW/3/OLrY6MzODrMeDwLPnx4h6qCS3plhVEypq9E2kcWYpib2gA8dIN8YvJDHESgU84w1Gp2OhUxyfdf9Xf9WeCdhRbwC3X/vsAqYb02302IZX8mpA5x0x01x3E0U4tRf/e4hijQ4oHTA/0J7N/BptQD0/bbhbFhm4vx3tolpQ8uA2k0NtELxj8bXcoMjjF2xRH7SHtdICmKlzV65QOnwoaaw13fBIoQhGRXOQRNv4WCvZThoQHu+hj+NqR9nsMVQHNDrkWOj7uaX9VNYF+32MqHfTGGsja4pV+8dlcY2PLnFCrVGgEMnhKj+IYdSb6bTYZSqFekmQETV3C7BJiOZ6Up5VZzuYxgkxpTLUv85+CaoJYQ+BZrXQZZCbhAKRXkLGQrSvueskoFWM/EbX79u0tig1cK+sLWgbmU4RMLo9IWZwIh6qqga9OfUPjB42wY9HIId6QNFQXcbdgS8HbtAmdlr3j630o/TWkRi1iQNJSWPXDdMMNHocla4Ikb/y6FupfM4jHGcAsNK7aiAZimrJK5MNJEfrFQgyLgZUjf/E7lxESJQD4hqiOGxnpZB4q5F6q2AYivoKdQnqu3y/Ivm6xjHtgiduJlcyZiHFcyixS2rsjutHIS8i9ag7dro4VNZfc1YxwBNTXsg9q64R7WvHaegdB8GfwvpXuTN6cCcYCUWI6OSU1IMtILleW9H+t9/cyMaR1xRfirPUVbhSx7uRKsLLAvSoKEoLPmc1Ip1aOXiM3oRYpVOmWgls9K3StncNl0IWSD4YjRl9WjOPkVdTZFHWYDx5nAb1F0iM59JJKyvyoyxTc2uHelZiC0dEfSGdVx2K2ygCwPQOtUY9cajY+Bq3rLkB4ww6BQmxGqaIJrCtfoQmjftUPncbOKfj3reH5FS4RgvdVE6C83D6MnH/ZICyZ8vCeA29kVQbbScCMH/MI0eSpRxKRRlvDxdHFwAVgfF6MU2/32l0Sj+wz2CUPpPQrMl4ThP2VwmwCoU0WY12qci5WbcTL2/6iUVeJbFfZx9/osJ/FhfA8M7pC0TGiShAQgrq0PDd/9/jB35Ye2FonWdTG/cxQTZoN0/7ERMIAc4CSe/wsyRp/eLtlGGzN95VVA66GgC7vApWyYmXOl9KzaTfbkwAsW6YaiEnchMU3KXL8Jl3n4WgCMJf5+8u7gcB0xVV0yIif5sZ5FrXlwz2maUDQF+mZnG0T4UgrdqFwvoNlhDj2aS0SDMPf5di53Db7zn/JbLyC+/ShvUiALqFiRY9V9D2tj/X6AHKjxOpLM+kkwFLkt/C5mmdIW+ar71O7d5+X4D5xqfsKEq8pUjl7L35Lnlg7Cc+WcN7pa3peBn90w4nban4RWFfCrA1FcCNAtz+v2S8UXQZDiqIukfUCFKBFmKsxti1hC75Qg05Cc2RHodHZqY8UiktysSCpJFOsCie/lMblSWEFfXIm/Ae/Aa2/of3ee+5c7ZA7DxHpH2DGVLesYsUDPaYVEyhbuQadhRTwQahVIKqOBAhS3HFj4MQH7l4PTCs6Ze9ENnIU1Blu+YLcTcfiyIiaQKQUx77qCMUg3zo2aoNeBqFi1Cy7D4MGg6TZHUmKHBowzUHdZvZwXwMw47MXz9gzsreVKxS3FsvG0SKPr98c2W+UvqmSdhMaFah19OiJkaelnZOIDiosqrrNtq1GoagbVe9F0i6YbwSgqko60p4b6HVZcTbkvuX+aIPlNdADTJltHy/rguJeCk4iB56my4q+4iKxepA8mgvwbeZ5VMWNcr2w10V66/Mtu/ajuo81maX+h2DU+G5/eqTBBh/cCEQmdpgeNDmlae/D8UmhSHD1apz86xASVWvBSxlGGngB5ksVaUAFIzNSi+kwluxCRJH9UpJRslfgFDHSKQqHL9lLbUoC8mtg47fQas8REz+u2o5V/oYxecHNmUEuViTzZ+R5sgufH4Hsl8HbxUUhRKmiIpzzSvJaG0xj0CkJ68YcNEkUYUAJGTbb8G7oTSHa99CjKXOtGBE987DpBumWgJSx7XWtfWzeSy7B4AHOT7e/pUGQ99/+WyDurnPw0JsN4dpm2LSl9i9ODD/W3mw+2mVwIc3pWLkytht3d8G0WiXMooDg4kNRcNpZS1p86H/lHwL61ZeocowfDEOH301SbC9JJhbjsqUxZbZpVq15Sta0q7TjZTQmmBH7ugPdG8iLwhxaTUL2X59AZeV3YTifONLNjjuznvGNFB5GWodu+Pr02DpUo4oYXdWs4oCQo2BEGYkKeYhkLqOG9BP9VnaKVuH9MxRIMt9smY94u7wNHxVEmuYNGWbWLjMW2OgkAogG4zrN/Np3Zglu+0rcG+P2LI92tXJVniB/BIcH6QtU/rqRRLMg9m5NvpGPw5svw9vvG2rNyKs64Fh9VnKkp95eWcFyqlg1S+nzxMe/vllHbEIxBM5+EZCn58/K4F2NZmXLSNHvYui4CT9gHP6G64EEs37A6gQqklYijgU6inwYbRW54xa1zaiC8/5EwijONLSURDY7/fsW+J3iR+idj5w2+YbXjgSgRMej7iFbBcVfKyzhIx9t8cMSUHI7ceQuC5t0P1wwP2oYde30NATjDWpdsgjx9tHvoTChQUTrZaIqedweFRHtJ6eodyHfsAL7THs/8is2G8GtAab4fu8d7bUhpza3EzKQZjE4L2Y+lpPt5LqFjA9klmBG9vNLBrxvZoTsXQNvDf7y3r7EK+g7dL5gP8ICymokIvnMdgYrxZbV4pAzv9ZfHm2kbJ3Q/B+xf1yjTEb20okXAxjLzfaHLl2NNaV75X2ipmhZRnLzSm7XavpZc2L/li+fOZ2H1533n7xWqlMu1HA3qLJh5z1D3rzsf9kEgmrinV/1/rZe40h3b5UkZh9rMaz0DR5u5+2xZ45eFQLGDo19QOuY/BYmDRgtkzHd98KHdpMu/6Rjf8A4jGGCPO9/3Xs73Scc7WommWL7Wp8ub1MvM/IAjj2meGO0KIr+GujaeSn21h4f8P0iyb/seKm3RcXegMeaas7RYACLlYlVEZCJ6wDSkbkf4g4iQFODdcdpXQ1JoKBopZR76YBv7GgZ4U/O8Fe2/0gz2vL/If/Nht+b6Lkmijio5fuQ9mmcBnfjhG3BRNkOFJlQ=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5877,
+   "candidatesTokenCount": 480,
+   "totalTokenCount": 7197,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5877
+    }
+   ],
+   "thoughtsTokenCount": 840,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "FI_aaqOlA9Kq5NoP1pjs6AY"
+ }
+}

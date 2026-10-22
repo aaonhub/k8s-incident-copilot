@@ -1,0 +1,64 @@
+# Two identities for the copilot, so least privilege is enforced by the API server, not by our code.
+#   copilot-reader     - everything an investigation reads. GET/LIST/WATCH only. Cannot read Secret values.
+#   copilot-remediator - the only identity that can change anything, and only the three allow-listed
+#                        mutations (patch Deployments / Services in this namespace). Used only after approval.
+apiVersion: v1
+kind: Namespace
+metadata: {name: copilot}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: copilot-reader, namespace: copilot}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: copilot-remediator, namespace: copilot}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: {name: copilot-reader, namespace: shop}
+rules:
+  - apiGroups: [""]
+    resources: [pods, pods/log, events, services]
+    verbs: [get, list, watch]
+  - apiGroups: [""]
+    resources: [pods/proxy]          # GET /metrics on the app pods
+    verbs: [get]
+  - apiGroups: [apps]
+    resources: [deployments, replicasets]
+    verbs: [get, list, watch]
+  - apiGroups: [discovery.k8s.io]
+    resources: [endpointslices]
+    verbs: [get, list, watch]
+  - apiGroups: [metrics.k8s.io]
+    resources: [pods]
+    verbs: [get, list]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: {name: copilot-reader, namespace: shop}
+subjects: [{kind: ServiceAccount, name: copilot-reader, namespace: copilot}]
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: Role, name: copilot-reader}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: {name: copilot-remediator, namespace: shop}
+rules:
+  - apiGroups: [apps]
+    resources: [deployments]
+    verbs: [get, list, patch]
+  - apiGroups: [apps]
+    resources: [replicasets]          # `rollout undo` reads the previous ReplicaSet's template
+    verbs: [get, list]
+  - apiGroups: [""]
+    resources: [services]
+    verbs: [get, patch]
+  - apiGroups: [""]
+    resources: [pods]
+    verbs: [get, list]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: {name: copilot-remediator, namespace: shop}
+subjects: [{kind: ServiceAccount, name: copilot-remediator, namespace: copilot}]
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: Role, name: copilot-remediator}

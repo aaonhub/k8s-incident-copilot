@@ -1,0 +1,40 @@
+# Optional: run the copilot as a service inside the cluster.
+#   docker build -t incident-copilot:0.1.0 . && k3d image import incident-copilot:0.1.0 -c incident-copilot
+#   kubectl -n copilot create secret generic copilot-llm --from-literal=GEMINI_API_KEY=...   # never in git
+#   kubectl apply -f deploy/rbac.yaml -f deploy/copilot.yaml
+#   kubectl -n copilot port-forward svc/copilot 8088:8088 && curl -XPOST localhost:8088/investigations
+# It runs as copilot-reader, so this pod can investigate but cannot change anything. Approved actions are
+# applied from an operator machine holding the remediator identity (`copilot approve ...`).
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: copilot, namespace: copilot, labels: {app.kubernetes.io/name: copilot}}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app.kubernetes.io/name: copilot}}
+  template:
+    metadata: {labels: {app.kubernetes.io/name: copilot}}
+    spec:
+      serviceAccountName: copilot-reader
+      securityContext: {runAsNonRoot: true, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: copilot
+          image: incident-copilot:0.1.0
+          imagePullPolicy: IfNotPresent
+          ports: [{name: http, containerPort: 8088}]
+          env:
+            - name: GEMINI_API_KEY
+              valueFrom: {secretKeyRef: {name: copilot-llm, key: GEMINI_API_KEY}}
+            - {name: COPILOT_SPEND_CAP_USD, value: "1.00"}
+          readinessProbe: {httpGet: {path: /healthz, port: http}, periodSeconds: 10}
+          livenessProbe: {httpGet: {path: /healthz, port: http}, initialDelaySeconds: 20, periodSeconds: 20}
+          resources:
+            requests: {cpu: 50m, memory: 256Mi}
+            limits: {cpu: "1", memory: 768Mi}
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: copilot, namespace: copilot}
+spec:
+  selector: {app.kubernetes.io/name: copilot}
+  ports: [{name: http, port: 8088, targetPort: http}]

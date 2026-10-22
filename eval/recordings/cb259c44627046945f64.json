@@ -1,0 +1,70 @@
+{
+ "key": "cb259c44627046945f645c407b550cd844c997995fdc66731a5aa9c278f81195",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4774,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "status": "incident",
+         "claims": [
+          {
+           "quote": "2026-10-22 21:27:43,223 CRITICAL webapp ConfigError: UPSTREAM_TIMEOUT_MS must be an integer number of milliseconds, got '2s'",
+           "statement": "The webapp container fails to start due to an invalid UPSTREAM_TIMEOUT_MS configuration value.",
+           "artifact_id": "log/webapp-dd7ddb4cc-xf99b/webapp"
+          },
+          {
+           "statement": "Revision 2 of deployment webapp updated UPSTREAM_TIMEOUT_MS from '800' to '2s'.",
+           "quote": "change from revision 1 to 2: webapp.env.UPSTREAM_TIMEOUT_MS: '800' -> '2s'",
+           "artifact_id": "rollout/webapp"
+          }
+         ],
+         "category": "crashloop_config_error",
+         "similar_cases": [
+          "ticket/T-1099",
+          "runbook/RB-crashloop-config-error"
+         ],
+         "open_questions": [],
+         "action": {
+          "type": "rollout_undo",
+          "rationale": "Roll back deployment webapp to revision 1 to restore UPSTREAM_TIMEOUT_MS to an integer value ('800') and resolve the startup crash loop.",
+          "target": "deployment/webapp"
+         },
+         "target": "deployment/webapp",
+         "confidence": 1,
+         "summary": "Deployment webapp revision 2 introduced an invalid configuration where UPSTREAM_TIMEOUT_MS was set to '2s' instead of an integer number of milliseconds. This causes new webapp pods to fail immediately on startup with a ConfigError and crash loop. Rolling back deployment webapp to revision 1 restores the previous valid configuration."
+        },
+        "id": "call_304577"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5414,
+   "candidatesTokenCount": 385,
+   "totalTokenCount": 6439,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5414
+    }
+   ],
+   "thoughtsTokenCount": 640,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "6Y7aaprFBdaj5NoPr-CR6QY"
+ }
+}

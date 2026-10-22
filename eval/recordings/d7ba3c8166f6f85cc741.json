@@ -1,0 +1,67 @@
+{
+ "key": "d7ba3c8166f6f85cc74194ee08c343b81482efed1110bd0db6f38b21701aa407",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4749,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "target": "deployment/inventory",
+         "status": "incident",
+         "similar_cases": [],
+         "action": {
+          "type": "rollout_undo",
+          "target": "deployment/inventory",
+          "rationale": "Rolling back deployment/inventory to revision 1 restores LOG_LEVEL to 'info', resolving the startup ConfigError and crash loop."
+         },
+         "claims": [
+          {
+           "statement": "The inventory application refuses to start because LOG_LEVEL 'trace' is invalid.",
+           "artifact_id": "log/inventory-9fd7bb87d-gq6zv/inventory",
+           "quote": "2026-10-22 21:30:22,209 CRITICAL inventory ConfigError: LOG_LEVEL must be one of debug,info,warning,error, got 'trace'"
+          },
+          {
+           "statement": "Deployment inventory was updated in revision 2 to set LOG_LEVEL to 'trace'.",
+           "quote": "change from revision 1 to 2: inventory.env.LOG_LEVEL: 'info' -> 'trace'",
+           "artifact_id": "rollout/inventory"
+          }
+         ],
+         "open_questions": [],
+         "summary": "Deployment inventory is failing to start after revision 2 introduced an invalid environment variable LOG_LEVEL='trace'. The container crashes immediately upon startup with ConfigError. Performing a rollout undo to revision 1 restores LOG_LEVEL='info' and resolves the crash loop.",
+         "category": "crashloop_config_error",
+         "confidence": 1
+        },
+        "id": "call_474085"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 4971,
+   "candidatesTokenCount": 321,
+   "totalTokenCount": 5878,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 4971
+    }
+   ],
+   "thoughtsTokenCount": 586,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "_Y7aarSFEfet5NoPk-_m6QY"
+ }
+}

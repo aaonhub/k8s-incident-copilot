@@ -1,0 +1,29 @@
+{{- if .Values.loadgen.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadgen
+  labels:
+    app.kubernetes.io/name: loadgen
+    {{- include "shop.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: loadgen}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: loadgen, app.kubernetes.io/part-of: shop}
+    spec:
+      terminationGracePeriodSeconds: 2
+      containers:
+        - name: loadgen
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - {name: ROLE, value: loadgen}
+            - {name: TARGET_URL, value: "http://webapp:8080/api/orders"}
+            - {name: INTERVAL_S, value: {{ .Values.loadgen.intervalS | quote }}}
+          resources:
+            requests: {cpu: 5m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+{{- end }}

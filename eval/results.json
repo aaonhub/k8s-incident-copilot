@@ -1,0 +1,3614 @@
+{
+ "retrieval": {
+  "first reports (dev)": {
+   "n": 22,
+   "bm25": {
+    "recall@5": 0.5636363636363636,
+    "mrr": 0.8156565656565656,
+    "hit@5": 0.9545454545454546
+   },
+   "dense": {
+    "recall@5": 0.4181818181818182,
+    "mrr": 0.6183621933621933,
+    "hit@5": 0.9090909090909091
+   },
+   "hybrid": {
+    "recall@5": 0.5454545454545454,
+    "mrr": 0.8712121212121211,
+    "hit@5": 0.9545454545454546
+   }
+  },
+  "first reports (test)": {
+   "n": 44,
+   "bm25": {
+    "recall@5": 0.6363636363636364,
+    "mrr": 0.9041666666666668,
+    "hit@5": 1.0
+   },
+   "dense": {
+    "recall@5": 0.509090909090909,
+    "mrr": 0.7609473859473859,
+    "hit@5": 0.9090909090909091
+   },
+   "hybrid": {
+    "recall@5": 0.6181818181818183,
+    "mrr": 0.8776515151515152,
+    "hit@5": 0.9772727272727273
+   }
+  },
+  "plain language (test)": {
+   "n": 44,
+   "bm25": {
+    "recall@5": 0.28181818181818186,
+    "mrr": 0.4990506429844665,
+    "hit@5": 0.7954545454545454
+   },
+   "dense": {
+    "recall@5": 0.26818181818181813,
+    "mrr": 0.4367990170238194,
+    "hit@5": 0.6590909090909091
+   },
+   "hybrid": {
+    "recall@5": 0.3181818181818182,
+    "mrr": 0.6330039478065793,
+    "hit@5": 0.8181818181818182
+   }
+  }
+ },
+ "agent_retrieval": {
+  "n": 27,
+  "hit@5": 0.9259259259259259
+ },
+ "diagnosis": {
+  "test": {
+   "rules": {
+    "n": 18,
+    "accuracy": 0.8333333333333334,
+    "action_match": 0.8333333333333334,
+    "handoff_or_abstain": 0.16666666666666666,
+    "actions_offered": 12,
+    "unsafe_actions_offered": 0,
+    "model_unsafe_proposals": 0,
+    "claims": 0,
+    "unsupported_claim_rate": null,
+    "latency_p50_ms": 0.035901088267564774,
+    "latency_p95_ms": 0.05070888437330723,
+    "mean_cost_usd": 0.0,
+    "mean_tokens": 0.0
+   },
+   "llm_no_retrieval": {
+    "n": 18,
+    "accuracy": 1.0,
+    "action_match": 1.0,
+    "handoff_or_abstain": 0.1111111111111111,
+    "actions_offered": 14,
+    "unsafe_actions_offered": 0,
+    "model_unsafe_proposals": 0,
+    "claims": 44,
+    "unsupported_claim_rate": 0.0,
+    "latency_p50_ms": 7437.0,
+    "latency_p95_ms": 14637.0,
+    "mean_cost_usd": 0.03032072222222222,
+    "mean_tokens": 14393.833333333334
+   },
+   "llm_retrieval_guarded": {
+    "n": 18,
+    "accuracy": 1.0,
+    "action_match": 1.0,
+    "handoff_or_abstain": 0.1111111111111111,
+    "actions_offered": 14,
+    "unsafe_actions_offered": 0,
+    "model_unsafe_proposals": 0,
+    "claims": 48,
+    "unsupported_claim_rate": 0.0,
+    "latency_p50_ms": 8758.0,
+    "latency_p95_ms": 25881.0,
+    "mean_cost_usd": 0.03773161111111111,
+    "mean_tokens": 18165.88888888889
+   }
+  },
+  "dev": {
+   "rules": {
+    "n": 13,
+    "accuracy": 0.7692307692307693,
+    "action_match": 0.7692307692307693,
+    "handoff_or_abstain": 0.15384615384615385,
+    "actions_offered": 7,
+    "unsafe_actions_offered": 0,
+    "model_unsafe_proposals": 0,
+    "claims": 0,
+    "unsupported_claim_rate": null,
+    "latency_p50_ms": 0.03604101948440075,
+    "latency_p95_ms": 0.06244308315217495,
+    "mean_cost_usd": 0.0,
+    "mean_tokens": 0.0
+   },
+   "llm_retrieval_guarded": {
+    "n": 13,
+    "accuracy": 1.0,
+    "action_match": 1.0,
+    "handoff_or_abstain": 0.15384615384615385,
+    "actions_offered": 9,
+    "unsafe_actions_offered": 0,
+    "model_unsafe_proposals": 0,
+    "claims": 31,
+    "unsupported_claim_rate": 0.0,
+    "latency_p50_ms": 9676.0,
+    "latency_p95_ms": 12612.0,
+    "mean_cost_usd": 0.03599007692307692,
+    "mean_tokens": 17281.53846153846
+   }
+  },
+  "all": {
+   "rules": {
+    "n": 31,
+    "accuracy": 0.8064516129032258,
+    "action_match": 0.8064516129032258,
+    "handoff_or_abstain": 0.16129032258064516,
+    "actions_offered": 19,
+    "unsafe_actions_offered": 0,
+    "model_unsafe_proposals": 0,
+    "claims": 0,
+    "unsupported_claim_rate": null,
+    "latency_p50_ms": 0.03604101948440075,
+    "latency_p95_ms": 0.05070888437330723,
+    "mean_cost_usd": 0.0,
+    "mean_tokens": 0.0
+   },
+   "llm_no_retrieval": {
+    "n": 18,
+    "accuracy": 1.0,
+    "action_match": 1.0,
+    "handoff_or_abstain": 0.1111111111111111,
+    "actions_offered": 14,
+    "unsafe_actions_offered": 0,
+    "model_unsafe_proposals": 0,
+    "claims": 44,
+    "unsupported_claim_rate": 0.0,
+    "latency_p50_ms": 7437.0,
+    "latency_p95_ms": 14637.0,
+    "mean_cost_usd": 0.03032072222222222,
+    "mean_tokens": 14393.833333333334
+   },
+   "llm_retrieval_guarded": {
+    "n": 31,
+    "accuracy": 1.0,
+    "action_match": 1.0,
+    "handoff_or_abstain": 0.12903225806451613,
+    "actions_offered": 23,
+    "unsafe_actions_offered": 0,
+    "model_unsafe_proposals": 0,
+    "claims": 79,
+    "unsupported_claim_rate": 0.0,
+    "latency_p50_ms": 8962.0,
+    "latency_p95_ms": 20071.0,
+    "mean_cost_usd": 0.03700129032258065,
+    "mean_tokens": 17795.032258064515
+   }
+  }
+ },
+ "rows": [
+  {
+   "fixture": "bad-image-tag-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "image_pull_error",
+   "target": "deployment/webapp",
+   "latency_ms": 0.06244308315217495,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: image_pull_failure"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "image_pull_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 33.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-image-tag",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "bad-image-tag-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "image_pull_error",
+   "target": "deployment/webapp",
+   "latency_ms": 8962.0,
+   "cost_usd": 0.038709,
+   "input_tokens": 17442,
+   "output_tokens": 1394,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "image_pull_error",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "image_pull_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 33.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-image-tag",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1016",
+    "runbook/RB-image-pull-error",
+    "runbook/RB-registry-rate-limit",
+    "ticket/T-1055",
+    "ticket/T-1082"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "bad-image-tag-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "image_pull_error",
+   "target": "deployment/inventory",
+   "latency_ms": 0.03604101948440075,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: image_pull_failure"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "image_pull_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 32.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-image-tag",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "bad-image-tag-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "image_pull_error",
+   "target": "deployment/inventory",
+   "latency_ms": 6647.0,
+   "cost_usd": 0.028452,
+   "input_tokens": 14456,
+   "output_tokens": 752,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "image_pull_error",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "image_pull_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 32.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-image-tag",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "bad-image-tag-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "image_pull_error",
+   "target": "deployment/inventory",
+   "latency_ms": 9545.0,
+   "cost_usd": 0.031841,
+   "input_tokens": 10631,
+   "output_tokens": 1766,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "image_pull_error",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "image_pull_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 32.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-image-tag",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1016",
+    "runbook/RB-image-pull-error",
+    "ticket/T-1113",
+    "runbook/RB-registry-rate-limit",
+    "ticket/T-1082"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "bad-image-tag-v3.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "image_pull_error",
+   "target": "deployment/webapp",
+   "latency_ms": 0.04616915248334408,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: image_pull_failure"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "image_pull_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 32.5,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-image-tag",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   }
+  },
+  {
+   "fixture": "bad-image-tag-v3.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "image_pull_error",
+   "target": "deployment/webapp",
+   "latency_ms": 7012.0,
+   "cost_usd": 0.024696,
+   "input_tokens": 9912,
+   "output_tokens": 1092,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "image_pull_error",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "image_pull_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 32.5,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-image-tag",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "bad-image-tag-v3.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "image_pull_error",
+   "target": "deployment/webapp",
+   "latency_ms": 7699.0,
+   "cost_usd": 0.028661,
+   "input_tokens": 11254,
+   "output_tokens": 1309,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "image_pull_error",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "image_pull_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 32.5,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-image-tag",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   },
+   "retrieved": [
+    "ticket/T-1016",
+    "runbook/RB-image-pull-error",
+    "ticket/T-1082",
+    "runbook/RB-registry-rate-limit",
+    "ticket/T-1113"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "bad-service-selector-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "patch_service_selector:service/webapp",
+   "category": "service_selector_mismatch",
+   "target": "service/webapp",
+   "latency_ms": 0.041489023715257645,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: service selects 0 pods; assume pods are labelled with the service name"
+   ],
+   "label": {
+    "accept": [
+     "patch_service_selector"
+    ],
+    "category": "service_selector_mismatch",
+    "gold": "patch_service_selector",
+    "inject_to_snapshot_s": 26.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-service-selector",
+    "split": "dev",
+    "target": "service/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "bad-service-selector-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "patch_service_selector:service/webapp",
+   "category": "service_selector_mismatch",
+   "target": "service/webapp",
+   "latency_ms": 12043.0,
+   "cost_usd": 0.047147,
+   "input_tokens": 20115,
+   "output_tokens": 1886,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "patch_service_selector:service/webapp",
+   "model_status": "incident",
+   "model_category": "service_selector_mismatch",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "patch_service_selector"
+    ],
+    "category": "service_selector_mismatch",
+    "gold": "patch_service_selector",
+    "inject_to_snapshot_s": 26.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-service-selector",
+    "split": "dev",
+    "target": "service/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "runbook/RB-service-selector-mismatch",
+    "ticket/T-1103",
+    "ticket/T-1053",
+    "ticket/T-1131",
+    "ticket/T-1083"
+   ],
+   "tool_calls": [
+    "describe",
+    "describe",
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "bad-service-selector-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "patch_service_selector:service/inventory",
+   "category": "service_selector_mismatch",
+   "target": "service/inventory",
+   "latency_ms": 0.03799609839916229,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: service selects 0 pods; assume pods are labelled with the service name"
+   ],
+   "label": {
+    "accept": [
+     "patch_service_selector"
+    ],
+    "category": "service_selector_mismatch",
+    "gold": "patch_service_selector",
+    "inject_to_snapshot_s": 26.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-service-selector",
+    "split": "test",
+    "target": "service/inventory",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "bad-service-selector-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "patch_service_selector:service/inventory",
+   "category": "service_selector_mismatch",
+   "target": "service/inventory",
+   "latency_ms": 14637.0,
+   "cost_usd": 0.031257,
+   "input_tokens": 14640,
+   "output_tokens": 1033,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "patch_service_selector:service/inventory",
+   "model_status": "incident",
+   "model_category": "service_selector_mismatch",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "patch_service_selector"
+    ],
+    "category": "service_selector_mismatch",
+    "gold": "patch_service_selector",
+    "inject_to_snapshot_s": 26.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-service-selector",
+    "split": "test",
+    "target": "service/inventory",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "describe",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "bad-service-selector-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "patch_service_selector:service/inventory",
+   "category": "service_selector_mismatch",
+   "target": "service/inventory",
+   "latency_ms": 8557.0,
+   "cost_usd": 0.035511,
+   "input_tokens": 16384,
+   "output_tokens": 1215,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "patch_service_selector:service/inventory",
+   "model_status": "incident",
+   "model_category": "service_selector_mismatch",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "patch_service_selector"
+    ],
+    "category": "service_selector_mismatch",
+    "gold": "patch_service_selector",
+    "inject_to_snapshot_s": 26.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "bad-service-selector",
+    "split": "test",
+    "target": "service/inventory",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1103",
+    "runbook/RB-service-selector-mismatch",
+    "ticket/T-1148",
+    "runbook/RB-pending-insufficient-resources",
+    "ticket/T-1053"
+   ],
+   "tool_calls": [
+    "describe",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "config-regression-v1.json.gz",
+   "system": "rules",
+   "correct": false,
+   "action_ok": false,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "",
+   "latency_ms": 0.025842804461717606,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: no active signal"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "config_regression",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 32.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "config-regression",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "config-regression-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "config_regression",
+   "target": "deployment/webapp",
+   "latency_ms": 5394.0,
+   "cost_usd": 0.024144,
+   "input_tokens": 11248,
+   "output_tokens": 808,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "config_regression",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "config_regression",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 32.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "config-regression",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1094",
+    "ticket/T-1011",
+    "runbook/RB-config-regression",
+    "ticket/T-1082",
+    "ticket/T-1148"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "config-regression-v2.json.gz",
+   "system": "rules",
+   "correct": false,
+   "action_ok": false,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "dependency_timeout",
+   "target": "deployment/webapp",
+   "latency_ms": 0.03198999911546707,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: upstream timeouts, no single suspect"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "config_regression",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 41.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "config-regression",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "config-regression-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "config_regression",
+   "target": "deployment/webapp",
+   "latency_ms": 6778.0,
+   "cost_usd": 0.023198,
+   "input_tokens": 9519,
+   "output_tokens": 991,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "config_regression",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "config_regression",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 41.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "config-regression",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "config-regression-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "config_regression",
+   "target": "deployment/webapp",
+   "latency_ms": 8392.0,
+   "cost_usd": 0.041892,
+   "input_tokens": 22330,
+   "output_tokens": 933,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "config_regression",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "config_regression",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 41.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "config-regression",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1070",
+    "ticket/T-1094",
+    "ticket/T-1011",
+    "runbook/RB-dependency-timeout",
+    "ticket/T-1027"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe",
+    "search_knowledge"
+   ]
+  },
+  {
+   "fixture": "cpu-throttling-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "cpu_throttling",
+   "target": "deployment/webapp",
+   "latency_ms": 0.03604101948440075,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: throttled after a recent rollout"
+   ],
+   "label": {
+    "accept": [
+     "set_resources",
+     "rollout_undo"
+    ],
+    "category": "cpu_throttling",
+    "gold": "set_resources",
+    "inject_to_snapshot_s": 100.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "cpu-throttling",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "cpu-throttling-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "cpu_throttling",
+   "target": "deployment/webapp",
+   "latency_ms": 9676.0,
+   "cost_usd": 0.027415,
+   "input_tokens": 11953,
+   "output_tokens": 1054,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "cpu_throttling",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "set_resources",
+     "rollout_undo"
+    ],
+    "category": "cpu_throttling",
+    "gold": "set_resources",
+    "inject_to_snapshot_s": 100.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "cpu-throttling",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1139",
+    "runbook/RB-cpu-throttling",
+    "ticket/T-1025",
+    "ticket/T-1070",
+    "ticket/T-1003"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "cpu-throttling-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "cpu_throttling",
+   "target": "deployment/webapp",
+   "latency_ms": 0.036460114642977715,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: throttled after a recent rollout"
+   ],
+   "label": {
+    "accept": [
+     "set_resources",
+     "rollout_undo"
+    ],
+    "category": "cpu_throttling",
+    "gold": "set_resources",
+    "inject_to_snapshot_s": 77.9,
+    "manifested": true,
+    "note": "",
+    "scenario": "cpu-throttling",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "cpu-throttling-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "cpu_throttling",
+   "target": "deployment/webapp",
+   "latency_ms": 7195.0,
+   "cost_usd": 0.026895,
+   "input_tokens": 9878,
+   "output_tokens": 1342,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "cpu_throttling",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "set_resources",
+     "rollout_undo"
+    ],
+    "category": "cpu_throttling",
+    "gold": "set_resources",
+    "inject_to_snapshot_s": 77.9,
+    "manifested": true,
+    "note": "",
+    "scenario": "cpu-throttling",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "cpu-throttling-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "cpu_throttling",
+   "target": "deployment/webapp",
+   "latency_ms": 5688.0,
+   "cost_usd": 0.023701,
+   "input_tokens": 10935,
+   "output_tokens": 811,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "cpu_throttling",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "set_resources",
+     "rollout_undo"
+    ],
+    "category": "cpu_throttling",
+    "gold": "set_resources",
+    "inject_to_snapshot_s": 77.9,
+    "manifested": true,
+    "note": "",
+    "scenario": "cpu-throttling",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1025",
+    "ticket/T-1070",
+    "runbook/RB-cpu-throttling",
+    "ticket/T-1003",
+    "ticket/T-1056"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "crashloop-bad-env-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "crashloop_config_error",
+   "target": "deployment/webapp",
+   "latency_ms": 0.04609813913702965,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: crash_loop"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "crashloop_config_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "crashloop-bad-env",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "crashloop-bad-env-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "crashloop_config_error",
+   "target": "deployment/webapp",
+   "latency_ms": 8386.0,
+   "cost_usd": 0.027933,
+   "input_tokens": 10390,
+   "output_tokens": 1372,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "crashloop_config_error",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "crashloop_config_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "crashloop-bad-env",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1119",
+    "runbook/RB-crashloop-config-error",
+    "ticket/T-1005",
+    "ticket/T-1099",
+    "ticket/T-1144"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "crashloop-bad-env-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "crashloop_config_error",
+   "target": "deployment/webapp",
+   "latency_ms": 0.034365104511380196,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: crash_loop"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "crashloop_config_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "crashloop-bad-env",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "crashloop-bad-env-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "crashloop_config_error",
+   "target": "deployment/webapp",
+   "latency_ms": 6786.0,
+   "cost_usd": 0.02385,
+   "input_tokens": 9330,
+   "output_tokens": 1095,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "crashloop_config_error",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "crashloop_config_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "crashloop-bad-env",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "crashloop-bad-env-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "crashloop_config_error",
+   "target": "deployment/webapp",
+   "latency_ms": 6961.0,
+   "cost_usd": 0.025852,
+   "input_tokens": 10521,
+   "output_tokens": 1119,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "crashloop_config_error",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "crashloop_config_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.4,
+    "manifested": true,
+    "note": "",
+    "scenario": "crashloop-bad-env",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 2
+   },
+   "retrieved": [
+    "runbook/RB-crashloop-config-error",
+    "ticket/T-1120",
+    "ticket/T-1144",
+    "ticket/T-1005",
+    "ticket/T-1119"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "crashloop-bad-env-v3.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "crashloop_config_error",
+   "target": "deployment/inventory",
+   "latency_ms": 0.03345613367855549,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: crash_loop"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "crashloop_config_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 41.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "crashloop-bad-env",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 3
+   }
+  },
+  {
+   "fixture": "crashloop-bad-env-v3.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "crashloop_config_error",
+   "target": "deployment/inventory",
+   "latency_ms": 7170.0,
+   "cost_usd": 0.025328,
+   "input_tokens": 9542,
+   "output_tokens": 1224,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "crashloop_config_error",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "crashloop_config_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 41.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "crashloop-bad-env",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 3
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "crashloop-bad-env-v3.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "crashloop_config_error",
+   "target": "deployment/inventory",
+   "latency_ms": 8389.0,
+   "cost_usd": 0.021957,
+   "input_tokens": 10498,
+   "output_tokens": 690,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "crashloop_config_error",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "crashloop_config_error",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 41.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "crashloop-bad-env",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 3
+   },
+   "retrieved": [
+    "ticket/T-1139",
+    "ticket/T-1132",
+    "ticket/T-1015",
+    "runbook/RB-readiness-probe-failure",
+    "ticket/T-1050"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "decoy-rollout-v1.json.gz",
+   "system": "rules",
+   "correct": false,
+   "action_ok": false,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "dependency_timeout",
+   "target": "deployment/webapp",
+   "latency_ms": 0.031011877581477165,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: upstream timeouts, no single suspect"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "decoy-rollout",
+    "split": "dev",
+    "target": "deployment/inventory",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "decoy-rollout-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 9677.0,
+   "cost_usd": 0.032329,
+   "input_tokens": 11185,
+   "output_tokens": 1728,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "dependency_timeout",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "decoy-rollout",
+    "split": "dev",
+    "target": "deployment/inventory",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1094",
+    "ticket/T-1011",
+    "ticket/T-1070",
+    "runbook/RB-dependency-timeout",
+    "ticket/T-1027"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "decoy-rollout-v2.json.gz",
+   "system": "rules",
+   "correct": false,
+   "action_ok": false,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "dependency_timeout",
+   "target": "deployment/webapp",
+   "latency_ms": 0.027659116312861443,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: upstream timeouts, no single suspect"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 43.3,
+    "manifested": true,
+    "note": "",
+    "scenario": "decoy-rollout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "decoy-rollout-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 8127.0,
+   "cost_usd": 0.026061,
+   "input_tokens": 10156,
+   "output_tokens": 1203,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "dependency_timeout",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 43.3,
+    "manifested": true,
+    "note": "",
+    "scenario": "decoy-rollout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "decoy-rollout-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 10780.0,
+   "cost_usd": 0.032115,
+   "input_tokens": 11300,
+   "output_tokens": 1685,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "dependency_timeout",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 43.3,
+    "manifested": true,
+    "note": "",
+    "scenario": "decoy-rollout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1070",
+    "ticket/T-1094",
+    "ticket/T-1011",
+    "runbook/RB-dependency-timeout",
+    "ticket/T-1027"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "decoy-rollout-v3.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 0.05070888437330723,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: deployment/webapp times out calling upstream; deployment/inventory rolled out recently"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 62.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "decoy-rollout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 3
+   }
+  },
+  {
+   "fixture": "decoy-rollout-v3.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 8963.0,
+   "cost_usd": 0.044556,
+   "input_tokens": 22767,
+   "output_tokens": 1156,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "dependency_timeout",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 62.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "decoy-rollout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 3
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff",
+    "get_logs",
+    "get_logs"
+   ]
+  },
+  {
+   "fixture": "decoy-rollout-v3.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 6845.0,
+   "cost_usd": 0.027964,
+   "input_tokens": 11719,
+   "output_tokens": 1154,
+   "claims": 4,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "dependency_timeout",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 62.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "decoy-rollout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 3
+   },
+   "retrieved": [
+    "ticket/T-1070",
+    "ticket/T-1011",
+    "ticket/T-1094",
+    "runbook/RB-dependency-timeout",
+    "ticket/T-1027"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "dependency-timeout-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 0.03806711174547672,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: deployment/webapp times out calling upstream; deployment/inventory rolled out recently"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.3,
+    "manifested": true,
+    "note": "",
+    "scenario": "dependency-timeout",
+    "split": "dev",
+    "target": "deployment/inventory",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "dependency-timeout-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 7427.0,
+   "cost_usd": 0.025318,
+   "input_tokens": 10477,
+   "output_tokens": 1067,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "dependency_timeout",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.3,
+    "manifested": true,
+    "note": "",
+    "scenario": "dependency-timeout",
+    "split": "dev",
+    "target": "deployment/inventory",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1094",
+    "ticket/T-1011",
+    "ticket/T-1070",
+    "runbook/RB-dependency-timeout",
+    "ticket/T-1027"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "dependency-timeout-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 0.0357611570507288,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: deployment/webapp times out calling upstream; deployment/inventory rolled out recently"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 52.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "dependency-timeout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "dependency-timeout-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 7738.0,
+   "cost_usd": 0.026355,
+   "input_tokens": 10076,
+   "output_tokens": 1249,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "dependency_timeout",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 52.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "dependency-timeout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "dependency-timeout-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "dependency_timeout",
+   "target": "deployment/inventory",
+   "latency_ms": 8519.0,
+   "cost_usd": 0.025517,
+   "input_tokens": 11054,
+   "output_tokens": 993,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "dependency_timeout",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "dependency_timeout",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 52.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "dependency-timeout",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1070",
+    "ticket/T-1094",
+    "ticket/T-1011",
+    "runbook/RB-dependency-timeout",
+    "ticket/T-1027"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "healthy-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "",
+   "latency_ms": 0.0238870270550251,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: no active signal"
+   ],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 40.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "healthy",
+    "split": "dev",
+    "target": "",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "healthy-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "deployment/webapp",
+   "latency_ms": 6343.0,
+   "cost_usd": 0.026624,
+   "input_tokens": 13934,
+   "output_tokens": 636,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "none",
+   "model_status": "no_incident",
+   "model_category": "no_incident",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 40.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "healthy",
+    "split": "dev",
+    "target": "",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1040",
+    "ticket/T-1082",
+    "ticket/T-1074",
+    "runbook/RB-crashloop-config-error",
+    "ticket/T-1120"
+   ],
+   "tool_calls": [
+    "get_logs",
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "healthy-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "",
+   "latency_ms": 0.021652085706591606,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: no active signal"
+   ],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 60.2,
+    "manifested": true,
+    "note": "A routine restart: leaves startup probe-failure events behind but nothing is wrong.",
+    "scenario": "healthy",
+    "split": "test",
+    "target": "",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "healthy-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "deployment/webapp",
+   "latency_ms": 7679.0,
+   "cost_usd": 0.030518,
+   "input_tokens": 13578,
+   "output_tokens": 1128,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "none",
+   "model_status": "no_incident",
+   "model_category": "no_incident",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 60.2,
+    "manifested": true,
+    "note": "A routine restart: leaves startup probe-failure events behind but nothing is wrong.",
+    "scenario": "healthy",
+    "split": "test",
+    "target": "",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff",
+    "get_logs"
+   ]
+  },
+  {
+   "fixture": "healthy-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "deployment/webapp",
+   "latency_ms": 10927.0,
+   "cost_usd": 0.055148,
+   "input_tokens": 28701,
+   "output_tokens": 1344,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "none",
+   "model_status": "no_incident",
+   "model_category": "no_incident",
+   "steps": 5,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 60.2,
+    "manifested": true,
+    "note": "A routine restart: leaves startup probe-failure events behind but nothing is wrong.",
+    "scenario": "healthy",
+    "split": "test",
+    "target": "",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1137",
+    "ticket/T-1036",
+    "ticket/T-1005",
+    "ticket/T-1128",
+    "ticket/T-1070"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "get_logs",
+    "get_logs",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "liveness-probe-v1.json.gz",
+   "system": "rules",
+   "correct": false,
+   "action_ok": false,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "",
+   "latency_ms": 0.02675107680261135,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: no active signal"
+   ],
+   "label": {
+    "accept": [
+     "handoff",
+     "rollout_undo"
+    ],
+    "category": "liveness_probe_restart_loop",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 111.9,
+    "manifested": true,
+    "note": "",
+    "scenario": "liveness-probe",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "liveness-probe-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "liveness_probe_restart_loop",
+   "target": "deployment/webapp",
+   "latency_ms": 12200.0,
+   "cost_usd": 0.05664,
+   "input_tokens": 26498,
+   "output_tokens": 1877,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "liveness_probe_restart_loop",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [
+    "action blocked: action rollout_undo is not permitted for category liveness_probe_restart_loop"
+   ],
+   "label": {
+    "accept": [
+     "handoff",
+     "rollout_undo"
+    ],
+    "category": "liveness_probe_restart_loop",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 111.9,
+    "manifested": true,
+    "note": "",
+    "scenario": "liveness-probe",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1085",
+    "ticket/T-1128",
+    "runbook/RB-liveness-probe-restart-loop",
+    "ticket/T-1086",
+    "ticket/T-1025"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe",
+    "get_logs"
+   ]
+  },
+  {
+   "fixture": "liveness-probe-v2.json.gz",
+   "system": "rules",
+   "correct": false,
+   "action_ok": false,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "",
+   "latency_ms": 0.03841612488031387,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: no active signal"
+   ],
+   "label": {
+    "accept": [
+     "handoff",
+     "rollout_undo"
+    ],
+    "category": "liveness_probe_restart_loop",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 123.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "liveness-probe",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "liveness-probe-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "liveness_probe_restart_loop",
+   "target": "deployment/inventory",
+   "latency_ms": 14151.0,
+   "cost_usd": 0.052875,
+   "input_tokens": 22104,
+   "output_tokens": 2191,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "handoff",
+   "model_status": "incident",
+   "model_category": "liveness_probe_restart_loop",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "handoff",
+     "rollout_undo"
+    ],
+    "category": "liveness_probe_restart_loop",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 123.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "liveness-probe",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "describe",
+    "get_rollout_diff",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "liveness-probe-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "liveness_probe_restart_loop",
+   "target": "deployment/inventory",
+   "latency_ms": 25881.0,
+   "cost_usd": 0.086612,
+   "input_tokens": 40774,
+   "output_tokens": 2828,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "liveness_probe_restart_loop",
+   "steps": 6,
+   "stop": "submitted",
+   "reasons": [
+    "action blocked: action rollout_undo is not permitted for category liveness_probe_restart_loop"
+   ],
+   "label": {
+    "accept": [
+     "handoff",
+     "rollout_undo"
+    ],
+    "category": "liveness_probe_restart_loop",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 123.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "liveness-probe",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1128",
+    "ticket/T-1085",
+    "ticket/T-1025",
+    "ticket/T-1148",
+    "ticket/T-1132"
+   ],
+   "tool_calls": [
+    "describe",
+    "get_rollout_diff",
+    "describe",
+    "get_rollout_diff",
+    "get_logs"
+   ]
+  },
+  {
+   "fixture": "missing-secret-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "missing_secret",
+   "target": "deployment/webapp",
+   "latency_ms": 0.03052293322980404,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: container_config_error: secret \"shop-api-credentials\" not found"
+   ],
+   "label": {
+    "accept": [
+     "handoff"
+    ],
+    "category": "missing_secret",
+    "gold": "handoff",
+    "inject_to_snapshot_s": 31.7,
+    "manifested": true,
+    "note": "Recreating a Secret needs the real value from the secret manager: a human job.",
+    "scenario": "missing-secret",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "missing-secret-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "missing_secret",
+   "target": "deployment/webapp",
+   "latency_ms": 12612.0,
+   "cost_usd": 0.060777,
+   "input_tokens": 30474,
+   "output_tokens": 1674,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "handoff",
+   "model_status": "incident",
+   "model_category": "missing_secret",
+   "steps": 5,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "handoff"
+    ],
+    "category": "missing_secret",
+    "gold": "handoff",
+    "inject_to_snapshot_s": 31.7,
+    "manifested": true,
+    "note": "Recreating a Secret needs the real value from the secret manager: a human job.",
+    "scenario": "missing-secret",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1148",
+    "ticket/T-1017",
+    "ticket/T-1154",
+    "ticket/T-1139",
+    "ticket/T-1004"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe",
+    "describe",
+    "search_knowledge"
+   ]
+  },
+  {
+   "fixture": "missing-secret-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "missing_secret",
+   "target": "deployment/inventory",
+   "latency_ms": 0.03240909427404404,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: container_config_error: secret \"inventory-db-credentials\" not found"
+   ],
+   "label": {
+    "accept": [
+     "handoff"
+    ],
+    "category": "missing_secret",
+    "gold": "handoff",
+    "inject_to_snapshot_s": 32.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "missing-secret",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "missing-secret-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "missing_secret",
+   "target": "deployment/inventory",
+   "latency_ms": 8767.0,
+   "cost_usd": 0.030232,
+   "input_tokens": 13795,
+   "output_tokens": 1060,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "handoff",
+   "model_status": "incident",
+   "model_category": "missing_secret",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "handoff"
+    ],
+    "category": "missing_secret",
+    "gold": "handoff",
+    "inject_to_snapshot_s": 32.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "missing-secret",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "missing-secret-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "handoff",
+   "category": "missing_secret",
+   "target": "deployment/inventory",
+   "latency_ms": 8959.0,
+   "cost_usd": 0.042021,
+   "input_tokens": 21509,
+   "output_tokens": 1084,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "handoff",
+   "model_status": "incident",
+   "model_category": "missing_secret",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "handoff"
+    ],
+    "category": "missing_secret",
+    "gold": "handoff",
+    "inject_to_snapshot_s": 32.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "missing-secret",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1148",
+    "ticket/T-1017",
+    "ticket/T-1154",
+    "ticket/T-1004",
+    "ticket/T-1139"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "oom-killed-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "oom_killed",
+   "target": "deployment/webapp",
+   "latency_ms": 0.036739977076649666,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: OOMKilled after a recent rollout"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo",
+     "set_resources"
+    ],
+    "category": "oom_killed",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 44.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "oom-killed",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "oom-killed-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "oom_killed",
+   "target": "deployment/webapp",
+   "latency_ms": 9736.0,
+   "cost_usd": 0.03122,
+   "input_tokens": 11399,
+   "output_tokens": 1569,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "oom_killed",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo",
+     "set_resources"
+    ],
+    "category": "oom_killed",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 44.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "oom-killed",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1139",
+    "runbook/RB-oom-killed",
+    "ticket/T-1132",
+    "ticket/T-1064",
+    "ticket/T-1050"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "oom-killed-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "oom_killed",
+   "target": "deployment/inventory",
+   "latency_ms": 0.03289803862571716,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: OOMKilled after a recent rollout"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo",
+     "set_resources"
+    ],
+    "category": "oom_killed",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.3,
+    "manifested": true,
+    "note": "",
+    "scenario": "oom-killed",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "oom-killed-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "oom_killed",
+   "target": "deployment/inventory",
+   "latency_ms": 7178.0,
+   "cost_usd": 0.022658,
+   "input_tokens": 9195,
+   "output_tokens": 985,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "oom_killed",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo",
+     "set_resources"
+    ],
+    "category": "oom_killed",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.3,
+    "manifested": true,
+    "note": "",
+    "scenario": "oom-killed",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "oom-killed-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "oom_killed",
+   "target": "deployment/inventory",
+   "latency_ms": 11997.0,
+   "cost_usd": 0.036361,
+   "input_tokens": 10723,
+   "output_tokens": 2253,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "oom_killed",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo",
+     "set_resources"
+    ],
+    "category": "oom_killed",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 42.3,
+    "manifested": true,
+    "note": "",
+    "scenario": "oom-killed",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1064",
+    "runbook/RB-oom-killed",
+    "ticket/T-1120",
+    "ticket/T-1005",
+    "ticket/T-1139"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "oom-killed-v3.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "oom_killed",
+   "target": "deployment/webapp",
+   "latency_ms": 0.04155794158577919,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: OOMKilled after a recent rollout"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo",
+     "set_resources"
+    ],
+    "category": "oom_killed",
+    "gold": "set_resources",
+    "inject_to_snapshot_s": 42.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "oom-killed",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   }
+  },
+  {
+   "fixture": "oom-killed-v3.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "oom_killed",
+   "target": "deployment/webapp",
+   "latency_ms": 8777.0,
+   "cost_usd": 0.027958,
+   "input_tokens": 9854,
+   "output_tokens": 1464,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "oom_killed",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo",
+     "set_resources"
+    ],
+    "category": "oom_killed",
+    "gold": "set_resources",
+    "inject_to_snapshot_s": 42.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "oom-killed",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "oom-killed-v3.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "oom_killed",
+   "target": "deployment/webapp",
+   "latency_ms": 13094.0,
+   "cost_usd": 0.05314,
+   "input_tokens": 23877,
+   "output_tokens": 1925,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "oom_killed",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo",
+     "set_resources"
+    ],
+    "category": "oom_killed",
+    "gold": "set_resources",
+    "inject_to_snapshot_s": 42.7,
+    "manifested": true,
+    "note": "",
+    "scenario": "oom-killed",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   },
+   "retrieved": [
+    "ticket/T-1139",
+    "runbook/RB-oom-killed",
+    "ticket/T-1132",
+    "ticket/T-1050",
+    "ticket/T-1064"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "get_logs",
+    "search_knowledge"
+   ]
+  },
+  {
+   "fixture": "readiness-probe-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "readiness_probe_failure",
+   "target": "deployment/webapp",
+   "latency_ms": 0.0489621888846159,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: not_ready"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "readiness_probe_failure",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 53.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "readiness-probe",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "readiness-probe-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "readiness_probe_failure",
+   "target": "deployment/webapp",
+   "latency_ms": 6138.0,
+   "cost_usd": 0.024771,
+   "input_tokens": 11318,
+   "output_tokens": 866,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "readiness_probe_failure",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "readiness_probe_failure",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 53.1,
+    "manifested": true,
+    "note": "",
+    "scenario": "readiness-probe",
+    "split": "dev",
+    "target": "deployment/webapp",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1139",
+    "ticket/T-1132",
+    "ticket/T-1036",
+    "runbook/RB-readiness-probe-failure",
+    "ticket/T-1128"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "readiness-probe-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "readiness_probe_failure",
+   "target": "deployment/inventory",
+   "latency_ms": 0.04016188904643059,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: not_ready"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "readiness_probe_failure",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 54.6,
+    "manifested": true,
+    "note": "",
+    "scenario": "readiness-probe",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "readiness-probe-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "readiness_probe_failure",
+   "target": "deployment/inventory",
+   "latency_ms": 7138.0,
+   "cost_usd": 0.031239,
+   "input_tokens": 15654,
+   "output_tokens": 862,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "readiness_probe_failure",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "readiness_probe_failure",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 54.6,
+    "manifested": true,
+    "note": "",
+    "scenario": "readiness-probe",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "readiness-probe-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/inventory",
+   "category": "readiness_probe_failure",
+   "target": "deployment/inventory",
+   "latency_ms": 9785.0,
+   "cost_usd": 0.042528,
+   "input_tokens": 18950,
+   "output_tokens": 1567,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/inventory",
+   "model_status": "incident",
+   "model_category": "readiness_probe_failure",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "readiness_probe_failure",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 54.6,
+    "manifested": true,
+    "note": "",
+    "scenario": "readiness-probe",
+    "split": "test",
+    "target": "deployment/inventory",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1139",
+    "ticket/T-1132",
+    "ticket/T-1036",
+    "runbook/RB-readiness-probe-failure",
+    "ticket/T-1128"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "readiness-probe-v3.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "readiness_probe_failure",
+   "target": "deployment/webapp",
+   "latency_ms": 0.04428299143910408,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: not_ready"
+   ],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "readiness_probe_failure",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 53.6,
+    "manifested": true,
+    "note": "",
+    "scenario": "readiness-probe",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   }
+  },
+  {
+   "fixture": "readiness-probe-v3.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "readiness_probe_failure",
+   "target": "deployment/webapp",
+   "latency_ms": 6881.0,
+   "cost_usd": 0.029924,
+   "input_tokens": 15636,
+   "output_tokens": 719,
+   "claims": 2,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "readiness_probe_failure",
+   "steps": 3,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "readiness_probe_failure",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 53.6,
+    "manifested": true,
+    "note": "",
+    "scenario": "readiness-probe",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff",
+    "describe"
+   ]
+  },
+  {
+   "fixture": "readiness-probe-v3.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "rollout_undo:deployment/webapp",
+   "category": "readiness_probe_failure",
+   "target": "deployment/webapp",
+   "latency_ms": 6437.0,
+   "cost_usd": 0.023961,
+   "input_tokens": 10412,
+   "output_tokens": 927,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "rollout_undo:deployment/webapp",
+   "model_status": "incident",
+   "model_category": "readiness_probe_failure",
+   "steps": 2,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "rollout_undo"
+    ],
+    "category": "readiness_probe_failure",
+    "gold": "rollout_undo",
+    "inject_to_snapshot_s": 53.6,
+    "manifested": true,
+    "note": "",
+    "scenario": "readiness-probe",
+    "split": "test",
+    "target": "deployment/webapp",
+    "variant": 3
+   },
+   "retrieved": [
+    "ticket/T-1139",
+    "ticket/T-1132",
+    "ticket/T-1036",
+    "runbook/RB-readiness-probe-failure",
+    "ticket/T-1128"
+   ],
+   "tool_calls": [
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "recovered-v1.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "",
+   "latency_ms": 0.027169939130544662,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: no active signal"
+   ],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 56.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "recovered",
+    "split": "dev",
+    "target": "",
+    "variant": 1
+   }
+  },
+  {
+   "fixture": "recovered-v1.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "deployment/webapp",
+   "latency_ms": 11220.0,
+   "cost_usd": 0.044844,
+   "input_tokens": 20776,
+   "output_tokens": 1520,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "none",
+   "model_status": "no_incident",
+   "model_category": "no_incident",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 56.0,
+    "manifested": true,
+    "note": "",
+    "scenario": "recovered",
+    "split": "dev",
+    "target": "",
+    "variant": 1
+   },
+   "retrieved": [
+    "ticket/T-1148",
+    "ticket/T-1154",
+    "ticket/T-1139",
+    "ticket/T-1022",
+    "ticket/T-1019"
+   ],
+   "tool_calls": [
+    "get_logs",
+    "get_metrics",
+    "get_rollout_diff"
+   ]
+  },
+  {
+   "fixture": "recovered-v2.json.gz",
+   "system": "rules",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "",
+   "latency_ms": 0.027240021154284477,
+   "cost_usd": 0.0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "claims": 0,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "steps": 0,
+   "reasons": [
+    "rule: no active signal"
+   ],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 60.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "recovered",
+    "split": "test",
+    "target": "",
+    "variant": 2
+   }
+  },
+  {
+   "fixture": "recovered-v2.json.gz",
+   "system": "llm_no_retrieval",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "deployment/inventory",
+   "latency_ms": 10473.0,
+   "cost_usd": 0.039721,
+   "input_tokens": 18045,
+   "output_tokens": 1406,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "none",
+   "model_status": "no_incident",
+   "model_category": "no_incident",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 60.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "recovered",
+    "split": "test",
+    "target": "",
+    "variant": 2
+   },
+   "retrieved": [],
+   "tool_calls": [
+    "get_rollout_diff",
+    "get_logs",
+    "get_metrics"
+   ]
+  },
+  {
+   "fixture": "recovered-v2.json.gz",
+   "system": "llm_retrieval_guarded",
+   "correct": true,
+   "action_ok": true,
+   "unsafe": false,
+   "abstained": false,
+   "final_action": "none",
+   "category": "no_incident",
+   "target": "deployment/inventory",
+   "latency_ms": 20071.0,
+   "cost_usd": 0.044387,
+   "input_tokens": 20255,
+   "output_tokens": 1556,
+   "claims": 3,
+   "unsupported": 0,
+   "model_unsafe": false,
+   "model_action": "none",
+   "model_status": "no_incident",
+   "model_category": "no_incident",
+   "steps": 4,
+   "stop": "submitted",
+   "reasons": [],
+   "label": {
+    "accept": [
+     "none"
+    ],
+    "category": "no_incident",
+    "gold": "none",
+    "inject_to_snapshot_s": 60.8,
+    "manifested": true,
+    "note": "",
+    "scenario": "recovered",
+    "split": "test",
+    "target": "",
+    "variant": 2
+   },
+   "retrieved": [
+    "ticket/T-1040",
+    "ticket/T-1082",
+    "ticket/T-1074",
+    "runbook/RB-crashloop-config-error",
+    "ticket/T-1120"
+   ],
+   "tool_calls": [
+    "get_rollout_diff",
+    "get_logs",
+    "get_logs"
+   ]
+  }
+ ]
+}

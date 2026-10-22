@@ -1,0 +1,75 @@
+{
+ "key": "d9220cb84e0e259f2d035ba672e715ec2394b12a46c4aeb3442886e6008ecc32",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 6406,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "open_questions": [],
+         "target": "deployment/inventory",
+         "status": "incident",
+         "action": {
+          "type": "rollout_undo",
+          "target": "deployment/inventory",
+          "rationale": "Roll back deployment/inventory to revision 1 to remove FAULT_LATENCY_MS=3000 and restore inventory response latency to normal levels."
+         },
+         "confidence": 1,
+         "similar_cases": [
+          "ticket/T-1011",
+          "runbook/RB-dependency-timeout"
+         ],
+         "claims": [
+          {
+           "artifact_id": "rollout/inventory",
+           "statement": "Deployment inventory revision 2 changed FAULT_LATENCY_MS from 0 to 3000.",
+           "quote": "inventory.env.FAULT_LATENCY_MS: '0' -> '3000'"
+          },
+          {
+           "statement": "Inventory pod latency spiked to 3000ms.",
+           "quote": "request latency p50=3000ms p95=3000ms",
+           "artifact_id": "metrics/inventory-7cb7dbdf88-m8wqd"
+          },
+          {
+           "quote": "ERROR webapp upstream inventory timed out after 800ms url=http://inventory:8080/stock",
+           "artifact_id": "log/webapp-7bc49bdd78-6s7ts/webapp",
+           "statement": "Webapp requests to upstream inventory timed out after 800ms."
+          }
+         ],
+         "summary": "Deployment inventory was updated in revision 2 to inject a 3000ms fault latency via FAULT_LATENCY_MS. Consequently, inventory's request latency increased to 3000ms, causing webapp's upstream calls to time out after 800ms and return HTTP 504 errors.",
+         "category": "dependency_timeout"
+        },
+        "id": "call_338243"
+       },
+       "thoughtSignature": "EpgUCpUUAWkUfROSOCOxaA7zy3EOmJTDxVvDkPNYeIZVlrH4WedUyD4dwwhX0Um2d8/xOV1+tD2Pp4pAlJRoM8koFFQq/YSYPBzdMb7o4PDF15F6sqqeNjWrxVy7C57lMc46PUyVEtSFgG8uEwoZneSqVlstyo9J0uP3pzClxPjW6qkeiiWZCJ5UsWqK7tNrznn2WoZm6y+rHLnhqoXcg6UzgmbfUWwAU4xlofYOkX+/uZwJD5c/xJoQ7QxZb2oozZFrO2YHMJJ280pTJnpyvEBKyTaxdfu4vbLa9G+n8fJJvzKCs7v3tbZkFXoVMQhS7viBYAjtjOOipH5o/3P3ljy4YUVWqP8LbCY8u5FLL00D0zUAbbYpAlmEguaqt/Ikn06pxvb17NBG7VI9oV9VPRMFp0UEx82EF10rNycC3R2U3O3fAYM3Cww791XkrDHEFBSSKEe/bMBS07WKZ+3Cb/iuzP53dGXUadnIwQAGcZEZ+kENDwI4/oE/3YS2q22qtAgoej+Q0Y/jDZ4/qi+FZ3N9gyl0njWswv5p44FoBKNGURX95djBov8gazuErFaBWvdUdQH0gtVgGGeWCyYZ2TOvg6keyOePYx4f8gJ1BquCzcY7+eQicP0KOkJP+bejxFMjilEI6GMNJq4yEscIL10saltkXevQ7NYHgNefE+uW29E8uDKLlwoEm5oQDiPZzoCMDL8twooWlNtg132WsCv1dPOMotAukWTH44onuXjIXknzuKeAYoXSetxQt/Jq+UxrH2Crx+SHDHFckdsjz5DZq/AW/2lF2D+MTYgIadjH+7u6i3M4tDhW20gIYMJUyShY8KMET6aWqSQrxxBDD4YDNkYjxw+B6rN0IQ9bXYzfkHuyXiXRW9sIR1ADcB6HhFAbF+zQ22KvqkvHNMrs98i09qx3s+hpDrTeNCoSxPi+fF1Mn36K+vKINgkGr8mMeZO6Ogx9g5Oxp1/ksmGiFhTZ+U5iihYAPx5TwwfhhCYlMa3/VlI4YNMu80olJrCqnSuRfRy+IhvNWr/qD1eNqaYxcqOr01XRu/1dnos10/JIGjZtYXGwCpl+gF8iaxSDWbxm/tmwcz7UbGmpGe6gUsmtspCJLFDSoPvllZi6j9a/7iCMYlSJsQ+wPRL+sSivbGrI6KNyA0b6lWkqBe3MYlstDmNV3JGM14lRg2PrdydgQ85h3ctFXVZR1N0RQdo5ol/VctWMqg4xx0uhm/gxbkvDMrTRsQ0tpaL9j355URfXEL7/Stlj+haPVcSYVDr4nFbuQGNjCLuJQr3L7Q60Eyzz5famFzQaV+19J5OBjAO9tssrotP84y9SBHVT6xDtLNrTpt0eCzkZj13UwbfLeiLWi0+FZKUkPvF2/NYL9Cklq31AqG0nEcVVNn6tUXJlM7pFcUgmWQNqmsCMVtYMBD5WR563jjvMCTR9wi/PmX1ZVWB7yimnp8gDpJz4d57QAki5kdMLQob9SveSj3PrjFVmXLmkDSC69A7/YZmr/z6P1P0RRBASIpE0okdrHW4BtWV102QOMtNhd/1evAn8p+sCdU9lIe6yHZcUJNhzLdntSJ3ZG1ovjZpFir7rXdQ+cwBV/VCS+T1Ub9joPpbdbw1cEFmZWa7PBLla2DiT0jwObnwntEpZtCjeG+t1WVYC9gA38mv3ITgX52WdbTtan1j+WlAadNzHhgPd5uZLcyvnrDZhBJHxZ9wfWsv82UOKvA3zDXrSRhZuye3SKa1Dot1RCWCebROr1wia0BK42YmvxboZzEGKwq93ydzjCQu0SOQaDufjL32zJO3NimM34XGfHO1r2DwjzbMOW6siMBQzQapVhd5Hohws72YptBVDtW9HIDw5LIoZSC9bOC909+/lOHcD+c5A7J942QiJ3uBsjMykl2mjdf2E9sMqei9T72PQQP4LH9ubkAxrPZ0PeE5fXe/x6s35rA2W7I8k4UsGF6C7lfptBazrarU7oNmq4+NVw1Pdo4eVnO7lqMV0497bpKdkiaYX1it4X4mKMiayc6o9yjFPYqOL2aB5NzDiepPfeVUwNTSbj6F11AlH1Z7BPFrJs8H3169OZg+s/iwIEGuCYZM+ng36CmGgSH0yzoxXebhOjBdf7ltqXrPU6Ae47DVbE24n9msVIF0aK3rK77TEY1f4NFJJUu0c1m6zwLib4X/Y6FqVuy7ug4BYm0JFjqWgsBg04NVWr64Yx+WQlmZSLDQ+8Hadk/4SF01h4/9oxZ9j6u2OkG6Mosxu4TG+x96XTpHeEHLZQXUfFgrcwD1//t7aLgMBrUvLr9iJdOgagcgws/diY9RituUAINfCPpMpY0sOpLEqqDdcuLuSgOSa/NPiTIMQyOdBhKVcBE8U+o76r+zLHLiBEDeN5aib55nWuiBDAacbfGKJ3DfeZFDss8AFIC2/gEP+QondaF59MPigxIZU6cyRe2p6sXHvYdRTvgPjI+aCSeh/a732czVrspt1iiVeKwPqCPS+aIpdMlLkBIS/xsER+F3CyFKi5e3cDSXZY7m+/kLQzGh6wxFHDJtzmPz/5hgfFJDr6VVaS6bl4oQRjkDWCGtxJ/U3XFJpt3uwCmWVK3gp8+PwZO1defbOUTbrb3t/eScsqKSB7tDGbDFYMpYGsEsg7tgtorxtbzhPU7xJTTXWHZEpjTDyfwhp3gqi/yTwsOpnvgycPM4zr+daA4nC+MZgp4CSL2Tfiy40xPQaFNUTDr081lPZBqBo1TAAqxWKisNAHnicSY+mHkxGe00/mBXGE6ETJJt+VkGLPBRxi7Kk4eEm+wzDbVQteLlnVtSYQ7ETbTb2ob3ZHgXrNqC3ZqRni2dGQzw0MmF8/JbsH+GrujH9uG6nUDpdkfAfSzGS1/q626/9gqndJ2DyfCNvwha4bJuJO7ER60MXIHO3+AgkhZe5TXVrNbBJLkeFFOvPSDOcWfS4sxU4A9KlXiz8oOJQs2wugZ2Pm1l8idtiOCTCRmI5a8pKclGecWHvuPMc8VxFrQpHECcswJVb+rD/ZB9pGoERShegGjCWn9kbaCzD5MftBeb/hsB9sIXvnizl1GHJQQw1zDfAckk+30YxQeYSJ3ctWsTt73kPhxaB0j/J14IydbgHhJOoBFlosZZjZJtjTa3V8egg64S083ES5ZZrE70KnvSepSh/6PqcDrM32B2YaFsg62NtlfUb6jT01ddQI0ojeTTSPrA9nuO/gTYKGQ13s15Lr+Z08wzxvrvMqtKpOlkSREP9vI1benWhfas/O8rKvZjcwFzSryxeFTKPI6oOcmRJoEGWfQFtzD+nfQV/v6Oiwxy78TMRL3Sl5WQ0jOc9URoK1P0BbCjHnp5ajCPticW26gkUHqb5/p6e7FZkXnimeBHEbBCtBRpej2slOcMgL4fgsb2KOqLfiRad4f77iNdEaZD+CahJtY0iq9fJ3ObQJ2X/U1fTaA=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5856,
+   "candidatesTokenCount": 406,
+   "totalTokenCount": 7146,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5856
+    }
+   ],
+   "thoughtsTokenCount": 884,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "U47aaq-GNO7uiLMP2YG--AY"
+ }
+}

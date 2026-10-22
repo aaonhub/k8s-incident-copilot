@@ -1,0 +1,72 @@
+{
+ "key": "92f19e3cca93e6e9ee1230737cbed0128163cc533f06386afab963140ebd98df",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4445,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "similar_cases": [],
+         "open_questions": [],
+         "status": "incident",
+         "claims": [
+          {
+           "statement": "Deployment webapp revision 2 updated LOG_LEVEL from 'info' to 'verbose'.",
+           "artifact_id": "rollout/webapp",
+           "quote": "change from revision 1 to 2: webapp.env.LOG_LEVEL: 'info' -> 'verbose'"
+          },
+          {
+           "quote": "2026-10-22 21:28:57,152 CRITICAL webapp ConfigError: LOG_LEVEL must be one of debug,info,warning,error, got 'verbose'",
+           "artifact_id": "log/webapp-c6f4d54cd-8kjnt/webapp",
+           "statement": "The container failed to start because 'verbose' is not a supported LOG_LEVEL value."
+          },
+          {
+           "quote": "container webapp image=docker.io/incident-shop/app:1.0.0 restarts=3 state=waiting reason=CrashLoopBackOff",
+           "artifact_id": "pod/webapp-c6f4d54cd-8kjnt",
+           "statement": "The updated webapp pod is stuck in CrashLoopBackOff."
+          }
+         ],
+         "action": {
+          "rationale": "Deployment webapp revision 2 changed LOG_LEVEL from 'info' to 'verbose', which is an invalid value causing the container to exit on startup with a ConfigError and enter CrashLoopBackOff. Rolling back to revision 1 restores valid configuration.",
+          "type": "rollout_undo",
+          "target": "deployment/webapp"
+         },
+         "confidence": 1,
+         "target": "deployment/webapp",
+         "category": "crashloop_config_error",
+         "summary": "Deployment webapp was updated to revision 2, changing LOG_LEVEL to 'verbose'. The application rejected this value as invalid ('LOG_LEVEL must be one of debug,info,warning,error') and failed to start, placing new webapp pods into CrashLoopBackOff. Rolling back deployment webapp to revision 1 resolves the crash loop."
+        },
+        "id": "call_381310"
+       },
+       "thoughtSignature": "EqMKCqAKAWkUfROhxRrjO50umqSkgqGMSowFnQApitEXFGIABVrxjuficmv8VPO+xJ7V75cXn99+doteSwx6mxZ7ag4tVZWMzL6lcYrtR1IEsqSXmQEMlPqn7hudmVye6j4WhP/m0M9z88o5BPCTCmfzD+YZnurH4d08mPDvR88WHKQn3WIPNIChZthZwPYBS8xHXEUjf2obFxm9wKfoBvpkmqJ0viemWcewwah5hcbA7NSjOsKFc/uvOPPEXq9cVMWAmFDK30+auq5JVgQzHfCLyjFrJIa/OKCxgBzQReWNpf3B/3yL98H4O9lMrwXw3XfZVtqwVrkPf85jKNbf+pFSZHM678fzAvIPHoyc/8fgS4Uk/TDj3S4116SFaGuc99hqp2L+IQazmHywcF4fLZ33qCP6H1VrcwmY5WSSE9DhyEQsrCfeQeaNHEQDbpMePyzjkQsPs3sj9E5HSDCDFwVISB8LONHmagyZ6zYVMVN/9HHq/YyU63VS03jQ0W9NEmqc7EvMJBY5kmPz3FDlOfaZgu6nqyoG6r52LgZTeuSYStFiLXckpicxc9Y96pWtenttZKs4r2vdGtcqE29U/mS+vwjAlvmho5lyF8w2HWNiOLrx7O4JJNCTJsJM3ThhGgw0I3SPdwGRWWvP7TgUu5CH6G1ATpkDAI8YfrAr/82K1umHugGE5IkHB8EcHRs5e0vp9ZOLLScBOnwTlQlB7kdt81AvP06VfVvkVIzx2VhqBp/iubRfcsV3Lqe6QcjKESM3hdukrYzldU5bYAxMoAOUYNqAYvz1LqJ+mzBQ5hX0/T8A0VIAYGK9TPMqDatRQ6RCKb0XnyCfbpGJFokTKIf6nY3zTaZpUwP44G4QUqZWB5YWk4NNCdBIw2NNkFTA2S3fyDj8GW0FY5neWVh3xiHTTARK1uDcgKGykb+re0v+MezPSiMkwhXTYMHdyQ4H3odb6zJPwkNKRdkiQOxVA69C1AZ00OcQ8IqQWo83PBPtcytnkwLqzBZ1kDWQLrM8DRICsPfTepoG3FFL5Dd4Rqder2asgQpu0z+KN7ShHpE+5PeA4ajpWHPaqAYbFCsAzU23j3ASU4YPnhjhx9XaB6H22y1Ee7wgZZS+XLDXGf3/CxhhjECQvDzvOdoh//PfEIPKZjiNLqMjiRzQtA3b7AkbYt7R3vRGJJFubqaBHfPA/+tTF3aClQWtL9rCa43OFRhnMfZQiG39XDz6bju36FpeAl3KdAUtOx4Vy0//l6hrGWAUUIEjQHxDigCP3o5NYUpr3menU54wuw5Joi8fQy47M6P+aViag052mJ/xA50u3VbWyUsN6cgyHWkAU4we9yCn927WGJJ+4lqO2/1adfe/62QfPZ4blxnZ7Xn8Td9m0aiSgumMNhZK1P4CqWdGrtkkfe61sKAWMWd4kj5On/iTWh10uIkNdLDisvOph0qsuRs+NUgLUGrI/ewWBfTSYTqSJie9zQ2L1uRi3KXQ/zl1WyYkkk5FULcvVTnYk32zL7reRoxGm61A8V8xheTcyn32VLL/giqmzzvIlq8CY2wchrxpE1bzeZROvc9cRURxdHqJCTgPaZpRTUBQKTP0Ji389rZJ6zBw6djbt7pEcu/wodsQFnFQD4vI/UWVO0dgsnZEwXejchd94yvO1YIu24Ji8lQe9DTo6FD0Lm2xh5fSdGbq+uV9g8egmNjktJp06z2+HDkqCW7wzQTnr4cS9fAUNqVtygON8CnLE9e0mGD5jGfNHQ=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 4821,
+   "candidatesTokenCount": 448,
+   "totalTokenCount": 5689,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 4821
+    }
+   ],
+   "thoughtsTokenCount": 420,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "747aarmvO-zi5NoPn97toQc"
+ }
+}

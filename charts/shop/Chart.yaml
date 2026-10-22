@@ -1,0 +1,6 @@
+apiVersion: v2
+name: shop
+description: A deliberately failure-prone two-service shop used to stage Kubernetes incidents.
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

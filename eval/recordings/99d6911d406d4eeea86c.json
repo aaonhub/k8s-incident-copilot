@@ -1,0 +1,67 @@
+{
+ "key": "99d6911d406d4eeea86c6b7a98aa2538234b2b33bcc3714464f33704606b2e70",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 2587,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "summary": "The deployment/webapp rollout to revision 2 updated the readiness probe path to '/api/ready', which returns HTTP 404. As a result, new webapp pods fail their readiness probes and remain unready. Rolling back the deployment to revision 1 restores the correct readiness probe path '/ready'.",
+         "similar_cases": [],
+         "action": {
+          "rationale": "Rollback webapp deployment to revision 1 to revert the readiness probe path change back to '/ready'.",
+          "target": "deployment/webapp",
+          "type": "rollout_undo"
+         },
+         "claims": [
+          {
+           "artifact_id": "rollout/webapp",
+           "statement": "Revision 2 changed the readiness probe path from '/ready' to '/api/ready'.",
+           "quote": "change from revision 1 to 2: webapp.readinessProbe.path: '/ready' -> '/api/ready'"
+          },
+          {
+           "artifact_id": "event/1",
+           "statement": "The new readiness probe path '/api/ready' returned HTTP 404, causing readiness probe failures on webapp pods in revision 2.",
+           "quote": "Readiness probe failed: HTTP probe failed with statuscode: 404"
+          }
+         ],
+         "confidence": 1,
+         "status": "incident",
+         "open_questions": [],
+         "target": "deployment/webapp",
+         "category": "readiness_probe_failure"
+        },
+        "id": "call_362329"
+       },
+       "thoughtSignature": "Ep8BCpwBAWkUfROPWmz92ar23wfqUj8lSIVsDA7ddiHudyeJAJtTwEz/ICgATcXJudcRY3vnhoDD4PAWilm/KX1Nbe80ztFIPFdOF9aEzUWKLAnkbbXPCN/YcN0K7+JtuGVTMLVXqcR23fOlRwjIWsqvGoQpKu4/6lNhNpNhMQ1ZyYHnXwJXxSIGKKKgQeARwxHcCQt7PjvA9HhmIm7brNUD"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 6447,
+   "candidatesTokenCount": 297,
+   "totalTokenCount": 6753,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 6447
+    }
+   ],
+   "thoughtsTokenCount": 9,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "84_aauvFJaz40_gPoJ7e4AY"
+ }
+}

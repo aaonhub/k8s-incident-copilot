@@ -1,0 +1,72 @@
+{
+ "key": "e2a2ee6b69ff98d64f6f0356d7ca8c8271cbbdb0c09ebaa0b7c6f92472f43fac",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 5076,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "category": "cpu_throttling",
+         "open_questions": [],
+         "action": {
+          "rationale": "Roll back deployment/webapp to revision 1 to restore its original CPU limits (500m) and resolve severe CFS throttling and request latency.",
+          "type": "rollout_undo",
+          "target": "deployment/webapp"
+         },
+         "similar_cases": [],
+         "confidence": 1,
+         "target": "deployment/webapp",
+         "summary": "A recent rollout reduced CPU limits on deployment/webapp from 500m to 25m, resulting in severe CFS throttling (up to 84%) and high request latencies. Rolling back deployment/webapp to revision 1 will restore the original CPU limits and mitigate the issue.",
+         "claims": [
+          {
+           "artifact_id": "rollout/webapp",
+           "quote": "change from revision 1 to 2: webapp.resources.limits.cpu: '500m' -> '25m'; webapp.resources.requests.cpu: '20m' -> '10m'",
+           "statement": "Deployment webapp was updated in revision 2, lowering CPU limits from 500m to 25m."
+          },
+          {
+           "quote": "cpu throttled in 309/483 CFS periods (64%); request latency p50=283ms p95=1489ms",
+           "statement": "Webapp pod webapp-5fbfd48bfb-c7hth suffers from severe CFS throttling (64% of periods) and high p95 latency (1489ms).",
+           "artifact_id": "metrics/webapp-5fbfd48bfb-c7hth"
+          },
+          {
+           "quote": "cpu usage 25m (limit 25m), memory 39Mi (limit 128Mi); cpu throttled in 262/313 CFS periods (84%)",
+           "statement": "Webapp pod webapp-5fbfd48bfb-jflhd maxes out its 25m CPU limit and is throttled in 84% of CFS periods.",
+           "artifact_id": "metrics/webapp-5fbfd48bfb-jflhd"
+          }
+         ],
+         "status": "incident"
+        },
+        "id": "call_154273"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5130,
+   "candidatesTokenCount": 500,
+   "totalTokenCount": 6201,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5130
+    }
+   ],
+   "thoughtsTokenCount": 571,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "247aaqTPAYWswbUPy_ewqAY"
+ }
+}

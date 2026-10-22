@@ -1,0 +1,75 @@
+{
+ "key": "8565343c08fe4518e9d40507bf154d1b0f76b47a0d249dc31b2a3eac2996e155",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4168,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "status": "incident",
+         "target": "deployment/inventory",
+         "similar_cases": [
+          "ticket/T-1011",
+          "runbook/RB-dependency-timeout"
+         ],
+         "action": {
+          "type": "rollout_undo",
+          "rationale": "Rolling back deployment/inventory to revision 1 restores FAULT_LATENCY_MS to '0', reducing latency from 3000ms back to normal so upstream requests from webapp do not hit the 800ms timeout.",
+          "target": "deployment/inventory"
+         },
+         "summary": "Deployment inventory revision 2 configured FAULT_LATENCY_MS to 3000ms, causing response latency to rise to 3000ms. Consequently, calls from webapp to inventory fail with an 800ms client timeout, triggering HTTP 504 errors downstream. Rolling back deployment/inventory to revision 1 will resolve the issue.",
+         "category": "dependency_timeout",
+         "open_questions": [],
+         "confidence": 0.98,
+         "claims": [
+          {
+           "artifact_id": "rollout/inventory",
+           "quote": "change from revision 1 to 2: inventory.env.FAULT_LATENCY_MS: '0' -> '3000'",
+           "statement": "Deployment inventory revision 2 introduced 3000ms artificial fault latency via environment variable FAULT_LATENCY_MS."
+          },
+          {
+           "artifact_id": "metrics/inventory-7cb7dbdf88-v22nk",
+           "statement": "The inventory pod is experiencing 3000ms request latency.",
+           "quote": "request latency p50=3000ms p95=3000ms (60s window)"
+          },
+          {
+           "quote": "ERROR webapp upstream inventory timed out after 800ms url=http://inventory:8080/stock",
+           "statement": "Webapp upstream calls to inventory time out after 800ms, causing HTTP 504 errors downstream.",
+           "artifact_id": "log/webapp-7bc49bdd78-jnb6z/webapp"
+          }
+         ]
+        },
+        "id": "call_243705"
+       },
+       "thoughtSignature": "Eq8HCqwHAWkUfROIMH1yAZY0Mov2/Cil4WJioRvlfY5Ntf50eSXsXqpYhWAujgsereZ0Tvm3ond79XC4lWYd/i8taxME2rmwSmmWYBdjdO6IWGCPBigDvMzFljeybLIszsLUoT4dcVgb6N1EBZYU7pNy6rq/SVnw4hZI2aor/2QnWYp5pQQXhFbumw6wD7ZEGpz0nr50qkakvW8hy7DkHSEvn5QC6eTGaAPcj8LHZ1d8hhFRCJrQWRy/V6JZ8D+noTEY49al6VSrEg5RJH9u+APZukNE/jKnEtJodMl1/v0SpxeBmgLd3Fk0WKGE5v66VX8tEiZXtgatG+YcWnPMRtIlkCnnXBxkJLpxSwkdumqDnPf6k6XW+5xGfUC3dTO7AWC+6TLCY8Uk2Em5QHrMl3Ds+Z0Hulrd2PeDdPq/d3zkGsH/lcXJqzfh1LWbcJgl11jqYceWXaTUGhHHCx+fJCQKwFuGedgKcLx1RCfX8f72M42a240TxhotRrpZ4n+Z+6sj9R7QYR70xvVN6NtT3HngJuR8KC/UjfsMdsdLn+Ao5K9rmU1sXFhBlplbKttv/1K/CTPvTgZVN2cY9xW/dXXLzTMqKOXobu48T2ubJtAZ/nWOC2qRcEQ3Nj2rZqxVCIDn/dgCieCdgj0HQANq1vXS7u3WiqFBsx846m66CCXdSBnhEhySreBe8Eg4MNiJoTZl4EskjijB+VrDEOGKHEkOTAJBgJpkY9SMl/clwP1vUY+TTOD0bSi6zSFaoUwiaIZFq2y7Iy5TaUqSHA74gKDlF4z1tYZ0zNbxdJkZZ5WVRkDbSK8XIl1HiOnyLEAhJq2E+7sLAfLzzPHj+9b9eAIxbi5eHQhnLjs3K0oXBZWrCVoEprdZCQv07tGjUduyDhNyqaxCqNyVWOr1VX0wlA/A92Ho0QTR2RgDCX3DFZoF6j6wj0K5G/ftYIxuVOCi1uc3pxpP3oyGUiyeyzZ2iAwTObFBgppMJJbC0IOd8+MQsnrJ4WWHom6Z9JytcqGOsmI1tYG0c++L/mMmWRJ+E3qcPYzV/K+iJijvalGE2eGDJq4tFK8G40RwQaDKAjLopFAT1R6z8v5kzeOyBnfGp2FAzhxESpRXGxvA5J+C8GlP7Lvzg4K910cvS9ivjcHw6xcQ85lPdkr/6EYWkE+vHeQIKSuAMDvl5hUv92FwYvq20Nm7eC9oYBtnKQUh4xMH3miiyIqCqKGwr/0fK/UckCebvumY2lQkBiYRy0ix2WWV8w=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5428,
+   "candidatesTokenCount": 463,
+   "totalTokenCount": 6205,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5428
+    }
+   ],
+   "thoughtsTokenCount": 314,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "LY_aavnZGK26wbUP_6OcqQY"
+ }
+}

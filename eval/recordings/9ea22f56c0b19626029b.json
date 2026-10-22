@@ -1,0 +1,80 @@
+{
+ "key": "9ea22f56c0b19626029bb26ef5515f23e1d3dd25ea2f941ad4211a080bc86ab7",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4233,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "category": "dependency_timeout",
+         "similar_cases": [
+          "ticket/T-1011",
+          "runbook/RB-dependency-timeout"
+         ],
+         "summary": "Deployment inventory revision 2 introduced a 2000ms fault latency via FAULT_LATENCY_MS. Webapp enforces an 800ms timeout on requests to inventory, leading to upstream timeouts and HTTP 504 errors returned to clients. Rolling back deployment/inventory to revision 1 resolves the latency and dependency timeouts.",
+         "confidence": 1,
+         "target": "deployment/inventory",
+         "status": "incident",
+         "claims": [
+          {
+           "artifact_id": "rollout/inventory",
+           "statement": "Deployment inventory updated revision 2 with FAULT_LATENCY_MS set to 2000.",
+           "quote": "change from revision 1 to 2: inventory.env.FAULT_LATENCY_MS: '0' -> '2000'"
+          },
+          {
+           "artifact_id": "metrics/inventory-bc75b6577-pgwvq",
+           "statement": "Inventory service response latency increased to 2000ms.",
+           "quote": "request latency p50=2000ms p95=2000ms"
+          },
+          {
+           "quote": "ERROR webapp upstream inventory timed out after 800ms url=http://inventory:8080/stock",
+           "statement": "Webapp requests to inventory timed out after 800ms.",
+           "artifact_id": "log/webapp-68556cc777-65fw7/webapp"
+          },
+          {
+           "quote": "WARNING loadgen GET http://webapp:8080/api/orders -> HTTP 504 after 817ms",
+           "statement": "Loadgen received HTTP 504 errors when sending requests to webapp.",
+           "artifact_id": "log/loadgen-69df8fc559-gns4v/loadgen"
+          }
+         ],
+         "open_questions": [],
+         "action": {
+          "type": "rollout_undo",
+          "rationale": "Roll back deployment/inventory to revision 1 to remove the FAULT_LATENCY_MS=2000 environment variable that causes webapp to time out on calls to inventory.",
+          "target": "deployment/inventory"
+         }
+        },
+        "id": "call_243579"
+       },
+       "thoughtSignature": "EvUHCvIHAWkUfRME6DJN9dSB1tbvci4ikUwC7kNT7C2uQNFzomihRqm6CB3rWIFZYOMjTqJD4H7NI7v7WKKVDum/POA0pfJAlF6tdyr0GMkcu2Z6azwooOzIxP0HjNnpsF0VrmtIjvmWJMNjsOc1eiY6NiX+tnMHnNNPSaVp6T9sHChDmwjGSon8W0KVSAQIMw2h1d4vh4w6xmMxetk0GkZxecStE5WmZZFokWbLyyw+VddP2OC2+XsXaRmFk2XJlK+crAlkhLtGnXoChcXRO4JDUIOb3P9OgIbTDhoIGL2HCInFth+MHpoeHTbafDzW0cpTNjplimsiH9luwq9BNCX61rUXVZ6WYkdplWbp5npLdSolWxxyz8LXEeWmEbISUE490OCPHJhgDXUhI5sj4lkUYNsGHlyw5059eUbnYDR5ASlD6rKib+KfnV7E6OmnCVnkHPqGwfYY44pDIVANq3ZuX1TZ33lQ9uEjbOBuIyE1D6W1jLt9qvqXtcl9GLdUOKO0fjWT35FV7yJUJFoQ6r7gDco3KxDmwgxsnd5/XCRvWxG1h5tuwsFga1qdBvFr1omJwXfwQrSXg7u1xRIp/b7YBWvSXfCukHbO9Gp9CExVJ15dVAyvkdcJSig5kqfxuTPQEbOyDpnEZBzpknf4lUvMbhPguO0w0rcpaiE29H2lNc6Ve3IBi09d9n0Bicxy8xbUEUOWIH8Wroa0TwC3cV0+b8x7ZyZ19i8SkYfBGFk9v3VHyYU2vC0Ez0DL6jsHfb4AXilwQU0kUhL5tB2mX7bJ3UkXXyPLoK6A6uNeIuDhdG+ojsUpshpdc39uqVVH+SttKIAHPljtznxKjLWVpKce64bYbM0/GxwKPscgmWItQhPKLn3cd7T9ELIFSFrB3iN3BgRNFyHzE+tQLOI9BtJfSwo3XlGkl3f6mFyuUyVHzVEV6Po9ZtnZF/Qrof4KNEPoVOc0BpIYBLo4ce5g8icsQwcp06bFtTNFg7UYkHywaSMwR2sumIjiQO87D9IKTNB9cOexHjx9QKWZdvRmH3l1ap0D0Rv9cBxb6p+K/Zzsq5AHa9pzSN84xadYaikDbt6UiOXFwWPMSHI8KDE9yHl6QX98lNrTWQ2m/RoHFs7gId+OMhVhfuFDS4/tPcXvuXJUgSsWYfGIPk81pRvG1T9nvHIyqbK0vF7pX3sgl59VdVcRqnQ+nKwb8WN8RDuNIumjJErwkriw1aQkckJyDs1TCqTvjx0S4waDJWEwez2EIqzyrvF1v5I10Ohc/o9Hak0NexVPeG86VB6/cx4OPVc9jW0M2JNfClz2b9zqRkEKN9fqar54M3xqUbwuZj3++v3kZ9IvmbY="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 6073,
+   "candidatesTokenCount": 505,
+   "totalTokenCount": 6889,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 6073
+    }
+   ],
+   "thoughtsTokenCount": 311,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "Jo_aapo-pruIsw-e59vBBg"
+ }
+}

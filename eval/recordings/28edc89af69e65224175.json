@@ -1,0 +1,67 @@
+{
+ "key": "28edc89af69e65224175e1f37b7a8d5ee2972c44706986ba59721e1dee1ba82e",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4014,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "status": "incident",
+         "confidence": 1,
+         "summary": "Deployment inventory revision 2 changed the readiness probe path to /health/ready, which returns HTTP 404. As a result, the new inventory pod fails its readiness probe and remains unready. Rolling back deployment inventory to revision 1 restores the working /ready probe path.",
+         "similar_cases": [],
+         "category": "readiness_probe_failure",
+         "open_questions": [],
+         "action": {
+          "rationale": "Roll back deployment/inventory to revision 1 to revert the readiness probe path from /health/ready back to /ready.",
+          "target": "deployment/inventory",
+          "type": "rollout_undo"
+         },
+         "claims": [
+          {
+           "quote": "change from revision 1 to 2: inventory.readinessProbe.path: '/ready' -> '/health/ready'",
+           "statement": "Deployment inventory revision 2 changed the readiness probe path from /ready to /health/ready.",
+           "artifact_id": "rollout/inventory"
+          },
+          {
+           "statement": "The readiness probe for pod inventory-764dcf74d8-x5cx7 fails with HTTP status code 404 on /health/ready.",
+           "artifact_id": "event/1",
+           "quote": "Readiness probe failed: HTTP probe failed with statuscode: 404"
+          }
+         ],
+         "target": "deployment/inventory"
+        },
+        "id": "call_355486"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5700,
+   "candidatesTokenCount": 302,
+   "totalTokenCount": 6403,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5700
+    }
+   ],
+   "thoughtsTokenCount": 401,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "4o_aaomUFZ3b0_gPiMW4gAg"
+ }
+}

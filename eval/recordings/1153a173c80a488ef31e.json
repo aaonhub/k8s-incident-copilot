@@ -1,0 +1,75 @@
+{
+ "key": "1153a173c80a488ef31e0119d18f1cad88f6664b63d8431d24dee2222a7e331c",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4949,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "open_questions": [],
+         "target": "deployment/webapp",
+         "status": "incident",
+         "claims": [
+          {
+           "quote": "webapp.resources.limits.memory: '128Mi' -> '40Mi'",
+           "artifact_id": "rollout/webapp",
+           "statement": "The memory limit for deployment webapp container was reduced from 128Mi to 40Mi in revision 2."
+          },
+          {
+           "statement": "The webapp container in pod webapp-8c4ff84f7-6zg7v repeatedly crashes due to being OOMKilled with exit code 137.",
+           "quote": "lastState=terminated reason=OOMKilled exitCode=137 finished 4s ago",
+           "artifact_id": "pod/webapp-8c4ff84f7-6zg7v"
+          },
+          {
+           "statement": "Existing healthy webapp pods require approximately 48Mi of memory, which exceeds the updated 40Mi limit.",
+           "quote": "memory 48Mi (limit 128Mi)",
+           "artifact_id": "metrics/webapp-7bc49bdd78-88d2z"
+          }
+         ],
+         "summary": "Deployment webapp was recently updated in revision 2, lowering its container memory limit from 128Mi to 40Mi. Because the webapp application requires around 48Mi of memory at runtime, new pods (such as webapp-8c4ff84f7-6zg7v) are immediately OOMKilled and enter CrashLoopBackOff. Undoing the rollout restores the 128Mi memory limit and resolves the crash loop.",
+         "category": "oom_killed",
+         "similar_cases": [
+          "runbook/RB-oom-killed",
+          "ticket/T-1064"
+         ],
+         "confidence": 1,
+         "action": {
+          "target": "deployment/webapp",
+          "rationale": "Rolling back deployment webapp to revision 1 restores the memory limit to 128Mi, which accommodates the application's ~48Mi baseline memory usage and prevents OOMKilled crashes.",
+          "type": "rollout_undo"
+         }
+        },
+        "id": "call_257272"
+       },
+       "thoughtSignature": "EsoLCscLAWkUfRNt3oXZ208lTO3QClu7dPpLVrkZI9AIU8gFebOzHFDb8B3eMH7eI5XkrQKkiSPj9Bwnc4vZOtp6+kQbZMUYIPhkkWcG/JOqWIsdMsXp1mXCofBBCt6sviUQlm2UOBcKfMnmratdEIFLixFhPN7r7tgKSUeTwUt5qtEO+K72+Qxqsd621nCnXBAYI9ytPWnPkB4dzpZK2gdbLUXiMb7ZKWh18E+mC89OEgkNKv1pZlPmPfFsGVhEK5YWgVfhHLxXusby4B1kcT4q9g4wWrISoAsafdPCXLtB2H11GfN9zzT/IH1aNGT+S/kWcsfJecxKkG7AFPqeIsrua7zBcwn8LTAg4HpindshgL6MdvapEYpH5keh7pDxfILHgZ9FV3M68M89foYSJNk+sDfhScbajrnUeEvIzH6clzTyg5Oql5F++ffsQEAhoijts5zFpMiNC+ssjpejzZVSxza9/4vCfOGGD+gj5t95H27YT1wkYf05lv6NFiW3xjI9fgjSTOjp7PoPvkFBwmV3oI1ZWlDeh/1gKz/zpMMeFXZZQI/+EJ4gksXn9ftSj3v1XL7AjGVfkmlspxCWqzYZuyIHwTAA6KhoyzTRj5piBfehvGmcAfW1MQ0oYnjg53eYYmkJbuf9aYZSp4R/0F40q3UvlNdteWTtgvGy/GpGRspqp12p+b7IS0+/3mA89OO9+/zPnsfjHtz93g8A1XgtmY4CRdjFi5kKX91LfP95EvINs7R1rDplKqiYE+AxUDyDkDsdLKoSGJ40TjeEhuFqG/uLxQ5xVFcmOGQNepnXoyJ5rn7WKJR4IsMMpPtglJi9Hdt6AwgFfVtjsW1ZxR3KWUJCwKUxmZE9A1MSrhbFxBFW7CMkL9wVoHwIdHjMk0juBm7+QonHtY0o3am8aPTbRV6lSbUXYqqHcWnIm19W904GJaJy50qV15LRMd9V7I7U5qgaHPEabQqlyc/NUAklMlXbqhCH9qg+Eoq1jlCHXokaY21RRlLyzJvWmynulf8Dal0Fubo2oHYd+qVFrdJkZcS/jHhTVFv3/p00yT4qfPKTahLbCuAYgFTbn6oipJ7KLC/9+OqjJX+yeMF8y9rNQ/ueUBE5w5Ko+gkcadP9zrEI8okxRE5EoX+2EXcvJKpgzSV26QRQRcRBoJ2gQR7Q5acpgG1CAXZ3ilT5X40zucAjPJuxmKRjJOfD321UIbBDZPxDjWhBPVENQWs03Jic+ruvgYLMNKGCHztbE7Dao2cpJ3NUQrmHrVZsHP3Co4QPPt9z/wKleghZ+ROaYVVA4zglSfg7eN5MTomxQK0T/U+4ekmWwBUw1vyNPMzSaJWtol9kiKcpavWvqU7sTyBcKmSOvOkji//REiu8y19dMJ2sUTIeGrHfC9drmVoKDEZVLlRM0kaN1jGo0B1O0WB0fnaLCdoWErpDsMFAjLO7ipVkYNVb+KhftRNqpITotvPxpCCgiykFYTliY9PPTJCScPQtocaADTxLdBuIDXBmpIDbs72NxnycKaC+zHf/FyM0gkI1uSdnDttkZCJfkJWx5+YnO5w15b9Nz8m2vRwOEruS0/RDU5F6ra2r/ZHuxx1p41rn/awwmooFG4gXVG1N5whGDzo/73YSvyZwez9omTnaKK1KXgXUkER/jq76+zos8bUmKW5jimOsWHxgWRQ3Z9Xe75gtvdsLwC/EODV0N0MwOW8xFtpxMv92IyqiBOD808siZTYFn01Hn/WdaC4YlEp9Du1FGtevf04rH9yo1FslpUWqTXVmOgoY30rKhstD8XTdBE5FcaPtP2ASIi/cgXiRkpLrjrWrwcPnnjrojHR4QRGpv1F6dsd9D3meDPZ4+oqW6ApcDMzNCRKsObIKMFK9n+8P4QDMpuy1fSW4ophkw1CcBatd4oug/YbxmxKcTf8wgtFQvHLHbEntexAzwNMrt70Yf4xLbjUpYWZAhLzfsuKtdt0NILsj"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 6965,
+   "candidatesTokenCount": 471,
+   "totalTokenCount": 7946,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 6965
+    }
+   ],
+   "thoughtsTokenCount": 510,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "1I_aasyiKvHRiLMP28DV4AY"
+ }
+}

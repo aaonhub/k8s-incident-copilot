@@ -1,0 +1,53 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12", cache: pip}
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/fastembed
+          key: fastembed-bge-small-en-v1.5
+      - run: pip install -e '.[dev]'
+      - run: ruff check copilot eval tests scripts app
+      - name: Unit tests (deterministic tools, guard, audit chain, replayed agent)
+        run: pytest -q
+      - name: Eval in recorded-response mode (no API key, no cost)
+        run: python eval/run_eval.py --no-readme
+        env: {COPILOT_LLM_MODE: replay}
+      - name: Results match the committed table
+        run: git diff --stat eval/results.md && git diff eval/results.md | head -40
+      - uses: actions/upload-artifact@v4
+        with: {name: eval-results, path: "eval/results.*"}
+
+  cluster-smoke:
+    # Real Kubernetes in CI: build the image, deploy with Helm to k3d, break it, detect it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12", cache: pip}
+      - uses: azure/setup-helm@v4
+      - run: curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+      - run: pip install -e .
+      - run: helm lint charts/shop
+      - run: make cluster app PY=python
+      - run: kubectl -n shop rollout status deploy/webapp --timeout=120s
+      - name: Healthy cluster -> no incident
+        run: python -m copilot.cli rules --expect no_incident
+      - name: Inject a bad image tag -> rules diagnose image_pull_error
+        run: |
+          python -m copilot.incidents inject bad-image-tag
+          python -m copilot.cli rules --expect image_pull_error
+      - name: The read-only identity really is read-only
+        run: |
+          ! kubectl --kubeconfig .kube/copilot-reader.yaml -n shop delete pod --all --dry-run=server
+          ! kubectl --kubeconfig .kube/copilot-reader.yaml -n shop get secrets
+      - if: always()
+        run: k3d cluster delete incident-copilot

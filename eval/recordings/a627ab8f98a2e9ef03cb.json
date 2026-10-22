@@ -1,0 +1,45 @@
+{
+ "key": "a627ab8f98a2e9ef03cbe5c6f5e9d66c91f243ececd309edd617c3c37f386947",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 2236,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "get_logs",
+        "args": {
+         "lines": 30,
+         "pod": "loadgen-69df8fc559-dtkgk"
+        },
+        "id": "call_344087"
+       },
+       "thoughtSignature": "ErQGCrEGAWkUfRNwr3fDEhZ9Cxy4f38SDiPYwuAIO56o3/fLPJhJmpdzmTLYxaUcxXuVwDkZR3V4Oy5JnhqtoBv/H8DiYXi+Mt2FrvX9SkRt2rmx0YMEjbXZIFo02chKz49t9NjXU5LCojSUdq3GAVomq/TM6oDkMpBmIW2tFSP+coCUMZi5hww+qiX9G8CEiftVw2TeYPW22Mii4l+k1OSht7KnbtqnpUZQP2k9N41QhqTlJul9Ld5UftcNtUIWrSV3n6RKWYbw6CKZo/nqIka/S/aTbTcxM2jyhGHz5fGq699nEhs8q4xEUWqotU0BxGLVH0gXlqy4hMMnJSEA/o7e6ketNM54EclN5foBP8AZpYsdDaQJySIk6wA9l+q8GT2dccuIGgwUZwYt6ez4btDvdV+YmuqekSBYWdIxkid66IjELLyCIORK08nxgnoEGhMG9AVOC83OeOs9V+HVPoUm3+6VCc9OCn2UcV2sVsQnRr6O/BGzJQ7BWmP4lWflfSdX4GGHZh9vg3I73+VHqAWazNUszJC2mWvaIEo5t4ux36PfXTlbCpFdta4GEd97WJC0dWnValFh3pMG3pHiRdtvsAjkC/6PLykBtTNoWAI1/IJ9j8/N9laO91VJhpLrXdbpq4xKR3dqu2ae4cQbjBm70PedNJtD3X+J5gro4M1SW14XeFIB/pPadrjN1ahX8+kIfzCZ/cXBNW+yXMlolWZWziiDHUR8xCelhgAgYnuNWrqaqaqKix7Ubw4D8E44guKh0NGLXkN4SfU67hakizGa3P2paaQqCILJWHlmmMrhQGxoMjdlIgODtBRl2uo6cI6emDEim1SvN0lkiv8rvsF1r3/fJ3FkRJmC2lTEPE+3ouRa6ZOhrk7Y2BV/CKMcGsP1aPcsoX7AZwkBrVILPZOUjlOljK3SVN6iQjmKK8tuPfN6qRrdeyMpLyNiApPCpg1asfMuNLSEk1Y20YfqurFYWGiiqouB4lsNE1Ljgug2o4saxPTXA6DPf96cwChgubvW62L1Z5nLQO7+ro1ODlCVR5CF+El/Yk10GEuTt8OAYt5IZECNWELJDGxZxrJA5o+MhAaa4Q=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 4378,
+   "candidatesTokenCount": 35,
+   "totalTokenCount": 4722,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 4378
+    }
+   ],
+   "thoughtsTokenCount": 309,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "SY_aaqSZEsWYwbUP056vmQY"
+ }
+}

@@ -1,0 +1,70 @@
+{
+ "key": "d1698a11f9b8b44d44c40fd7e3f58260cd50eb13975c3b4734d53c54539dfc92",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 5985,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "target": "deployment/webapp",
+         "action": {
+          "rationale": "Rollback deployment webapp to revision 1 to restore working image incident-shop/app:1.0.0.",
+          "type": "rollout_undo",
+          "target": "deployment/webapp"
+         },
+         "claims": [
+          {
+           "statement": "Revision 2 of deployment webapp updated the image to incident-shop/app:1.0.404.",
+           "quote": "change from revision 1 to 2: webapp.env.APP_VERSION: '1.0.0' -> '1.0.404'; webapp.image: 'incident-shop/app:1.0.0' -> 'incident-shop/app:1.0.404'",
+           "artifact_id": "rollout/webapp"
+          },
+          {
+           "artifact_id": "pod/webapp-846876cb78-8b2wk",
+           "statement": "The new webapp pod failed to pull image incident-shop/app:1.0.404 due to an ErrImagePull authorization failure.",
+           "quote": "container webapp image=incident-shop/app:1.0.404 restarts=0 state=waiting reason=ErrImagePull message='failed to pull and unpack image \"docker.io/incident-shop/app:1.0.404\": failed to resolve reference \"docker.io/incident-shop/app:1.0.404\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed';"
+          }
+         ],
+         "similar_cases": [
+          "ticket/T-1055",
+          "runbook/RB-image-pull-error"
+         ],
+         "category": "image_pull_error",
+         "confidence": 1,
+         "summary": "Deployment webapp failed to roll out revision 2 because the image incident-shop/app:1.0.404 could not be pulled from the registry (ErrImagePull / access denied). Reverting deployment webapp to revision 1 restores running pods with image incident-shop/app:1.0.0.",
+         "status": "incident",
+         "open_questions": []
+        },
+        "id": "call_365815"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 7144,
+   "candidatesTokenCount": 479,
+   "totalTokenCount": 8392,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 7144
+    }
+   ],
+   "thoughtsTokenCount": 769,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "e47aatXHCNXRiLMPsNejkAg"
+ }
+}

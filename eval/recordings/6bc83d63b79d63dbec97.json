@@ -1,0 +1,70 @@
+{
+ "key": "6bc83d63b79d63dbec97b8249306269257a2b5010133ed7a9ca1a718ee81c5d7",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4551,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "similar_cases": [
+          "ticket/T-1070",
+          "runbook/RB-cpu-throttling"
+         ],
+         "target": "deployment/webapp",
+         "summary": "Deployment webapp revision 2 reduced the container CPU limit from 500m to 15m. This severe CPU restriction caused pods to experience 79% CFS CPU throttling, leading to high latency (p95 ~4s) and health check failures/timeouts. Rolling back deployment webapp to revision 1 restores original resource limits and resolves the incident.",
+         "action": {
+          "type": "rollout_undo",
+          "target": "deployment/webapp",
+          "rationale": "Roll back deployment/webapp to revision 1 to restore CPU limits from 15m back to 500m, relieving CFS throttling and resolving high request latency and health check timeouts."
+         },
+         "confidence": 1,
+         "category": "cpu_throttling",
+         "claims": [
+          {
+           "quote": "change from revision 1 to 2: webapp.resources.limits.cpu: '500m' -> '15m'; webapp.resources.requests.cpu: '20m' -> '10m'",
+           "statement": "Deployment webapp revision 2 reduced the CPU limit from 500m to 15m.",
+           "artifact_id": "rollout/webapp"
+          },
+          {
+           "statement": "The updated webapp pod is heavily CPU throttled in 79% of CFS periods, causing p95 request latency to rise to 3956ms.",
+           "quote": "cpu throttled in 566/720 CFS periods (79%); request latency p50=562ms p95=3956ms (60s window)",
+           "artifact_id": "metrics/webapp-7f6b5d48-hf4n4"
+          }
+         ],
+         "status": "incident",
+         "open_questions": []
+        },
+        "id": "call_503219"
+       },
+       "thoughtSignature": "Eq8HCqwHAWkUfRMGt/hMYhulVZVeHFliUmUR6lLP1oEF0zkTggGztpCt67VSeL8ds1nJXi9XOODfEFVmAmDnbD+TqJ9c3UMyoCPvH556AD0wSzWRUE0Rx24wUYB4FQVBOSlZtUCIgkU828v8nYOAfw2lnmLru2cFgHbsnmDr0kdvKveUbZm3BfQj4bB85A+KSxLtWDz3PJGwRiiwm9TbMVhJaySPGf3ZnkIkNbAWfcQxCWvYD6wNfprOMinnGGGXLNkpBiPIjt/Jn0y8UkCtgSN+jCIUcs6T4klr01lAm6Tyfic1G3Sm/ZP0jFpmPXHYdqlWDEQE6M0kCWSJ2TqGsm4rM4oYrMjiO747gG39wzK/siq4F5wqypYerawTOn9hj8WdEkl/aKAl9mMOh9pepud2vhXIUtOes5dhc/GzyoZAECLlUEG6zfW0tEynkaBks75G7qRrlxwocoWf7HkRs+AzUc+w+Q0Py299o6SpIWaFxeDRPmdQEpCdYF00Okas1LvMIKNitRf2f33JzViHACtePjVufgCc6A+04hGDyCQEmgQ7Zo0mZ21GfTVDMVuPQZ2Tcf9UvK+5Pik0v1jbeWSFdxJq+ynxUlkcm8ADfwomKHsf+9G84RMKr41SghiLlrgn6ZT+3AAnWWey7aTAV07AjikrFiFLVJq+f+E0iZ3uPgfZuJ7uTefm7w6Osx6HdJptQJg224VF3vCfHBVpDlBHBzBJfJBlm/+AH4spkMsMt21/VB3ZNIj6Xz0O53f5n1bhvtPHkVcF7mser4y47O8sENxEo1EGiVFC0E9yoXYKNu/1ER7oC2V606Aov4ZYWHnTZtGsZGjamBZmKTb3/H1/taKXKnAQjY+KQ0cH8ce99xS25QtMg/SVoBuvgrrDgogo7vmDnTpqBYhq4nxyihol6SgTT4U+TrrVFWFnarW4oJs4RCwuchoD5udEkky8QXShrHeU2ZNz3A6DZNRrAzbZJZkfIkp42xyFU9F4N4YdwMjPRD57XZLYuJz9wmtDBQqrUD++vv23t+5ppAjMXUn29xIfXTNaacqWou1Ufkm45zJKNjd1BpCi7HBjmDTCFNWTVY4oPTVh8+DIPenMjM6edlslt6za8rQxCnuip/8DV/qsfd/izOEmT67Cy5mlw/gS6s6MV5b2eIDJVmGoVcWDLXEKhdWkGVjwVOGsqXK9vVZR9adaZ/Oe2X/NJ0byyLSL9Ngj+ch/v6U/xdlV3gFFewlk/mG9chHa/H2LFbju3Q=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 6184,
+   "candidatesTokenCount": 424,
+   "totalTokenCount": 6932,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 6184
+    }
+   ],
+   "thoughtsTokenCount": 324,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "1I7aap2vHaamiLMPhpjdiQc"
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "key": "ea82a974be55f7625051ab2fc73610b9030cbea85620719541f510de28d9d556",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 1175,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "describe",
+        "args": {
+         "object": "deployment/webapp"
+        },
+        "id": "call_273487"
+       },
+       "thoughtSignature": "EosBCogBAWkUfRNPMFGztQ7Ht+NG0TXuA4aFft50XY9pSq1Aipsqw75SJtUBeBNhfoah+jnM2jigL3GVIJRtsXnmgnpq1VNg/ITGOgleR2XUUwGH3WYcnfrWPVR9prFOS79iEfkLU9aFqE84UDwglQ2Phmo3O1fk9jckaI2rDamrd3oFRfM6Ve0APTdlZQ=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5589,
+   "candidatesTokenCount": 16,
+   "totalTokenCount": 5613,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5589
+    }
+   ],
+   "thoughtsTokenCount": 8,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "j4_aarisN5es5NoPiMfUuAY"
+ }
+}

@@ -1,0 +1,71 @@
+{
+ "key": "68e4b0f584d1d1e24758384e129db127c4cc8a77ddc6fe9545739a28c1d8a988",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 5665,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "category": "no_incident",
+         "summary": "Deployment inventory briefly experienced issues on revision 2, but revision 3 was automatically deployed with reduced CACHE_WARM_MB and resolved the issue. All workloads in the namespace are currently healthy, serving traffic, and reporting 0% error rates.",
+         "status": "no_incident",
+         "similar_cases": [],
+         "target": "deployment/inventory",
+         "claims": [
+          {
+           "statement": "Deployment inventory is healthy and running revision 3 with all desired replicas available.",
+           "artifact_id": "deploy/inventory",
+           "quote": "deployment inventory revision=3 desired=1 updated=1 ready=1 available=1 unavailable=0; Available=True reason=MinimumReplicasAvailable; Progressing=True reason=NewReplicaSetAvailable"
+          },
+          {
+           "quote": "requests_total=85 errors_total=0 upstream_errors_total=0 error_ratio_60s=0.00",
+           "statement": "The active inventory pod is serving traffic with zero errors over the last window.",
+           "artifact_id": "metrics/inventory-57566b5dcf-kw2cw"
+          },
+          {
+           "statement": "The load generator target recovered and traffic is flowing successfully.",
+           "artifact_id": "log/loadgen-69df8fc559-dx7fw/loadgen",
+           "quote": "2026-10-22 22:08:02,127 INFO loadgen target recovered after 2 failed requests"
+          }
+         ],
+         "confidence": 1,
+         "action": {
+          "rationale": "The deployment inventory was already updated to revision 3 which fixed the startup memory issue, and all services are running normally with zero errors.",
+          "type": "none"
+         },
+         "open_questions": []
+        },
+        "id": "call_323186"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5502,
+   "candidatesTokenCount": 386,
+   "totalTokenCount": 6525,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5502
+    }
+   ],
+   "thoughtsTokenCount": 637,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "H5DaapKNGOC-xdIP6uLwgAQ"
+ }
+}

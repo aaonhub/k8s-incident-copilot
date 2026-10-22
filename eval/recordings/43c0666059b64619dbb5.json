@@ -1,0 +1,70 @@
+{
+ "key": "43c0666059b64619dbb52251371cd7d465e709efa9977ba0fb1a9af2679a6b8d",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 7259,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "similar_cases": [
+          "ticket/T-1017",
+          "ticket/T-1004",
+          "ticket/T-1123"
+         ],
+         "category": "missing_secret",
+         "action": {
+          "type": "handoff",
+          "rationale": "The secret 'shop-api-credentials' referenced by deployment/webapp is missing from the namespace. A human operator must restore or recreate the missing secret object."
+         },
+         "status": "incident",
+         "summary": "The webapp deployment's newly created pod webapp-7dbc45fbf4-p2f2l is stuck in Pending with state CreateContainerConfigError because the secret 'shop-api-credentials' referenced by its pod specification does not exist in the namespace. Existing revision 1 pods continue running, but new pods cannot start until the secret is created.",
+         "open_questions": [],
+         "target": "deployment/webapp",
+         "confidence": 1,
+         "claims": [
+          {
+           "artifact_id": "pod/webapp-7dbc45fbf4-p2f2l",
+           "statement": "Pod webapp-7dbc45fbf4-p2f2l failed to initialize with CreateContainerConfigError because secret \"shop-api-credentials\" was not found.",
+           "quote": "message='secret \"shop-api-credentials\" not found'"
+          },
+          {
+           "statement": "Kubelet logged warning events stating that secret \"shop-api-credentials\" is missing when starting pod webapp-7dbc45fbf4-p2f2l.",
+           "quote": "Error: secret \"shop-api-credentials\" not found",
+           "artifact_id": "event/2"
+          }
+         ]
+        },
+        "id": "call_336150"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 7638,
+   "candidatesTokenCount": 364,
+   "totalTokenCount": 9110,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 7638
+    }
+   ],
+   "thoughtsTokenCount": 1108,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "ko_aavjDGbqPytMP3oPO8Qs"
+ }
+}

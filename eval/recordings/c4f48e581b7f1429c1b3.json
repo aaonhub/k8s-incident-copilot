@@ -1,0 +1,69 @@
+{
+ "key": "c4f48e581b7f1429c1b3ed6a6ab9eee7adb99d763320de6dda4f930189497aef",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4899,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "target": "deployment/inventory",
+         "similar_cases": [
+          "ticket/T-1017",
+          "ticket/T-1004"
+         ],
+         "category": "missing_secret",
+         "summary": "The deployment inventory rollout failed because the pod inventory-bddfd89f4-wn2j7 cannot start due to missing secret 'inventory-db-credentials'. The missing secret prevents container creation, causing the pod to stay in a CreateContainerConfigError state. Human intervention is required to restore or recreate the secret.",
+         "confidence": 1,
+         "status": "incident",
+         "claims": [
+          {
+           "quote": "state=waiting reason=CreateContainerConfigError message='secret \"inventory-db-credentials\" not found'",
+           "artifact_id": "pod/inventory-bddfd89f4-wn2j7",
+           "statement": "The new pod inventory-bddfd89f4-wn2j7 failed to start with CreateContainerConfigError because secret 'inventory-db-credentials' was not found."
+          },
+          {
+           "artifact_id": "event/2",
+           "quote": "Error: secret \"inventory-db-credentials\" not found",
+           "statement": "Warning events on pod inventory-bddfd89f4-wn2j7 confirm container creation failed due to missing secret 'inventory-db-credentials'."
+          }
+         ],
+         "action": {
+          "rationale": "The secret 'inventory-db-credentials' is missing in the namespace, preventing new inventory pods from starting. A human operator must restore or recreate the missing secret object.",
+          "type": "handoff"
+         },
+         "open_questions": []
+        },
+        "id": "call_300188"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 6429,
+   "candidatesTokenCount": 344,
+   "totalTokenCount": 7340,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 6429
+    }
+   ],
+   "thoughtsTokenCount": 567,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "pY_aaobcLJji5NoPnemRoQc"
+ }
+}

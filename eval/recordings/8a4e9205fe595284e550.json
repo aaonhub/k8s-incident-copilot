@@ -1,0 +1,71 @@
+{
+ "key": "8a4e9205fe595284e55083bcb3e8fa03024f898d49c645f3046d9543c325af27",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 3934,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "open_questions": [],
+         "summary": "All workloads in the namespace are healthy and ready with zero errors over the last 60 seconds. Transient connection errors in loadgen logs were due to pod startup during a rollout restart and resolved immediately.",
+         "status": "no_incident",
+         "similar_cases": [],
+         "confidence": 1,
+         "target": "deployment/webapp",
+         "action": {
+          "type": "none",
+          "rationale": "No action required as all deployments are healthy, ready, and serving requests without errors."
+         },
+         "claims": [
+          {
+           "artifact_id": "deploy/webapp",
+           "quote": "ready=2 available=2 unavailable=0",
+           "statement": "The webapp deployment is fully ready and available."
+          },
+          {
+           "artifact_id": "metrics/webapp-7ffbbbf49c-2ct28",
+           "statement": "Webapp pod 2ct28 is serving requests with an error ratio of 0.00 over the last 60 seconds.",
+           "quote": "error_ratio_60s=0.00"
+          },
+          {
+           "quote": "error_ratio_60s=0.00",
+           "artifact_id": "metrics/webapp-7ffbbbf49c-8l5f6",
+           "statement": "Webapp pod 8l5f6 is serving requests with an error ratio of 0.00 over the last 60 seconds."
+          }
+         ],
+         "category": "no_incident"
+        },
+        "id": "call_448856"
+       },
+       "thoughtSignature": "EpUKCpIKAWkUfRPN6UABJWnRN3Mxfd/WrPoFgxwHGh651VX5qiCCqnbvgle4GCJmSsPoP1znGzHYTMcYAE3UAF5YP//Nb5EdXuCLtQEMMBFRsUxxiwojS1lfatOCvGZgqNVDnpO9ncF07sFbpgOhIERMbIG7+aA6vtzZmArByIZQZ8HRoc68Nq1F5+ml2qURtJZoCQdxdqsxPbNtSOAoGYc5J0OBMbm+PKoYh8/Axu5SjcG62Wcn3tBH3w3mdHzkSKPU6zQXspdKBhWqM8Tnfh7Y+0wyswf9W+vsBI7+Zcwpd1JMfQA48F0epYfn9w0iWDIOJ0jcTO9fmfcgT6K8SYAifbgdOYJbNEfHS/5kSsIZGlHZMGHdMDNHt4tqDcE9IBs4UQYUpyHZKocgNLySdc+duvFkiwwh/1riHMcFz4oKkS4ytXbK6eSgPWdPL+7Q8eUnE4zFrrAqMTU0ZBE7pgkhrlEfZWGNTpB6udqRwe7Lo9AlF4bawGg6C4+EoxjzwuKfytL5Kl1jsAUIlRPiiES5jh8JDlIOvpVpo6Zf/XtyfKxXji5mHzCF8aiQd13Q3QieV584LIYuM74F/btgqpDeIK/OYtnaXbiHK7wLa2ULKL8MhoQOJoCHf1VQQLs4O6Uft6AfKicsuA/6czpNeCph7ZHOSzQnAwQcAssy0N8V5KRUbPcRFe9MUO6M5R9gyPwOHXmtFiz3oNRAJep4hrIkazocT2VXm2BzPnnkXR/gaRxLWdo6A9LRofKhPDGq/eBTxucHR/Janl7xXp7hABf2vAnwPzfF4kho8S8cV5DuNzJwRhFp0CT5OQIdZ3G61DdmI3O14Ge8XLf4ZYk6bJNcAmzogCMrFpfUVUSLofZHEmNGQwJvSEq/oP3EY+479mxiaQFV7UDmeiWTGVn/YlU9pbQ7uTbbn+CSZnG4SOCOKVURxxoTpLvKrlOJoFHXLFFLv7O90Op8i25JrIiJsYg9dTYzGMQRg5H+ac9kHwd8gaz+lvGzp9/UbwzcBIZAENBxU9vBs86ysK325bdZM/TCjQ612XxUSN4WvfNhpuuY0eu3NEatZDmOjgHoJCUk16yPzmJeqnfJiDadx2rXFuXsgW2HJPP6UQllGM7HKYaqtnkYJ1NlXwplBvGKMMEUJH85JEuQk4vNxT0xrRFaH6TbN+f2iL0Rhno0CpnN/u8KvWtMeFvSj1tH+OS/3KeZ+nHlhFkBacu3usuP1l5VTf0nXrFycQ5hmaX4MI/bDh5UNBBdz+A5WYUvOj0iU0dxw7GpYU6ykyhg4U/Dxj6sRiTEx/C6wrVLKDovgRjpcRs0I2R2Hv5Q5AjQRtsJjM3gVWbGgRVbcEMs+1T+Z5CcB6J8lC8xMqkOkUSEsW34Nc/uqd2yvY9JeZ42pnsdJOQYrUMvZ9aRlk2eohg2bh712rppI24DureMwx8g2XRyczwyn3nupUQCIBmRulXlLGIJdwhRh9qKN65kEFbR/1Vh6SsN4xJvL1xxJLwgkrBSdO47pnge6gKPcg/aG0qwJSioxMr3tl09/9eid8Ni7ASVuMAZs0clq8JVyzzmE0+Dk60CoEljqlyZbjls19NheV2tfbNyBEC2Iz+DnoufFXCIYWAWtgprNYk9+WcX4XQGlo9BElrwmWX0uoLh0cGyD+4vTll91wslCRwczkQcIqAJwzsby5G8cvPT9JPmN7uvkC+JNcpuCHHK2P6vGeBAwYAbCR2puscWKsw="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5023,
+   "candidatesTokenCount": 316,
+   "totalTokenCount": 5692,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5023
+    }
+   ],
+   "thoughtsTokenCount": 353,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "S4_aavefH7mQiLMP9dbM4AY"
+ }
+}

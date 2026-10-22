@@ -1,0 +1,67 @@
+{
+ "key": "73e81752017465fa095e99b290ee7478645de690ced46ce456126e38d2e7b5d5",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 3393,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "similar_cases": [],
+         "category": "image_pull_error",
+         "summary": "Deployment inventory failed to roll out revision 2 because the image 'incident-shop/app:2.0.0-rc1' could not be pulled from Docker Hub (ErrImagePull / pull access denied). Roll back deployment/inventory to revision 1 to resolve the issue.",
+         "status": "incident",
+         "action": {
+          "target": "deployment/inventory",
+          "rationale": "Roll back deployment/inventory to its previous revision (revision 1) with working image docker.io/incident-shop/app:1.0.0.",
+          "type": "rollout_undo"
+         },
+         "claims": [
+          {
+           "artifact_id": "pod/inventory-75b589d9cf-vmcbp",
+           "statement": "The new revision pod for inventory fails to pull the container image due to missing repository/authorization access.",
+           "quote": "failed to pull and unpack image \"docker.io/incident-shop/app:2.0.0-rc1\": failed to resolve reference \"docker.io/incident-shop/app:2.0.0-rc1\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed"
+          },
+          {
+           "quote": "change from revision 1 to 2: inventory.env.APP_VERSION: '1.0.0' -> '2.0.0-rc1'; inventory.image: 'incident-shop/app:1.0.0' -> 'incident-shop/app:2.0.0-rc1'",
+           "statement": "Deployment inventory was recently updated from image incident-shop/app:1.0.0 to incident-shop/app:2.0.0-rc1.",
+           "artifact_id": "rollout/inventory"
+          }
+         ],
+         "open_questions": [],
+         "confidence": 1,
+         "target": "deployment/inventory"
+        },
+        "id": "call_326809"
+       },
+       "thoughtSignature": "EuUECuIEAWkUfRNnY7a8yuYkeznpALuDn3ZVhCtzyplNzRJ81vY+EwvJhoBjnJnQna85LL4uU4ZNL12TSR7XuJ020fiyebulq2g6LgfKR2UzjHpo9m+06ScJ6XiIMATU9hWc1u0TSqGgmqbQv0KjDB6s0xz30vfNIdV+I84wr1ScDTgBPtto+2EFfjhSd3ajH3sbkzX3m+Bfisye8KY3QUeC9qdtZbNi5pgD8IrHxbqte/LoztcVIuorji6RQ/cHP4ktNsflNkBU8jrF1ygzW3WrAliJfjbcrgRLdYq/r3rPD1ol9aWqWEs5fSGLNjB7cNXadeV4/3QO/yK5gC8Y8lQmnuMChILTyv1q48QOljM10p7Fqay/bwEMgXi2tWZ6puaKPkKzIF+Snqf2Carxeu5gQ+gFm35Q8yCjye8W2o54203pnYowjgPmQif876plUmCeQsrdl+xnx/YPTnXblMHalwgQ/JEGJSfmm+r0vo/gXzArlDa2IEnG5g9z/Nu4fN5Ip6v1NN+66uV+LBTYH6niP+36yU3oBtoenqo6bArchl8+1/M6O0Ul8+LvopI4N7Z0AcaoNvM/H4JVV4dcCDiKecRWl//TZ6zq9FKjkgai0DpSmR8y618S8O5tThNe06j2fvoeML/uxHUaUQNu1uQf23W5XGWQ7hEm4MxExdMWWhqEYux6gxxTrix1Za75JDxBJuDkRqoY0cv2mr5PMik1MPVVt5aqVZONJT8CSBdfW6e9aw1BrcljJqVFU/U7CDB52cUC2HERwP/gwnunigrBy2InxxkCpTGv4unyByRnd6/HxiaGNQ=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5376,
+   "candidatesTokenCount": 422,
+   "totalTokenCount": 5991,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5376
+    }
+   ],
+   "thoughtsTokenCount": 193,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "hI7aavCjCJ7QiLMP2aqVuAY"
+ }
+}

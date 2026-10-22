@@ -1,0 +1,69 @@
+{
+ "key": "bc5baad039eabcc0074fa354a3e1f30e422797625201695e9b3c2c6d759cdacb",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 3775,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "confidence": 1,
+         "similar_cases": [
+          "ticket/T-1148"
+         ],
+         "action": {
+          "type": "rollout_undo",
+          "target": "deployment/webapp",
+          "rationale": "Roll back deployment/webapp to revision 1 to restore UPSTREAM_URL to http://inventory:8080/stock."
+         },
+         "target": "deployment/webapp",
+         "open_questions": [],
+         "status": "incident",
+         "claims": [
+          {
+           "artifact_id": "rollout/webapp",
+           "quote": "change from revision 1 to 2: webapp.env.UPSTREAM_URL: 'http://inventory:8080/stock' -> 'http://inventory:9090/stock'",
+           "statement": "Revision 2 of deployment/webapp updated UPSTREAM_URL to point to port 9090 on the inventory service instead of port 8080."
+          },
+          {
+           "statement": "Webapp requests fail with upstream timeouts when attempting to reach the incorrect inventory URL on port 9090.",
+           "quote": "2026-10-22 22:27:49,263 ERROR webapp upstream inventory timed out after 800ms url=http://inventory:9090/stock",
+           "artifact_id": "log/webapp-7dcb494678-hrt8l/webapp"
+          }
+         ],
+         "category": "config_regression",
+         "summary": "Deployment webapp experienced a config regression in revision 2 where UPSTREAM_URL was updated to point to port 9090 instead of port 8080 on the inventory service. This resulted in upstream request timeouts and 504 errors returned to callers. Rolling back deployment/webapp to revision 1 restores the correct upstream URL and resolves the errors."
+        },
+        "id": "call_288161"
+       },
+       "thoughtSignature": "EvoGCvcGAWkUfRN2//IIHyBaRXiPkhi61Av6cupoaiV08qWzpAldAhiLOVTp2+z8xbwDkU3S16SLR2MLQbkq7phIKYg5z0Qq1alg/aP0rN9ZoHCgQs6xBVLLXJt6eqk41JbXcNlf4325nZdP+63j2bTqIOJK5CU/fwhSzBqrwFwu4Zq0yzjJ+fzXpWhcEJO3b1U0jXtqgaKLjrD4Y26BR9gI9ndTCjbrbY+IzAryNAWpvPN6tCUIO3Ajz99TgcRrUyuyeplFg2eySAFr4vo87zq3llzBiVltmwZuyC1H4Z7vSBvwDZ9RcjGdHoUqZT5S3w6gHzOcLYFh0u3Ugnoi5wfiXeC0XbuM/+M9nLsezuZSLjWyH/iNikjews6VczAxeEaG3lnCPbIqozi1olveWW0pQv9RKIo/VowauC8jtO7fqG9xmI1kQEcd1bCeq26XV7D3BE8bPYaKDbW9fX0jcSf65/05tZ4kvqYMbMaH3+meniPVwl3Q0WYEO6WZ//OUKJ7efS+Tszvqz9NUcrcltsmEcVxn9y9Of5yz70VLdPek8Ys+qVRh04ssTyOQuxVEmfbn8qRfQZadvocpupN6b7dPe/coB5Pmel5ee9q57KVeAtm/5jCgWMKr6t1D0RfhQZCapWJO9VbUSylxAAXotEKBUYIYJhAZ3O29RyY2dL7Sn9ZqeKygixAQRunDg2JeQ5qF2MfOVyvKNVW0CYHwmkt95mFm/YZJt5+5glja49rpK/hBg+2W3KF4FTAKBBnisATArPjRRZtjautUBICvUS0479KvI0Pn2rl5tpO1/i0DRTV/vnQMfQiAafCButAwPDhoozfHvMubtaN4kPOIDvi3cVyBOiDHKh1eZyNMfx2iTnuvM1ndhipG24BD0E6RsQ6r/HHOouFVK4jDdsZY4vnyB4ebL+YV/aGsNCo6oh+1OM22T+rd4TGbQLL2WffjyyGoRALtAriXhDgk0tuAukvnpn2HPLpBt5zE3SuIE5bZQcSeKiJZa8hk23sW8t4UlJUW2H2kbCiaDf4LbylsQbkkf6w+gdBCPHhGiK/OchwtZzCwfKBt9vEuLKcm/g6TYu5LktRXQxtDPw2EgfNnTO5XATn02gmuV0ZtlSlhBX4E1TFpshVUVgMZjLupuO288SXuWqM8jX3hnWv9EetxM/Jc40qr6c1v/CBx1dw="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 6084,
+   "candidatesTokenCount": 397,
+   "totalTokenCount": 6733,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 6084
+    }
+   ],
+   "thoughtsTokenCount": 252,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "y47aat2HN6S9wbUP2Ni6gAc"
+ }
+}

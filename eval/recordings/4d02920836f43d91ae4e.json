@@ -1,0 +1,75 @@
+{
+ "key": "4d02920836f43d91ae4ee0edc03e28f018d5fe4047601dda81a4c6b25a8915de",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 3895,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "confidence": 0.95,
+         "target": "deployment/webapp",
+         "category": "cpu_throttling",
+         "status": "incident",
+         "open_questions": [],
+         "summary": "Deployment webapp is experiencing severe CPU throttling and high request latency due to revision 2 reducing its CPU limit from 500m to 25m. Rolling back deployment webapp to its previous revision restores the original 500m CPU limit and resolves the latency and timeout issues.",
+         "claims": [
+          {
+           "statement": "Deployment webapp was updated in revision 2, reducing the CPU limit from 500m to 25m.",
+           "artifact_id": "rollout/webapp",
+           "quote": "change from revision 1 to 2: webapp.resources.limits.cpu: '500m' -> '25m'; webapp.resources.requests.cpu: '20m' -> '10m'"
+          },
+          {
+           "statement": "Pod webapp-5fbfd48bfb-c7hth experienced heavy CFS CPU throttling due to the reduced limit.",
+           "artifact_id": "metrics/webapp-5fbfd48bfb-c7hth",
+           "quote": "cpu throttled in 309/483 CFS periods (64%)"
+          },
+          {
+           "artifact_id": "metrics/webapp-5fbfd48bfb-jflhd",
+           "quote": "cpu throttled in 262/313 CFS periods (84%)",
+           "statement": "Pod webapp-5fbfd48bfb-jflhd experienced severe CFS CPU throttling reaching 84% of periods."
+          }
+         ],
+         "action": {
+          "target": "deployment/webapp",
+          "rationale": "Revert deployment/webapp to revision 1 where CPU limit was 500m instead of 25m to eliminate severe CFS throttling and request latency.",
+          "type": "rollout_undo"
+         },
+         "similar_cases": [
+          "ticket/T-1070",
+          "runbook/RB-cpu-throttling"
+         ]
+        },
+        "id": "call_243495"
+       },
+       "thoughtSignature": "EpEFCo4FAWkUfRP6TyaRISBl+ls/Xn5RazE5yZiX5JD7Kb6E8QC7tAReP/eQjfkHgecydSOv2zA8jt313SWEx8fSzcFBJ6sqwqClRxYyy0J6iWBSyV4fUlQzlWjEv7CB6dN+7VRlSIIsuxjkWDBBCAmE7Ra7TjDd1blDeSweVVzzOl6oafpNmOwAPThYp2s+bt0wNJ3CkGmZmJ3a0sMj138DW+O5DLtGpf/dIn12cYlOHBzj1KKXrb2IQIeuO+zkM+DNGMYiBbB9e67285mUjqHJMrbTakjR6sCXInAs5gxDPZDnOhNzjS4jiHHOWIzFE+qh3DQeBBgyhmlfbeNrj4XWBT1fZzybnh3LneDwAL0N2szTDcpvhdvzAEGbXKQp+tUtHzoiGWCYyL51GDRfWWjT/hkTa3iIJ9DJHRTFpN3fvUfUc+FWnDXERd/46It4WEaOBOWf/pzKyTnoF5TfVLN6+czzD1FkrNjjS92DZUtqg77Lgt26kyUgyS8F7f3DhaosgIonBUmP2HDdCNoxc0/FucsWlEiDqhJ+qNKTGOKvvZI+f5ZLIim9nHxLmJoyqIvxql/6AAeaXGJfqssrf3PAh4EaYWPK+e+4ETc8mIOHfcRR0zSQpuDrOc+eT/ESdMdK5tSci57LzJ4BysNz4l9D7BcTiNG3+80qR+mY6uTxiH1BavyXYByDxPr/gBMYR6vcyAUOK5U6+rwlm417NiWnOHBYEAjT3BtqhvevYfNPJqSrk3+AYPYjO2Sj9XE/oneg2ZtaGctzgtsWZ3kPSxi2WqbLzIiTDVl89ZK+/AfsdstNlx7TW+Sxln6+/zV5Atl8oZ3WAA8jzUIKq2zw6DscSANSYcoOIlQi+ONr42mCT87d"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5600,
+   "candidatesTokenCount": 457,
+   "totalTokenCount": 6257,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5600
+    }
+   ],
+   "thoughtsTokenCount": 200,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "4Y7aat3CMbD60_gP7pvByQg"
+ }
+}

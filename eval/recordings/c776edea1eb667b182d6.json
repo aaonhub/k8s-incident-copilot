@@ -1,0 +1,44 @@
+{
+ "key": "c776edea1eb667b182d61047697deaabc6c8cde3a832466c09b0baea11792f09",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 2791,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "get_rollout_diff",
+        "args": {
+         "deployment": "webapp"
+        },
+        "id": "call_386544"
+       },
+       "thoughtSignature": "EoQHCoEHAWkUfRM5m2D5GXmnJoFpMkjHHaR3w6BHbXo+4JXGkp3ftqwcl+hYR/ULE5eyliQ9NOHHjqL55vyr6FQA0dEN+kJBJoI6ps0vkGBlg2GcYa3snBURZQ+7WgLAdTtD76jQw8t7QfnlvFz17mdE0LU30qR47BFm3YvVxaR+OkeaAJB1MBASm+urp99hTyo/VN5ThE68DYzPsjzQ42NFer9aJGIjuEpmA8aB6Gsg3JuFYz53+J6ZNUxlnkG9EDZ2KU43hX8JTIxAnaE5D5B07U1HtRKxH1FoTyewbudgsstpL64m/xkA25c+UPdi9jMVxObfs/VklP1kNHLRIntOJJQl4PEfQRnBaH9exU1ku06tG4KV+RACs2DMcnMWxQoH3wSuIEcfiK0rt/VwE/OAMd5EELY8LTDyXtzb5fw8jWfd/LasnBJzOmoBKGLa2USjb/xlcYK6rx9PYPsGBQYc0lV9VHpx+QrCJYKo6o8gRFDaXqRmFYQjPJy8vD0VjB3212MIbWULo+h3dWld5u8Wp+DaLXaDc8VyuV7LJS5+rRiE/H+9r4JCaHfKCqGBC1SqHIfkKvYaKUW1KbQlk26E0w44rQ845wunXH9KW7FSlIXG22DCWCDlfd18Sy1Qa/XsOlDn97DfR4No/aPfrwZpnNGgFJL8l8OioJRK26n97IzD4pJzdCvyykGjezf4rDxaaHS0ZYelNI8dXvWtuc61RCsJcPSaoWGF2PZkWbO6gaLz46OzOG3ekvRyJBkt9N2qn5alojpXBese505j286NpNvqqPT4CHpN6x7xGlQzKDjo0PYaUeMfGSwnZNDw9yTfSz6SoqV68cb2MTScLPfY3LCLTisfEqxXRijht/g+7yA5nmLIFBX/ElNEU0zsmC1ohSc/VYHdP5Sx5djkJjrXrcS/0pJGESmZVjMTrD4Cf72NQMEdiQi9so7Ne7nm0peHD0YVgspzskggk9B45LGGCD1mn7Uzk+bI1JBwHLAePbUaM8l7Kh5jLs2ZpVMJWIpC9Y9Ij/30/p+om6d+16QZZddh7c2F2NKePowtN0boaMsk9bG2AbLnwpBg3mq9y9Fhx3Acx97HLjySJWoIUXqyBCHFXpXAnn6A7mN5Gz8l935Co+FwH3gmVDcWZO8kn0g3V3RrUcBalqJd4J2YzesTKwcC14NYsyUJpjS/4YzL6jVgPwOB"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5305,
+   "candidatesTokenCount": 19,
+   "totalTokenCount": 5593,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5305
+    }
+   ],
+   "thoughtsTokenCount": 269,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "zI_aatilONaj5NoPr-CR6QY"
+ }
+}

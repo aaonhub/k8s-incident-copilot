@@ -1,0 +1,72 @@
+{
+ "key": "d5ee7a697f9a67dba2d3305e9c17c3ce4856279a11a30648814e615ed9ac6273",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 7061,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "open_questions": [],
+         "similar_cases": [
+          "runbook/RB-service-selector-mismatch",
+          "ticket/T-1053",
+          "ticket/T-1103"
+         ],
+         "action": {
+          "target": "service/webapp",
+          "selector_label": "app.kubernetes.io/name=webapp",
+          "rationale": "The webapp Service selector is configured as 'app.kubernetes.io/name': 'web-app', matching 0 pods because webapp pods use the label 'app.kubernetes.io/name': 'webapp'. Updating the Service selector to 'app.kubernetes.io/name=webapp' attaches the Service to the active webapp endpoints.",
+          "type": "patch_service_selector"
+         },
+         "target": "service/webapp",
+         "category": "service_selector_mismatch",
+         "summary": "Service webapp has selector 'app.kubernetes.io/name': 'web-app', which does not match any running pods because webapp pods use 'app.kubernetes.io/name': 'webapp'. As a result, service/webapp has 0 endpoints and incoming traffic from loadgen receives connection refused. Patching the service selector to 'app.kubernetes.io/name=webapp' will restore service endpoints and resolve request failures.",
+         "claims": [
+          {
+           "artifact_id": "svc/webapp",
+           "statement": "Service webapp selector is set to 'web-app', resulting in 0 matching pods and endpoints.",
+           "quote": "service webapp selector={'app.kubernetes.io/name': 'web-app'} -> pods matching selector=0, endpoints ready=0 notReady=0; app.kubernetes.io/name labels present on pods in namespace: ['inventory', 'loadgen', 'webapp']"
+          },
+          {
+           "quote": "2026-10-22 21:42:13,349 WARNING loadgen GET http://webapp:8080/api/orders failed: [Errno 111] Connection refused",
+           "statement": "Load generator requests to http://webapp:8080/api/orders are failing with connection refused.",
+           "artifact_id": "log/loadgen-69df8fc559-r84tg/loadgen"
+          }
+         ],
+         "confidence": 1,
+         "status": "incident"
+        },
+        "id": "call_299039"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5471,
+   "candidatesTokenCount": 505,
+   "totalTokenCount": 6990,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5471
+    }
+   ],
+   "thoughtsTokenCount": 1014,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "o47aavTvLJW4wbUPuqn5sAY"
+ }
+}

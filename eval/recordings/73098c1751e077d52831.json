@@ -1,0 +1,67 @@
+{
+ "key": "73098c1751e077d528311fbf3dcb0eaa2491c2e20c2c6fae7c8f738b968a6fcc",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 3964,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "summary": "Deployment inventory is failing to start and crashing in revision 2 because LOG_LEVEL was changed to 'trace', which is unsupported by the application. Reverting deployment/inventory to revision 1 will resolve the issue.",
+         "confidence": 0.99,
+         "target": "deployment/inventory",
+         "open_questions": [],
+         "status": "incident",
+         "category": "crashloop_config_error",
+         "action": {
+          "target": "deployment/inventory",
+          "rationale": "Rollback deployment/inventory to revision 1 to revert the invalid LOG_LEVEL='trace' configuration.",
+          "type": "rollout_undo"
+         },
+         "similar_cases": [],
+         "claims": [
+          {
+           "quote": "CRITICAL inventory ConfigError: LOG_LEVEL must be one of debug,info,warning,error, got 'trace'",
+           "artifact_id": "log/inventory-9fd7bb87d-gq6zv/inventory",
+           "statement": "The inventory container crashed on startup due to invalid LOG_LEVEL config 'trace'."
+          },
+          {
+           "artifact_id": "rollout/inventory",
+           "quote": "change from revision 1 to 2: inventory.env.LOG_LEVEL: 'info' -> 'trace'",
+           "statement": "The LOG_LEVEL setting was changed from 'info' to 'trace' in revision 2 of deployment/inventory."
+          }
+         ]
+        },
+        "id": "call_272490"
+       },
+       "thoughtSignature": "EvkHCvYHAWkUfROJDhrU6HHaqPYeNu3SCvXprVzdkL9AYKwtlcIz3q0dDsjovUJuQf0BbbbNb5GJytDWOPi5H/bOMXD/w6WB1ZMsghaYHvT36vWDVpvmNBWqWMuB+/jf2cVlxMFCkmPKZHnc5GR/j+JS2qBLeuxBYtCmZkI1FhxOd9QtxfMG97ZwV9yVYgZVm15W/JFWgCrONqv23CIi5Mqrmsjp+JSocl1+6nOp3XQybacxYlleAgNBJgyxy2QKXkHzoeAOYyp3EOTxCXBN/QfmtrJlIumD9V+Y1izt+usVwVa0xGmXyh3Mf7cghvv2Lt2fFi8xQ0L4h82vF19CBY0I4cxMp/lEDnwxQDd6wuu1MZjVOWrO/9Hp9UTMhxkE19oxo004cnPD/RfBrCLcYpzBhfjIWiskWzmqatRnu3pRYPUwdvAxzvhfES372LQKTCf66w0ZieDNnGn7bt73QIHkJxcC7uUTw9qyn7ntqCxuH6hHL10G49MjgPFyRJGSt7k/1HemkzSBQrsdSGOepxMJ9Zm2thPMdbHBotSvxCo7CQUTDYMas4vNMxEVrleooFx5Bu2fzDJkzh8CIEeqX+3SiQ8tgs9kqxqHaU0R3qZrkNxIdDGHD7vburhYBP+PTC/FvJJj0M44uBUykPNLmUZZKPdvfpFXcRVSLg5PqvOlWo0c5BXT6O1zaOvtR8FQ6CHtoMMSCetPexmuW7S0wu7MkJ+IXWF6BVosXNlMmsjpshFCjgR1xktyDu1Z+ZT22KPP0tCNgLg019pxM8VJC6u/HY1z6P3DJBPmnLtvq+nHHlq5tH6kc5raBv/JSxA4tGcYbfK8JPNbN5nGtgDBLuP6PrwqEZ8UgvB/Vd6OlTP16e0Q6a9USGofDMWWpiSBEhX3fFrC9H3jwidhnT0h7qKxh3cYaska90v4m/lurWK4A9w1rNHu7atHYS/Elgas2Pio6yCoRCLbstVz43y6Fu4QUjjCDjnu3n/6tAPEtCZ16dVJDAYmkjjMfrdVGQVWy880XfzMKzBPxyjn4onhKCRzp19Q5cqOHZbQL2zJIc/yAOIgiu+kE6OutXQFpH0CDGwpBqCS/nxbwmKMImkkAzhqLAwyzTemCVT/BhcNqHLq0n83EoLhKXWFePu2MoJYPJ5LnrPjf4EIzaRK0uPm9psw+yAzLYmVSYpVOmqwXCgfkH9WRnqPsIiRcnclHPUoqU4+uduavpsed/4SGjYDvBRXnLL6n+Om3ZRWkR67fcTlO57H+2pSHiXKLJOR/q4Ke+eDmyQi40Td4nVgBDW8wya99qMOcN6mdsB5Pg/9oHUwl4s6iWoj0soaggVYSiOf/jJpduWuln6OItzR"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5352,
+   "candidatesTokenCount": 294,
+   "totalTokenCount": 5919,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5352
+    }
+   ],
+   "thoughtsTokenCount": 273,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "Bo_aaoXxELSl5NoPofahkAg"
+ }
+}

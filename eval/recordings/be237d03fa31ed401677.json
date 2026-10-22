@@ -1,0 +1,71 @@
+{
+ "key": "be237d03fa31ed40167763e7b8d6c75433458f44352673bc1acb8be6459fc972",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 5119,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "target": "service/inventory",
+         "confidence": 1,
+         "status": "incident",
+         "claims": [
+          {
+           "quote": "service inventory selector={'app.kubernetes.io/name': 'inventory-v2'} -> pods matching selector=0",
+           "artifact_id": "svc/inventory",
+           "statement": "The inventory Service selector is set to app.kubernetes.io/name: inventory-v2 which matches 0 pods."
+          },
+          {
+           "artifact_id": "log/webapp-7bc49bdd78-frh75/webapp",
+           "statement": "Webapp fails to reach the upstream inventory service due to connection refusal.",
+           "quote": "ERROR webapp upstream inventory request failed: [Errno 111] Connection refused url=http://inventory:8080/stock"
+          }
+         ],
+         "summary": "The inventory Service selector is set to app.kubernetes.io/name: inventory-v2, which matches zero pods as the inventory pod is labeled app.kubernetes.io/name: inventory. Consequently, service/inventory has no endpoints, causing upstream connection errors in webapp. Patching the service selector to app.kubernetes.io/name=inventory will route traffic to the inventory pod.",
+         "open_questions": [],
+         "action": {
+          "rationale": "Update service/inventory selector label to app.kubernetes.io/name=inventory to match running inventory pods.",
+          "target": "service/inventory",
+          "selector_label": "app.kubernetes.io/name=inventory",
+          "type": "patch_service_selector"
+         },
+         "similar_cases": [
+          "ticket/T-1053",
+          "runbook/RB-service-selector-mismatch"
+         ],
+         "category": "service_selector_mismatch"
+        },
+        "id": "call_292638"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5894,
+   "candidatesTokenCount": 373,
+   "totalTokenCount": 6879,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5894
+    }
+   ],
+   "thoughtsTokenCount": 612,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "vI7aaqW_A4jviLMPsPHQgAc"
+ }
+}

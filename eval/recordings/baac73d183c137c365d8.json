@@ -1,0 +1,75 @@
+{
+ "key": "baac73d183c137c365d82519a58c15bf4f198fb338988a5e10bc638277079edc",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 8454,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "summary": "Deployment inventory is crashing with OOMKilled (exit code 137) because revision 2 increased CACHE_WARM_MB from 8 to 200 MB, which exceeds the container's memory limit of 128Mi. Rolling back deployment inventory to the previous revision restores the original cache size and resolves the crash loop.",
+         "claims": [
+          {
+           "artifact_id": "rollout/inventory",
+           "statement": "Deployment inventory revision 2 changed CACHE_WARM_MB environment variable from 8 to 200.",
+           "quote": "change from revision 1 to 2: inventory.env.CACHE_WARM_MB: '8' -> '200'"
+          },
+          {
+           "quote": "2026-10-22 21:37:56,251 INFO inventory warming in-memory catalog cache: 200 MB",
+           "statement": "The inventory container attempts to allocate 200 MB for its in-memory cache upon startup.",
+           "artifact_id": "log/inventory-647d7cbfd5-wcdkk/inventory"
+          },
+          {
+           "statement": "The inventory container is terminated with reason OOMKilled (exit code 137) due to exceeding its 128Mi memory limit.",
+           "quote": "lastState=terminated reason=OOMKilled exitCode=137 finished 2s ago; limits={'cpu': '300m', 'memory': '128Mi'}",
+           "artifact_id": "pod/inventory-647d7cbfd5-wcdkk"
+          }
+         ],
+         "confidence": 1,
+         "status": "incident",
+         "open_questions": [],
+         "similar_cases": [
+          "runbook/RB-oom-killed",
+          "ticket/T-1064"
+         ],
+         "action": {
+          "rationale": "Roll back deployment/inventory to revision 1 to restore CACHE_WARM_MB to 8, which fits within the container's 128Mi memory limit.",
+          "target": "deployment/inventory",
+          "type": "rollout_undo"
+         },
+         "category": "oom_killed",
+         "target": "deployment/inventory"
+        },
+        "id": "call_333038"
+       },
+       "thoughtSignature": "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"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5620,
+   "candidatesTokenCount": 483,
+   "totalTokenCount": 7444,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5620
+    }
+   ],
+   "thoughtsTokenCount": 1341,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "vI_aaov0A4Xi5NoPjqqU-AY"
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "key": "e44b3172cf7183a79dbc9aac6c6c97dc2c27889afce5e7e89c3d8b6686b8e410",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 3885,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "summary": "Deployment webapp updated its readiness probe path from /ready to /api/ready in revision 2, causing HTTP 404 probe failures. As a result, new pods remain unready. Rolling back webapp to revision 1 restores the valid /ready probe path.",
+         "action": {
+          "rationale": "Roll back deployment/webapp to revision 1 to restore the working readiness probe path (/ready).",
+          "target": "deployment/webapp",
+          "type": "rollout_undo"
+         },
+         "status": "incident",
+         "similar_cases": [
+          "ticket/T-1128",
+          "ticket/T-1139"
+         ],
+         "open_questions": [],
+         "confidence": 1,
+         "category": "readiness_probe_failure",
+         "claims": [
+          {
+           "artifact_id": "rollout/webapp",
+           "quote": "webapp.readinessProbe.path: '/ready' -> '/api/ready'",
+           "statement": "Revision 2 of deployment webapp changed the readiness probe path from /ready to /api/ready."
+          },
+          {
+           "quote": "Readiness probe failed: HTTP probe failed with statuscode: 404",
+           "artifact_id": "event/1",
+           "statement": "The readiness probe for the new webapp pod failed with HTTP status 404."
+          },
+          {
+           "artifact_id": "pod/webapp-7dfc77f59c-p2vdt",
+           "statement": "The new pod webapp-7dfc77f59c-p2vdt remains unready due to the failing /api/ready readiness probe.",
+           "quote": "readinessProbe=GET /api/ready:http; condition Ready=False reason=ContainersNotReady"
+          }
+         ],
+         "target": "deployment/webapp"
+        },
+        "id": "call_294901"
+       },
+       "thoughtSignature": "EuQHCuEHAWkUfRMSIl8RjW3NzUwaMcKF3sMYrt1RB49EkamoGGFaTmfKBWZjzP83WlnBcNIVsizfdGO1kNW4pkTFRBR7wa46eKdo9cn3NxuP4TzIQuM74JI6jB7ASmn4GxzrUELe5BPuzL+PpIk9Bxk8pjFuw88tTsN2mTCdYOnmTp9ySfv5Ur+Mm6kDkAs5CIrb/saqicmaH+K/i75CA5XEeWENEIriylk3zrRr3hNhlybGpWIVsSQkPNmKLzZREcYw3kamO26CcvkPgqRNiGSe7vavvyiWl5qsD21UAxgmUR6jdGJ9Se8Jy7okwWJnLT2rIjlnh2utPYkyQJOv5mr2nEy35hSBGdrUPHWRTdK8dhWkEnhkq8YFMORN4ulGcnkPZquryJaMyLX0C7kctxVDBwVUJglASDZ5LC4gIg+XdstEcWSjNkp+TyuGNQQvR/LDAb9aEmdBddN5CjyKtxEcY6dEEnwB7pbD1hEIuowHTOEhgShVlAykbjsXZGEXLCB85A+CRXjhOPFuhfbjfW6zwglGndj9XnO/VBTj0nzqh1FpA97utOwastM5JHJaVKlhUxKwxxBxbZMz/u0IXwITEwyhlMHM/ElqYVQ+4oVTgtJ2YFT+Y4+MwVAC84g67k6JMLg9T9K1zO17aBxF1Gx3CU2379opcSOIC3wpbEdD7VZ5oFfl/C9XwQdGdL2VT1u39iWYWO5Dl9RGhcjtvNvKMPDl5ecBRZPj1lTW+4EMMFSM7yrOI8FwUAfPZjnIA7Umf7JpZzWdgWapE7jaVQ3cRKosewsbBlfK/0jSaymZKPrxJVE0i1RRsDIYJbEuYhfwRSdWb8lVMwZH1g/WWfleqJrqiQZsmV51vMcMNdgsMtBCXBo2+gf5iy4DSiOytnlAFEhsIGX3c4C6gQDANRySUd/yzlvndj7Iozk6zJuRYARs3AwrQInCc6wSaluCaoSdJAVu6ql/FK2STcYMraLWXekT4fJyGj+a3RnaI9R/bGET9rTDI8jajJrqLbnkC6Sf1BGqxJI2tNpTMfLB783mH3IQOXXkGt2TAxzJy88aw8vokGHqVKWzGheZcdI9rvgCjHMKGaPV6G+yILUEhr7xqveefQOZZAKphpVt138g1j4HwoK+irvCWw6ndYAvghmftRcZ2RBukXslz32tFa1//xw6L9VDpxOMwzHpmPVZ9seG/uPEy0L2sS1J+MHW76hMfycghaZJDVaI2Vpli3ZC2eZfxCrdHO1lN8JqJVYekG/WK68HoAHJdys5XYmNYLTr63SGxbEnetSoL7xO57hJctGXIfTC8jpswvoEvjnQtI9v1w26"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5383,
+   "candidatesTokenCount": 381,
+   "totalTokenCount": 6043,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5383
+    }
+   ],
+   "thoughtsTokenCount": 279,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "-I_aaobwGLWw5NoPn5y_8QY"
+ }
+}

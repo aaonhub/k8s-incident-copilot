@@ -1,0 +1,67 @@
+{
+ "key": "8c962f82110b3cc56feff1969e1d5dcb9841e3d1d5154605041358279920bad2",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4789,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "open_questions": [],
+         "similar_cases": [],
+         "claims": [
+          {
+           "statement": "The webapp container failed to start because the image tag \"lates\" could not be resolved or pulled from the registry.",
+           "artifact_id": "pod/webapp-74ffb8845d-9tpcc",
+           "quote": "failed to pull and unpack image \"docker.io/incident-shop/app:lates\": failed to resolve reference \"docker.io/incident-shop/app:lates\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed"
+          },
+          {
+           "quote": "webapp.image: 'incident-shop/app:1.0.0' -> 'incident-shop/app:lates'",
+           "statement": "Revision 2 of deployment/webapp updated the container image from incident-shop/app:1.0.0 to incident-shop/app:lates.",
+           "artifact_id": "rollout/webapp"
+          }
+         ],
+         "summary": "The webapp deployment update introduced a typo in the container image tag ('lates' instead of 'latest' or '1.0.0'), resulting in ErrImagePull. Rolling back deployment/webapp to revision 1 will resolve the image pull failure.",
+         "confidence": 1,
+         "category": "image_pull_error",
+         "action": {
+          "target": "deployment/webapp",
+          "type": "rollout_undo",
+          "rationale": "Roll back deployment/webapp to revision 1 to restore the valid image incident-shop/app:1.0.0."
+         },
+         "target": "deployment/webapp",
+         "status": "incident"
+        },
+        "id": "call_355542"
+       },
+       "thoughtSignature": "EowQCokQAWkUfRMM84Z/CGKq2CE++CmSze+/kFnoiosdI3/c9JIy8pjtyxdWfEZV8NVkgmhtqiSB7fe2oQvbCk2rdRxyICT1ulrjVOWj1KMfx6emWgI1JEW/c4Dm60YmEVNp2crAGE5apq+dBQ8aOn3ogb/W3XD2+2OQYW4CAcZhh8T6KHxO+tUQiJvTW3vGNW0CUwT8xAPNWZvkoCpVJaPpuUlGTVhuC4p9Qpv0wZLdrvrjj/EoMqSRSuHmuoZwXQNhtm2lTmygae0UIBR3ud3W6+dIoyrXaT7a/D3I3dVkif/NZc1AHDIt4MdiBcN68oHTTc6k3SBGU+jA8cRQJ5TwstVAKSIuTzvfX9aYwfjeZti/V1c6fLp2WFAqLB1XilM8FoqiiC9OVvuPZFOJC3BVsmL3RBoaViJZUkArzCsv214WUMukxHwDwtjjFhbi9Dz7b5eiL2OwSk+GJLmJo6gld15/hqtqpO+k5R2876yCA8tzx7/7TKf5Ia44aMXSt90kmZUyPMkm4DPGsAyYgzolFDGUnCDLG4WqK0hW1OZuDU087iHih4vkwZjKcBppWEYL88P12HnaudQaVjljddQWMHJMfap+QvXqD/611zzOOg8MC1c5hdAVrPPJHmJkWlzphjejDZ8uh01YUqss7S9bXaNLFO64C9/R1gVAl80wLoiG6TrJJbUk6r0AzvECl2M8pC1tTKSgGgvRuzrRV6ITiexV4r3Ll1sQcxp5fLGa9bHYI4H+/vKvXf3M76iWGxVgOnnYiWWN404kvnRoasYRzTmGYkEU/kEZKuJ4ZUy1OLmOKaznyOnpr5kfpB6Mz5FqcLrdHoU7d7QdUNbnkOV1NBO1zEu8eRHitkfAfKSl762C6WW25YqYBtcGWPNK7bLQ6ozXaHSa0lBTQKxApRFpxoAObyAnDlgFcXwfY5Ah3h8PAo+966Z4WAXaccmy0dz98SiC+tVbNZk4+O2SlX3C1ob7wIvXvym1ejTXzi3mXU6jHmDmI8/wLWke+hoLdHHMZfZJaqD61oI0SWJbkLDly+TAay/kYLV/yuE5nWTGlJZuhEYVUXDZggFObKSc4JXBt4HkE6EOa/ySgY5MBwtuNO9iwwptjIKgvhCjDbx8kwWjEizRPITV1y9ddiYzyvhEiffax6EEoONqQkNqquWC8lb0Ixsw1gA8o8YATJyEcyzuCUhUNwdZLDYidh0/isPIOQbhsugLzRnBMjzJNp5bLQfphU5MElZbKzHVp9gysE+2umIARKfjZh4tLWMhrw2AtRXW06W3M4EufZqNn176Xr6yMVOlcK6Fm+rls1UtMTN6jjxFyRBBSpGgntE+CFadQtrLLPpbaUQU/3Xplr7QD2WkA9ktklVlGMUxnoqeIByUQKNXl/eO9K7mq0nJTrOyqm4ESuGQFbSXuHz1LKlYim0I4lfBWotM6NqjdW7l/O9j3wyrSj+0d/YBMZe6KQG+5eaZrJTS3ymgeUq4aSm8ICDwci2Gc+TiBYw0L04hRj7xyxk5whkQDVDKrgDxgVrZKoS1kpHHFa+dC/ALvN0m11OaFlJqIh7OVrgUshT0+OS6aC0CLwmYqOygbMMIUnOgn7FbuAc3/WS4l9JvwQmOwBhZ449aTsk4szQjg0nR9XfPzpXIMmUJjksNJ8w1EjA+yoVLhvymlQbGa7symQvzbUVr6JNl8rIEYh0MjJPfKBm9MO4BbUHvHEgfsiMt/j7R86yMgpyTTOfkesR0B6buDCIno1Y+Zx3yGWNM2sORf5uMSaHvTX7q39R3HMBEz4t2gP68UaY8LIZFfR3HjHNsQU9bpyj4jpoTgfxfAs9d+EhVt5NvIw2mw8SD6KZ4aksunYQpODAmspQUk1EasXw3NzSbK2v1b6Y91Zg+5GBDqGpayoOrUek9fb1LBV3HC4qUdCY53NQqB+/vQNtOggSlKhyzjMdQZbNafQP/qtgJxQQsYce0dsjl6zc1qy5XG/Q8MQ1oCIQeYRybiMCut5nGasIxVGq0HK781VfphnOkL/1IK7/Uk2M+ffbGHHEahzxM5cc6wF+Uw2Tml1CFSk2JtpcEmcckPssSiGYyinKTrOeS0QgS6ENfrxvBx/HajfdRF6lMKcRrqCgmSsSaIK0t/POn5JhaTrafM+JnP2OUe0wfvMBVqk8GQsXInwZ5FhyUBGkysqrznqDQByBmnskI1cpEXWpHCk9o8iUKCMA18M6ODc9Vty/SzEEgLQkff+8xtCrOKBrTmymfrJmgwNer6ynvgom0NAt5oR0/+AEjJvSWE8j9DfUF5FfhzrzGHXVmjuARgZ/VdGikwsTLVWHNa8FEHyM1sgX/PZFcJBW57USuxJ4Dqyhju/ZBGb5BQLRbCMaIqNrOSQIx5sGiXsZ3vYj79ItpZtkDMr+RWz0t6cOOPbNVUNWvkP0hGHvYD4wCwB6K6lb1jH4PJn7h8NyTdXA1vgJlZ+2VIvw21ukdkMjBn8nIXdBC9GI3wSjMdCEkjUJQmaDyJCSMj/XTyG0eBPtrmx+0UlHtkUl3Bav3AKzb8oVxPZkEvMMC717oqIk12feFhi4MfvCQ05vkAa7aWKq5A2FZGtg03N73tTgS12tm6h7704ZsoTcOBtz9es6EkfjJcDF0tyFVvb6qoiatDd3OM7VQzcsjyDt6FB8wjLzbCKW9QDeeBp0iqSlCuALLmXIuSdNwkoirfN+HJQVltbXxbns1kspHaaMP9wRTGdfpRFFIiFycbzk9lxQ="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5095,
+   "candidatesTokenCount": 360,
+   "totalTokenCount": 6028,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5095
+    }
+   ],
+   "thoughtsTokenCount": 573,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "ko7aapWBLOKg5NoPhvGb-AY"
+ }
+}

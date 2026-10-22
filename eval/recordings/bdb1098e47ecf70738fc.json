@@ -1,0 +1,72 @@
+{
+ "key": "bdb1098e47ecf70738fce478144fc886deddb2c45df896198eee6ad5c8cb3756",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4501,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "confidence": 1,
+         "status": "incident",
+         "similar_cases": [],
+         "action": {
+          "target": "deployment/inventory",
+          "rationale": "Rollback deployment/inventory to revision 1 to remove the 2000ms fault latency injected into inventory, resolving the upstream timeouts in webapp.",
+          "type": "rollout_undo"
+         },
+         "open_questions": [],
+         "summary": "Deployment inventory was updated to revision 2 with FAULT_LATENCY_MS set to 2000ms. This high latency causes calls from webapp to inventory to time out after 800ms, resulting in overall webapp failures. Rolling back deployment/inventory to revision 1 restores normal latency and resolves webapp timeouts.",
+         "category": "dependency_timeout",
+         "target": "deployment/inventory",
+         "claims": [
+          {
+           "artifact_id": "rollout/inventory",
+           "statement": "Deployment inventory revision 2 added a 2000ms latency fault via environment variable FAULT_LATENCY_MS.",
+           "quote": "change from revision 1 to 2: inventory.env.FAULT_LATENCY_MS: '0' -> '2000'"
+          },
+          {
+           "statement": "The inventory pod experiences a p95 request latency of 2000ms.",
+           "artifact_id": "metrics/inventory-bc75b6577-pgwvq",
+           "quote": "request latency p50=2000ms p95=2000ms (60s window)"
+          },
+          {
+           "statement": "Webapp requests to the inventory service time out after 800ms.",
+           "artifact_id": "log/webapp-68556cc777-65fw7/webapp",
+           "quote": "2026-10-22 22:19:54,504 ERROR webapp upstream inventory timed out after 800ms url=http://inventory:8080/stock"
+          }
+         ]
+        },
+        "id": "call_387998"
+       },
+       "thoughtSignature": "EqMKCqAKAWkUfRNc27ujBT9zyjbEb2yqCRCTqgvOc/+8rbMWFUNsSmk0xv8lBiS44Co+fy1RSvZaq26RyXGbjwARSn/BudXI8Wq40R0ynntJ9YaKpIxiQ+5PfXpvWnv6rJp76NlDrvHIqbxqEp5opUD4GA5H8xnIFZ2qJvceBUZTT2tY2JGokt+N+A6eZdMoxSftAf3ILQviuZHRUaAEYsVGQ8DX8NVjwqBjuGV1Hu+oF8l5m2LY9nIZI2nPes/3RSlA7/yoVgl/F5in09jHIR9vrcPsjVkjTMNutnv3bTakvieYfgBlI/uHAfcnkcVvcVoPr1fzy5Nz0y30bUpm3N11iA8Ue18fyQZ9tTXgsZR6G/Z7g4cWcGGVJsWdaQ9lHN0l+MLnlhtB5eQm2QVT+TJh7oanczyMc7ukOXCIuXbm92c3EF6SW0+VrUE/BMdRfV/zzJZhQPWVIvMYKnDRaFulC1K7Ckj10531jsRQj3B7tE1gLlIEcATwd7iYaHS95pHeXYoC8xoQegnoA7O5d78JYCvaLI6trncFzr9/3etm/pol9+46LEypnbPiARAEpvkR7dZWaRU11cKJ5xTHnfrQ7jZIso2L3BYkMoDivkkCqBobjnmHVYUd38MMnEEy7YU1OW2nFW7dMULoFcehKBaa7KEbgWsyEQQTQZgOQNHkSkMayineYC1yijrrWYV1YBk6WxD8V+3LYRMUYUFd7HT4l8MZJqCQbXKX3T1C9ii/ZbDHDzuQ6OH/2esBzD3WoUQfl2qCUhFdenpeQ72233XMADEGJVCmu5FcJTBgQh/3hnHIqN616Jhnmq3+639ipdpo/q/bMRqwZTOFRhUvhkl3dJV/DLlftLAlP178kUHsH3OfswwDPIJo2QqEtUwAUTtoihobsZrPvJXEpzie0rhhoulwl9b3B66dIm4i/mid7eKmcaJEDUerOTzAnAgGua69Ub/NLGB0XEwtXk7cpnlF1k19AseSgOd38ZqJP55IRZwYBwLUj+5WdYSRt27CXHY97yde056PGifS4Q9NmT5nrjc3AHUstInlMPoRYnefdj4EXVN6mK6tGKPdoTO/rRttRwC8Mt/HNMoDKMcFzLMOnWnqjH8jZZY6ggGAa6jwCuIn+RqYLGj/prCFEfLz3DvtDqsOR7Gb42lq1642b/mpacMzAfHCgDB9m/0/byA4j3WH1rAfH93PaGJ4l5uiVeXn0mM1vJt6yHGeks8JSrr7XVgzYysFmFml9mYOaD/BpXwFiqbTEvYTwbhxFWt7x9UZB19Etx+anbJ8xhjlyYdMEgEwv8jKiTSgBM8GttCBnwey/LH7LGnL8XPIQEd7eOjPagHfjbbxSYmEhih8OFbVxTuYson8zDKTPfYTPg+Sbo07GbIlDvmZyrBd2tOBif+4266q1hOCrymDMXLygLUVtAmfxl7LLuNjmikdnU+/8Ut2jm8vhkjfdqQlB1k44JD2B9HNsS8hRpGwRuzvp+DA8gOftfEfSynB++PggH4W7MNZQOFc3M4LcVduSEXg3XzeQH7A7DdoPRLTwiNfqYHyA6bHFG0N7fIPk3d6McrpZOzoN6kY9mXVeoMh3QDFYmRjURpu2ioh5ngreB8973lCOL72lnlVgANoCy7XkdI1L0QVByL93BBR/O46BJcpdWysm49BlMTO80YYzL6z5nmVaRQLJVPOKVWgRk3LS5mFVdBN/t2BPbnnqPODdAHHwnNhwflvi03Hj04r6CVdSgZxFUu2Dw=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 6774,
+   "candidatesTokenCount": 436,
+   "totalTokenCount": 7595,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 6774
+    }
+   ],
+   "thoughtsTokenCount": 385,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "H4_aat_ABfHRiLMP3cDV4AY"
+ }
+}

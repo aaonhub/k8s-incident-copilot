@@ -1,0 +1,72 @@
+{
+ "key": "fd5048ef72982430317482ac5330bd45c22897e89a4aa508a0e052e875cdf5d4",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4228,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "summary": "The webapp service is experiencing upstream timeouts and returning 504 errors because calls to the inventory service time out after 800ms. A recent rollout (revision 2) of deployment/inventory set FAULT_LATENCY_MS to 1500, raising inventory request latency to 1500ms. Undoing the rollout on deployment/inventory will restore normal latency and resolve webapp timeouts.",
+         "similar_cases": [],
+         "status": "incident",
+         "open_questions": [],
+         "confidence": 1,
+         "action": {
+          "target": "deployment/inventory",
+          "rationale": "Undo the recent rollout of deployment/inventory to revert FAULT_LATENCY_MS from 1500 back to 0, resolving upstream timeouts from webapp.",
+          "type": "rollout_undo"
+         },
+         "target": "deployment/inventory",
+         "category": "dependency_timeout",
+         "claims": [
+          {
+           "quote": "inventory.env.FAULT_LATENCY_MS: '0' -> '1500'",
+           "statement": "Deployment inventory revision 2 introduced an artificial fault latency of 1500ms.",
+           "artifact_id": "rollout/inventory"
+          },
+          {
+           "quote": "request latency p50=1500ms p95=1500ms (60s window)",
+           "statement": "The inventory pod request latency increased to 1500ms.",
+           "artifact_id": "metrics/inventory-5648869f9c-9nxnw"
+          },
+          {
+           "artifact_id": "log/webapp-7bc49bdd78-2pxjj/webapp",
+           "quote": "ERROR webapp upstream inventory timed out after 800ms url=http://inventory:8080/stock",
+           "statement": "The webapp service times out after 800ms when requesting the inventory service."
+          }
+         ]
+        },
+        "id": "call_317646"
+       },
+       "thoughtSignature": "EoULCoILAWkUfRPtyxo0V8Ivwa4L5elpmfoIvm+8YmfKlj9UvGCDYGIpQUBU5ssLcddqIIQQly/G5kaeyAufVabh4D/DXLEtsVxE9SHVHYTr8Z4N1A4HRFf4aea7/LzSF38uYT5IGy1Wqe+O3pnhg3xLzIE8x/8pZxlSnX+gozIGyNsQG5ZzEFZFBOyOEY7GhxONqhbVWIOixPLiyDrOjQSpchvsKbUaCwsthgqdmR+NqRcV78CE4W7EsOha4j8+F9R57LKk0IqNVaS0f+iSdvrvBzqFyqAhyrH3guyo1oIWmzhjHB/5bakxhWGQ3kxc8wlOVBHMOnLZlB4CS5NWO9IVfCzrR96Tc2N4cjEm/N2otVWwJZDX2l/DkncKk+0thBHh3hXX/j1GIb+EPzTTh72zprfidhoEMNuJNef8aSHu3wmoFTkRf0T/NKfTQLqAFiHMHRfP9ixNxc5utgpb8/gHiAl/0lIPl+39J/OA5Biwb4LTjcc0V7BU54ia3eWpKKecZzVM74ovLW09UKOdVhvYoQqjtJilVR22FgtcfS3NtMz9giNoWUX6leWsTVuGGnVijJBRzcCJ6/NGcMtw9DH/fjGMCDSUypEqmfXPiMhdySpThJ6q/aIA6nYT0BUBVjm+Zn9rYm5CXF8SWtkkDZEJBv6+7Fa4CzEsAe2EzErEpHL869/MiAdl8NDq20Fl9dPnFzfWfTMAREZHZkGFbzQKVw2W98BGPW2Bty0Rywkjt/RAmrbcXaVU2KS9DCFEHsy9bK79sOzWdVKWxvhB+mvDmiIrWL8PNKPg/asce92TRGWhYf86JU+8E4YM3wEHWYg5qI7bpihOWnTTeRg83m2PQo1euKZ/49jmJhvYqkbTmQVvu9DVv4YzkW4tN0o/jjYHOmZdkgGzZ01bRwQheqBCSTtXtuiMi44TmVpyZI3boAmlIj/dxBZO530tCKr9oEy02GIJoXTw+CCM4kDcxB3cmkDMnZLrlmGl2ddL0THh5RIDzJ4vyNfgNFnqp/0t2jVroIk4M2rwCFp/CyUyZbvtyQmZZ8HCe6559wC4ssXnnmq30Q7hC814+w7AAqCd3z1ICwAH9APv4MttjPNwTG46MINstY2U4UTdTnxMIhgTh0Lzk07uvTvtt9QwWUFusFx3rPPdhgm/e4f0LuzxlEkW88MrjDqWkuJTjIxmaq2yH7Ma65sgYJwDi2AjE9t5DuDXIrC60s4nlKOJaxd982DlkDwmEby+yk/GUcmh0rq3yx1XrxcLgCXW0z3sgjGeQ2UkYsvX5LO+fg6XNvCm4s2uf8nm17uW3IiZoaZ3MNzKtKa19RquUMJB881v43kE9er5HF2W/BfD6Z2EWewyOTaFvafka3mcOuSGm9Tr9Ri1OjR75AWUc3LzATilJq/MZO9a7ZcMgG//0jJw9alIKWYsXKQOoGhs6tOlDLL1csMASwXN7izU/N78c3d+3qDRK/yIuZCR5q1PAuTwR2bpRiTxqOrZE6fxBkj4IOmHfBYvxjrp74fV7OBijVZb66umojvL7RP5asVVRCJUK/s7a9CZfOYQjfBf5/zpWGcUMRDSOXvwAZreyZD61IhXDuEvMDgSDV5L9pGzaLNRJB//aKCVULN4s+ZbKnXGJDEyls/TsiDovs1E5Bmsq1rejmQ0+62k80RFRTzJYso6dbT8szT2HB0PMrs1L7gkJkFjUxpTFvoLr7Nzpv0u3ucDP8xJvp1Zing8+z6Xyt2C96LCIppihvMY6d4SbPjcVVht/oFBQmPPM50Ya659WbWjS+Q1NOGZ5HnaaL8XAWdA1pBrDPMJxDYzf/viEqLkj9Afp6dVeTLPqUjw78PtnqV6V2Lq90vblevz4lSSNWOP6P8363RHSZ4d+GeE"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5304,
+   "candidatesTokenCount": 413,
+   "totalTokenCount": 6110,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5304
+    }
+   ],
+   "thoughtsTokenCount": 393,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "NI_aasTaOqGv5NoPy9vw6AY"
+ }
+}

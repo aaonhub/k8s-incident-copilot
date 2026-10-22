@@ -1,0 +1,69 @@
+{
+ "key": "799463eefe352a52368faa494c69fc26045a2e1c6301c33e67f3c07d869efb19",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4177,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "status": "incident",
+         "summary": "Deployment webapp failed to roll out revision 2 because the readiness probe path was changed from '/ready' to '/readyz', returning 404 Not Found. Reverting the deployment to revision 1 restores the correct readiness probe configuration.",
+         "category": "readiness_probe_failure",
+         "action": {
+          "rationale": "Rollback deployment/webapp to revision 1 to restore the readiness probe path to '/ready'.",
+          "type": "rollout_undo",
+          "target": "deployment/webapp"
+         },
+         "claims": [
+          {
+           "quote": "change from revision 1 to 2: webapp.readinessProbe.path: '/ready' -> '/readyz'",
+           "artifact_id": "rollout/webapp",
+           "statement": "Revision 2 of deployment/webapp changed the readiness probe path from /ready to /readyz."
+          },
+          {
+           "quote": "Readiness probe failed: HTTP probe failed with statuscode: 404",
+           "statement": "The webapp pod readiness probe failed with status code 404 on /readyz.",
+           "artifact_id": "event/1"
+          }
+         ],
+         "target": "deployment/webapp",
+         "open_questions": [],
+         "similar_cases": [
+          "ticket/T-1128"
+         ],
+         "confidence": 1
+        },
+        "id": "call_389340"
+       },
+       "thoughtSignature": "ErEJCq4JAWkUfRPcfXCCQsN1p+m/dWg07lAkYJlAu9Ame4PSewJFOOuB1Pxs6wrf04nPjljTIoGubjnyUxfMN3JsapTTyXC0aHv8ek1DZu01iQGl/gvCrao26gYhTY1zS+EXw2AOVezpQjPcjKeCY1G9JCTNpzSN+zIMUjpnxo1THzvVu6utx5T4m001V0cHOMVIhG6mH1fI2uTnVZwggYO9nhh219JWCyeMUp7pdZ2AJqkAobSt9Elae8X+meourfT6uTmiKRHSXdQocaHQ1nDM5/c5hFQ6pnwdA8duTgVCbJLZ6rU93BsljS/k8ivsRktruA8wqLxIIfT3rlBgXhW1PP3BWVgpYsEfjOqx3YMqj0Esqn5Z0ZaovZJnkUtcax/umpa64nYSv9J/vRLA7DaUXCfdiX9+AYUHKgdyUohkX88McvybkK4A8YUUrQ+nZAb/mNRSmBmtRbW/TTnV1RuF1oBTlm5FdsPpWt+YXK9g9SxeJI9tKfPnKjy3KO0AF3VT5/BwjGCBmIW7PbuTTYnTn/zrYXwc4PcHIY+1mhO6iTjn1KVUGZXEs75sM1XM0p65xTKUq1IYTs9hMgbgPc/K3R0B6qfnJgcz15R3dUg0CujWo053ZLCP7Zxvvv35qGfHBjNB9lItcQz3qUgXf6PTf8Hht1dJnbQbCyXngCHe8WlSB3pJCvKb4IDgXL9IMYSSyZjUAo/bFZ+7lu0ufVaJKnVpdjb4sVZwib909aHVtNxc/Cdtprxs3ctYlUKFaI97mfKlYQKPdp5y5bHH139hRKbuqoSayaOcvhrxXT/BcPRFCO1oWU2aQvrT+Ea01wbWPa76BFPHGvuIxieAJ24yq5uf4OCrgyY5xrOAtMnX0J34q5ntbrQKXKRpVGa2EbkCf0ppD4c0Uea1ITS7LEdUxh8mRoH5DArqbCDzmBBtlgQ1nX0Cforo8vVqjFzC/B7Z3p4M3E0CR9CHR0olyM29I7T7PMwVoiKVDeTe99sh/DS14BYvjzDr8VxfTffK0VKCCHPlYFe2y9sGybfvQikl7bZ7eYIzG0hpWsQw+Sf5JrEDx5n2kPWh37I01Xv1GG0L9rATk3XpgaW8GuvvGx7aTjqhjVWewc9DRXAXRxxYF4i5s3zRxw9Dxz3NtcCSC3q3gr39ijIv7Qi2gt7jBnpzj7WZmev5rsaehr1tNl7XaiulDl1rCtSWFaW1PQ9sIROyQqDGElG6ZBaJ4SuIVy75HiaBe9SF9dchB/cnkXJtAgFChKXUua5ENoieCKQ6Bfe7cDff5FWcRE9a1vcuZMyQbAkYXBIJmsB6cqzBhAE43BrHf+YgbvV6//o+c5+DOs2Tu09wd92POQK26+DiQhHK/xHuhp9u8ipdB0PMpI53UGMBfW5MqNz7smZwABGBAdYPRJ+0ssNKe9+Vqw3N5aS72V48oiT7LH2dVahmQhIccYkD9XkfIT1Yo0r/GJBkSg4HaG5JAjX5Jehx5/RVreE2UvyYwOZVH5tREsNeCgqjZ4VODYdLxWO+f1mXXg2Ghw+I/byP+FaZIMwukWKkN3JKifkd5OgEpn6hKwf+r/aVwhuvYcUdZwTsf/SzwpeH0e5pYA=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5814,
+   "candidatesTokenCount": 282,
+   "totalTokenCount": 6456,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5814
+    }
+   ],
+   "thoughtsTokenCount": 360,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "24_aatTAIoeRiLMPl6XZ0AY"
+ }
+}

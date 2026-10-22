@@ -1,0 +1,44 @@
+{
+ "key": "6b726fd042c0a53394e2b3d3dbf2483d492282df340426200b766208761039b7",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 2039,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "get_rollout_diff",
+        "args": {
+         "deployment": "inventory"
+        },
+        "id": "call_313758"
+       },
+       "thoughtSignature": "Er0GCroGAWkUfRMWWwhFCzRm52Wc0RU8rUr88nO2/pA5nPGAuq6eK8qBSx33Nn+kcif23vVLuZPqVhamluS22z0GSPpeCSIzPdxq3XP++LJ0D0Mumx5qEL0mYFMp/hKTMKxoKxZLnixc3EIsmN+xzfMoUEaDNBaInts91tWUr0fs4+4P/Tv5b4+MLNad1Q4gnMl1/p4msFCm95yZaIW9cZZlKwoA4N22OFsF9HiIDmHu8inHh2i3BgEcdoughmhYD+5C9hUUVZWksQ1Mu5wfs9BzMq8Cv5+BMe9PK8IYHYF3+mPz8QwkFCiCyqLcLQ5bG8MbIiljKpAC9+aFMHgJtPSC2XSlhFYLxlzMa4ErbFfbsG9xNiHaLI1mIUMqcku1mW21TyZNeN4GsQqM2yFP3pFUFy0h6fSKqedCqA/QwrEQcuSSku+qZB1iaO2ZrFy1Yg+f9+vCED9AIAbfXw6TKPKGcJGpLISboHByTGu9ZuHE39HUbmAU6iaDK+z/hG1kX4ys1AcuD9vYdK6zXHVlmR9qA8AYUPnUFOvK98Z70Cxe9EW+QyCBc3a4ZB8NQgW5MTRKwdZEn+uB63fvrrq+jh9sJ/3WVFpOt2cZA50fSQ0tETP9J83TAdwp8MrdDJ4wEG7LmPRl6oDLLbkunGMCMYsM4OOA6jusHtHJ27FUoNXC0dCXkduTexl6RkY/YMwBma8M0t+RcO2tMB70YL4o2BWrGhiWCogTJvk2EQDZjAoBUbfOZN5Jx9HJHCWnx9CK189jS1g2+gaGk9ZaM0ElbiVWlQQIvE0UUvEBA8BjHZO8LAaKmqA36vp0+FBCVz23QI/tK9JauankD4BBJ3avBhpAnwz6cE3ojDGALb1NxTS6GD8N7cnzQn410Y5DasXWbKudSm5f9anRY6YtkhDzE+WbBYXMtZk8bxhYzh2ohla6eEDmpAAkkSlZOiSqffS/oMK3etXucOQNUvC+3HgQKE/s+pPY0Sam0sueu1SBqrvy4SVmdGSN3rPChTgPX3ifqF35AN8/IC43g9yjoi9v3rsK/JwB083ui1OtLjas7vuw1x2SIBt1SIuu4+1Kwf5sEhodL7eBwXWPQuapbEME6A=="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 5061,
+   "candidatesTokenCount": 19,
+   "totalTokenCount": 5282,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 5061
+    }
+   ],
+   "thoughtsTokenCount": 202,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "Go_aaonHNILl5NoP7aeX6AY"
+ }
+}

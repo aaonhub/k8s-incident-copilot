@@ -1,0 +1,67 @@
+{
+ "key": "bc58d305a9fd4190372949e5046d1dbd9b3cf2e23a188b3862f60dce45ef14e2",
+ "model": "gemini-3.5-flash",
+ "latency_ms": 4392,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "submit_diagnosis",
+        "args": {
+         "action": {
+          "target": "deployment/webapp",
+          "type": "rollout_undo",
+          "rationale": "Rollback webapp deployment to revision 1 to restore UPSTREAM_URL to the working inventory port 8080."
+         },
+         "status": "incident",
+         "claims": [
+          {
+           "artifact_id": "rollout/webapp",
+           "statement": "Deployment webapp revision 2 changed UPSTREAM_URL from port 8080 to port 9090.",
+           "quote": "change from revision 1 to 2: webapp.env.UPSTREAM_URL: 'http://inventory:8080/stock' -> 'http://inventory:9090/stock'"
+          },
+          {
+           "quote": "ERROR webapp upstream inventory timed out after 800ms url=http://inventory:9090/stock",
+           "artifact_id": "log/webapp-7dcb494678-hrt8l/webapp",
+           "statement": "Webapp pods are encountering upstream timeouts when attempting to reach http://inventory:9090/stock."
+          }
+         ],
+         "open_questions": [],
+         "target": "deployment/webapp",
+         "summary": "Deployment webapp was updated in revision 2 with an incorrect UPSTREAM_URL pointing to port 9090 instead of port 8080. As a result, webapp requests to the inventory service fail with timeouts, returning HTTP 504 errors to downstream clients. Rolling back webapp to revision 1 resolves the incident.",
+         "similar_cases": [],
+         "category": "config_regression",
+         "confidence": 1
+        },
+        "id": "call_275376"
+       },
+       "thoughtSignature": "ErgLCrULAWkUfROqGUyVyB6MYokt9tqS0QBDYWt8M5u6mCKJ4Or07yfr41OnYLU47p/dmuEsj3RtMBuE7f/s7Bb4ogGHut2HJ8fXpn+bk+YEKvzY6yNj9KTVRXOukdmViQuxX7yy+9cNmvP9FrcCk2xzpxFpqgcM9KQsffBO0FYvbW+5wGKv0obgQTkYKdfgVgqkNBaq+llhMcIWXJXK6i3bQu3kLixtTc5vC1B4xJDSQE2Xk0jAhUpieMehcQJEJvbRbvWg50Uu+Mip5qw281prxJTbdBVtqJnC3W3DB8qvEwZE1xqH1DNfCGAMAKyiyxWO+l91kfG7KVKG8+eHSXH60B6mqkvlyV0jSotEjOZ5FZutw0r3eHc1Lk2RdzCjIg2Lf9EjPSY7Hpfgi9PbYxT/jH/TykREyoReDa205lLHSy0cg73Y34F/Wq7FKp9eYAzd50yPAmXrEq0diT4Eak5wAb7DgLpBwobPihhfigZO1SlbUDZel6kcJN5tJwzPqFCYBEDZHK0wSkkCwjUqBJB/5qx7PtSGxQad8QfMAA79OS1JV+3la4rfabMBruW1Cy1lZ5znA/XD4oTVhj1VPPH/vQZU5y/bV5F1M7ompUzuqtIhZfKy5oGGgA0KKMpSgKPDVYfvIZ8QxNX15gim0KbLzA4gnDX7tk1BUxhlsX7tjGwLGNZ9BAK8TKnrWiFp4maShkVm/WtkiSKyiQqnifJ4dOR4Tz+yNOzx2ZbzU3XJQZFxAVrYuGLGQ3gYhledkFPZCsSGNm1GP091jHfPJNcS/tV+1aPbEOnv7CNCCTeYXzsdVCoCwX/1fVNOf/cz1zIYH3hTaCNprgzRz0MNwB0IRwuGidkf9K1R7Y9Qeu0g8vcduOdhkSINQfMHseRAQhKPkqikGnWQK8ioGjBhXlN/j/DEGFSXrrF371mualQqBx4WyhWr4XmMrBBjLsNI8gSM4dPlUjcQKS+ecQ4shNb7tcS9k2397ccOpKbwJ1WjebC5Sr0ns1JVWs5b7ywvJKtTGUik2Lb75bhzVm5RnhvmCi08SsW4nAKa2AO41WI2GVU15tJPa1xS41qoLvk4RHrKrJvBWhI+jYXjEJ8L3z3qKfQkeRjPDaUvHJbPuqNnGVdT+NEmCkLMV9ZybKMU/vnHZJNWLBmWPGcU+dD+0ade7X3kIancDKN6UIx9xmh/oRgoXRzv6v4wrRBNOxp8jOPOc1E+A4tUw+rtZ7/MKJR9lATV7eMivIp1NFLZfYg2BzlaAOKrg8KPHCRtJ89NrZJZXyIG+UMqGSHNGV4FcMsqpkSI4KQ+33WEnE6VOBkNFfRj35udKn3qcxewGTv/8rcJA++AMx4SmuHR6n/3g2ricOt2tDj/OqwwIk5NnAGrgsvNGi+ECyZj2gXoZUKTwGrbJPMnkWNqhyZoGAJwj+M5/7/suHqL4b5iCmuW/0yvT7qYMg/1dlBASP8rsghUcimgGg99ISqmFwSwPpkkJZKVJlGIsS6V4SDgzuIWtMy2/3FxaZ+RNUrCvwpgGYa8qZN63NiA4LoveyQ6NpnSqw/Olki9iJtZSYMOtsfMMlrPP62WnKSTUzBTK3U41RJk4onrJRiB1oOlGUbjpco1itaUBSOhytaGGwYaPUWE0wv7oKVG/TkfFjvyT7u3kfSyJUSjXb4KHuF9yfTP6gQXu0E2VmvkY8red74ET0+Z6Ik/cnLhwHMq5kb+D5qYEQs9kORNHHTDrrdqh1/8ozayFCIlnuebL5EwPL9zvoF/YX6UZIKO6nNsVPML3zILDjFv3YGHLIRlKMdCeWo1rsIP1ns92ZJL9/qNhKr3iVk7Tbo9ogfiQT71B19m9tz4z0+7f5D/me8sZlZjU88FEgt3/8A0BKGK1lrk3mwTdv/B7tphRddG9cSPDleE0h2q0PwWdiKywwZGoel4siUj+WLkhv52Fz3x7aTmAIcR"
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0,
+    "finishMessage": "Model generated function call(s)."
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 4932,
+   "candidatesTokenCount": 350,
+   "totalTokenCount": 5682,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 4932
+    }
+   ],
+   "thoughtsTokenCount": 400,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.6-flash",
+  "responseId": "w47aavONDaa7iLMPnufbwQY"
+ }
+}
