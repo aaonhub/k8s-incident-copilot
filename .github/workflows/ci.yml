@@ -21,8 +21,8 @@ jobs:
       - name: Eval in recorded-response mode (no API key, no cost)
         run: python eval/run_eval.py --no-readme
         env: {COPILOT_LLM_MODE: replay}
-      - name: Results match the committed table
-        run: git diff --stat eval/results.md && git diff eval/results.md | head -40
+      - name: Results match the committed table (the README numbers are reproducible)
+        run: git diff --exit-code eval/results.md
       - uses: actions/upload-artifact@v4
         with: {name: eval-results, path: "eval/results.*"}
 
